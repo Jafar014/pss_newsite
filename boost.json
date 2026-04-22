@@ -1,0 +1,7 @@
+{
+    "agents": [
+        "opencode",
+        "claude_code"
+    ],
+    "guidelines": true
+}
