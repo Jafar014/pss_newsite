@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
 Route::inertia('/', 'home')->name('home');
+Route::inertia('/berita', 'news')->name('news');
 
 Route::inertia('/old', 'welcome', [
     'canRegister' => Features::enabled(Features::registration()),

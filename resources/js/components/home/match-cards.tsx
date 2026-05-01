@@ -1,4 +1,5 @@
-import { PlaneIcon } from "lucide-react";
+import { useState, useEffect } from 'react';
+
 interface Match {
     id: string;
     date: string;
@@ -28,42 +29,105 @@ interface MatchCardsProps {
     upcomingMatch?: Match;
     nextWeekMatch?: Match;
     standings?: LeagueStanding[];
-    dark?: boolean;
 }
 
+const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    return {
+        month: months[date.getMonth()],
+        day: date.getDate(),
+    };
+};
+
+const MatchCard = ({ match, label }: { match: Match; label: string }) => {
+    const { month, day } = formatDate(match.date);
+    const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+    useEffect(() => {
+        const calculateCountdown = () => {
+            const timeFormatted = match.time.replace('.', ':');
+            const targetDate = new Date(`${match.date}T${timeFormatted}:00`);
+            const now = new Date();
+            const difference = targetDate.getTime() - now.getTime();
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                setCountdown({ days, hours, minutes, seconds });
+            } else {
+                setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+            }
+        };
+
+        calculateCountdown();
+        const interval = setInterval(calculateCountdown, 1000);
+
+        return () => clearInterval(interval);
+    }, [match.date, match.time]);
+
+    return (
+        <div className="flex flex-col w-full h-full items-center justify-center font-calcio-italiano bg-[#f5f5f5]">
+            <div className="relative w-full h-16 sm:h-20 md:h-24 overflow-hidden bg-gradient-to-r from-[#0F7A4A] via-[#12914e] to-[#0F7A4A] lg:-mt-14">
+                <div className="relative z-10 flex flex-col items-center justify-center py-2 md:py-3">
+                    <p className="text-xl sm:text-2xl md:text-3xl text-white/90 uppercase tracking-wider">Pegadaian Liga 2 Championship</p>
+                    <p className="text-base sm:text-xl md:text-3xl font-bold text-white/90 uppercase tracking-widest">Matchday {label}</p>
+                </div>
+                <div className="absolute inset-y-0 top-0 left-0 bg-[#fcfcfc] mix-blend-overlay transform -skew-x-30 origin-top w-32 opacity-10" />
+                <div className="absolute inset-y-0 bg-[#fcfcfc] mix-blend-overlay transform -right-1 top-0 skew-x-30 origin-top w-32 opacity-10" />
+            </div>
+            <div className="flex w-full items-center p-3 md:p-6 lg:-mt-8">
+                <div className="w-1/3 flex flex-col lg:-mt-2 items-center">
+                    <img
+                        src={match.homeTeamLogo}
+                        alt={match.homeTeam}
+                        className="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-44 lg:h-44 object-contain"
+                    />
+                    <p className="text-[10px] sm:text-xs md:text-sm lg:text-xl text-center text-[#1c1c1c] mt-1 line-clamp-1">{match.homeTeam}</p>
+                </div>
+                <div className="w-1/3 text-center px-1 lg:mt-8 md:px-4 lg:px-8">
+                    <p className="text-[10px] sm:text-xs md:text-base lg:text-lg text-[#1c1c1c] uppercase">{day} {month} 2026</p>
+                    <p className="text-[10px] sm:text-xs md:text-base lg:text-lg text-[#1c1c1c] uppercase">{match.time} WIB</p>
+                    <p className="text-[10px] sm:text-xs md:text-base lg:text-lg text-[#1c1c1c] uppercase">Std. {match.venue}</p>
+                    <button className="border text-[#1c1c1c] mt-1 md:mt-4 border-[#1c1c1c] py-1.5 px-2 md:py-2.5 md:px-6 text-[10px] sm:text-xs md:text-sm cursor-pointer hover:bg-[#0f5133] hover:text-[#f5f5f5] transition-colors rounded">
+                        Beli Tiket
+                    </button>
+                </div>
+                <div className="relative w-1/3 flex flex-col items-center">
+                    <img
+                        src={match.awayTeamLogo}
+                        alt={match.awayTeam}
+                        className="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-44 lg:h-44 object-contain"
+                    />
+                    <p className="text-[10px] sm:text-xs md:text-sm lg:text-xl text-center text-[#1c1c1c] mt-1 line-clamp-1">{match.awayTeam}</p>
+                </div>
+            </div>
+            <div className="relative md:-mb-16 bg-[#1c1c1c] w-full lg:h-16 items-center justify-center md:h-10">
+                <p className="flex items-center justify-center gap-2 text-lg sm:text-2xl md:text-3xl text-center p-1 text-white font-calcio-italiano">
+                    <span>Pertandingan dimulai pada </span>
+                    <span>{String(countdown.days).padStart(2, '0')}</span>:
+                    <span>{String(countdown.hours).padStart(2, '0')}</span>:
+                    <span>{String(countdown.minutes).padStart(2, '0')}</span>:
+                    <span>{String(countdown.seconds).padStart(2, '0')}</span>
+                </p>
+            </div>
+        </div>
+    );
+};
+
 export default function MatchCards({
-    lastMatch = {
-        id: '25',
-        date: '2026-04-20',
-        time: '19:00',
-        homeTeam: 'PSS',
-        homeTeamLogo: '/pssLogo.png',
-        awayTeam: 'Persiku',
-        awayTeamLogo: 'https://assets.ileague.id/uploads/images/logo/89/v/200/49.png',
-        homeScore: 2,
-        awayScore: 1,
-        venue: 'Maguwoharjo',
-        status: 'finished',
-    },
-    upcomingMatch = {
-        id: '26',
-        date: '2026-04-26',
-        time: '19:00',
-        homeTeam: 'Persiba',
-        homeTeamLogo: 'https://logobase.net/wp-content/uploads/2025/09/Persiba-Balikpapan-Logo.webp',
-        awayTeam: 'PSS',
-        awayTeamLogo: '/pssLogo.png',
-        venue: 'Batakan',
-        status: 'upcoming',
-    },
     nextWeekMatch = {
         id: '27',
-        date: '2026-05-02',
-        time: 'TBA',
-        homeTeam: 'PSIS',
-        homeTeamLogo: 'https://assets.ileague.id/uploads/images/club/lineup_PSIS_SEMARANG_1757324008.png',
-        awayTeam: 'PSS',
-        awayTeamLogo: '/pssLogo.png',
+        date: '2026-05-03',
+        time: '15:30',
+        homeTeam: 'PSS Sleman',
+        homeTeamLogo: 'https://assets.ileague.id/uploads/images/logo/89/h/50/23.png',
+        awayTeam: 'PSIS Semarang',
+        awayTeamLogo: 'https://assets.ileague.id/uploads/images/club/lineup_PSIS_SEMARANG_1757324008.png',
         venue: 'Maguwoharjo',
         status: 'upcoming',
     },
@@ -74,142 +138,49 @@ export default function MatchCards({
         { position: 4, team: 'PSIS', played: 10, won: 5, drawn: 2, lost: 3, points: 17 },
         { position: 5, team: 'PSMS', played: 10, won: 4, drawn: 3, lost: 3, points: 15 },
     ],
-    dark = false,
 }: MatchCardsProps) {
-    const getStatusBadge = (status: Match['status']) => {
-        const styles = {
-            finished: 'bg-gray-500',
-            live: 'bg-red-500',
-            upcoming: 'bg-[#0F7A4A]',
-        };
-        const labels = {
-            finished: 'FT',
-            live: 'LIVE',
-            upcoming: 'Upcoming',
-        };
-        return (
-            <span className={`rounded px-2 py-1 text-xs font-bold text-white ${styles[status]}`}>
-                {labels[status]}
-            </span>
-        );
-    };
-
-    const formatDate = (dateStr: string) => {
-        const date = new Date(dateStr);
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        return {
-            month: months[date.getMonth()],
-            day: date.getDate(),
-        };
-    };
-
-const MatchCard = ({ match, label }: { match: Match; label: string }) => {
-        const { month, day } = formatDate(match.date);
-        const showScore = match.status === 'finished' && match.homeScore !== undefined && match.awayScore !== undefined;
-        const showPending = match.status === 'upcoming';
-        return (
-            <div className={`flex flex-col w-full bg-white rounded shadow-lg`}>
-                <div className="w-full h-16 bg-[#0F7A4A] flex items-center justify-center">
-                    <span className="text-white font-bold uppercase text-lg">Match {label}</span>
-                </div>
-                <div className="flex flex-row flex-1">
-                    <div className="flex flex-col justify-center items-center p-4 font-bold leading-none text-gray-800 uppercase bg-gray-400 w-1/4">
-                        <div className="text-sm">{month}</div>
-                        <div className="text-3xl">{day}</div>
-                        <div className="text-xs">{match.time}</div>
-                    </div>
-                    <div className="p-3 mt-4 font-normal text-gray-800 w-3/4">
-                        <div className="flex items-center justify-between ">
-                            <div className="flex-1 text-center ">
-                                <img
-                                    src={match.homeTeamLogo}
-                                    alt={match.homeTeam}
-                                    className="w-10 h-10 object-contain mx-auto"
-                                />
-                                <span className="text-lg font-bold block">{match.homeTeam}</span>
-                                {showScore ? (
-                                    <span className="text-5xl font-black text-[#0F7A4A]">{match.homeScore}</span>
-                                ) : (
-                                    <span className="text-3xl font-bold text-gray-400">-</span>
-                                )}
-                            </div>
-                            <div className="flex-1 text-center">
-                                <img
-                                    src={match.awayTeamLogo}
-                                    alt={match.awayTeam}
-                                    className="w-10 h-10 object-contain mx-auto"
-                                />
-                                <span className="text-lg font-bold block mt-1">{match.awayTeam}</span>
-                                {showScore ? (
-                                    <span className="text-5xl font-black text-[#1c1c1c]">{match.awayScore}</span>
-                                ) : (
-                                    <span className="text-3xl font-bold text-gray-400">-</span>
-                                )}
-                            </div>
-                        </div>
-                        <div className="flex items-center justify-center mt-3">
-                            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            <span className="text-sm font-bold">Std. {match.venue}</span>
-                        </div>  
-                    </div>
-                </div>
-            </div>
-        );
-    };
-
     return (
-        <section className={`w-full pt-2 pb-10 ${dark ? 'bg-[#1C1C1C]' : 'bg-gray-50'}`}>
-            
-            <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
-                
-                <div className="grid gap-6 lg:grid-cols-2">
-                    <div className="grid gap-4 sm:grid-cols-3">
-                        <MatchCard match={lastMatch} label={lastMatch.id} />
-                        <MatchCard match={upcomingMatch} label={upcomingMatch.id} />
-                        <MatchCard match={nextWeekMatch} label={nextWeekMatch.id} />
-                    </div>
-                    <div className={`flex flex-col w-full bg-white rounded shadow-lg`}>
-                        <div className="w-full h-16 bg-[#0F7A4A] flex items-center justify-center">
-                            <span className="text-white font-bold uppercase text-lg">Pegadaian Liga 2 Championship</span>
-                        </div>
-                        <div className="p-2 ml-4">
-                            <div className="overflow-x-auto">
-                                <table className="w-full text-sm">
-                                    <thead>
-                                        <tr className="text-gray-500">
-                                            <th className="pb-2 text-left">#</th>
-                                            <th className="pb-2 text-left">Team</th>
-                                            <th className="pb-2 text-center">P</th>
-                                            <th className="pb-2 text-center">Pts</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {standings.map((standing) => (
-                                            <tr
-                                                key={standing.position}
-                                                className="border-t border-gray-200"
-                                            >
-                                                <td className="py-2 text-gray-500">
-                                                    {standing.position}
-                                                </td>
-                                                <td className="py-2 font-medium text-gray-800">
-                                                    {standing.team}
-                                                </td>
-                                                <td className="py-2 text-center text-gray-500">
-                                                    {standing.played}
-                                                </td>
-                                                <td className="py-2 text-center font-bold text-[#0F7A4A]">
-                                                    {standing.points}
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+        <section className="relative z-10 mx-auto max-w-7xl px-3 md:px-4 md:mt-10 lg:-mt-8 pb-10 ">
+            <div className="flex flex-col lg:flex-row md:rounded-xl bg-[#f5f5f5] shadow-2xl overflow-hidden">
+                <div className="w-full lg:w-1/2">
+                    <MatchCard match={nextWeekMatch} label={nextWeekMatch.id}/>
+                </div>
+                <div className="w-full lg:w-1/2 border-t lg:border-t-0 lg:border-l border-white/20 p-3 md:p-6 overflow-y-auto max-h-[300px] sm:max-h-[400px] lg:max-h-96">
+                    <h3 className="font-calcio-italiano text-sm sm:text-base md:text-2xl text-[#1c1c1c] uppercase mb-2 md:mb-4">
+                        Klasemen
+                    </h3>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left font-sans text-[10px] sm:text-xs md:text-base">
+                            <thead>
+                                <tr className="border-b border-gray-700 text-[8px] sm:text-[10px] md:text-sm text-[#1c1c1c] uppercase">
+                                    <th className="pb-2 md:pb-3 pl-1 md:pl-2">#</th>
+                                    <th className="pb-2 md:pb-3">Tim</th>
+                                    <th className="pb-2 md:pb-3 text-center">M</th>
+                                    <th className="pb-2 md:pb-3 text-center">M</th>
+                                    <th className="pb-2 md:pb-3 text-center">S</th>
+                                    <th className="pb-2 md:pb-3 text-center">K</th>
+                                    <th className="pb-2 md:pb-3 text-center">Poin</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {standings.map((row) => (
+                                    <tr
+                                        key={row.position}
+                                        className={`border-b border-gray-800 text-[#1c1c1c] ${
+                                            row.team === 'PSS Sleman' ? 'bg-[#0F7A4A]/20' : ''
+                                        }`}
+                                    >
+                                        <td className="py-2 md:py-3 pl-1 md:pl-2 font-medium">{row.position}</td>
+                                        <td className="py-2 md:py-3 font-medium">{row.team}</td>
+                                        <td className="py-2 md:py-3 text-center text-[#1c1c1c]">{row.played}</td>
+                                        <td className="py-2 md:py-3 text-center text-[#1c1c1c]">{row.won}</td>
+                                        <td className="py-2 md:py-3 text-center text-[#1c1c1c]">{row.drawn}</td>
+                                        <td className="py-2 md:py-3 text-center text-[#1c1c1c]">{row.lost}</td>
+                                        <td className="py-2 md:py-3 text-center font-bold text-[#0F7A4A]">{row.points}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

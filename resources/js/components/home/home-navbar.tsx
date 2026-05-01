@@ -1,16 +1,16 @@
-import { useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { ChevronDown, Menu } from 'lucide-react';
+import { useState } from 'react';
 import {
     Sheet,
     SheetContent,
     SheetTrigger,
 } from '@/components/ui/sheet';
-import { ChevronDown, Menu } from 'lucide-react';
 
 const navItems = [
     {
         label: 'Berita',
-        href: '#berita',
+        href: '/berita',
     },
     {
         label: 'Klub',
@@ -32,16 +32,11 @@ const navItems = [
         children: [
             { label: 'Jadwal', href: '#jadwal' },
             { label: 'Klasemen', href: '#klasemen' },
-            { label: 'Match Programme', href: '#match-programme' },
         ],
     },
     {
         label: 'Toko',
         href: '#Toko',
-    },
-    {
-        label: 'Partnership',
-        href: '#Partnership',
     },
 ];
 
@@ -59,7 +54,7 @@ function NavItem({
             <div>
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className={`flex w-full items-center justify-between px-4 py-3 text-base font-medium text-white ${
+                    className={`flex w-full items-center justify-between px-4 py-3 text-base font-medium text-white hover:text-[#EFBF04] transition-colors ${
                         isMobile ? '' : 'xl:w-auto'
                     }`}
                 >
@@ -71,12 +66,12 @@ function NavItem({
                     />
                 </button>
                 {isOpen && (
-                    <div className="mt-1 space-y-1 bg-[#2C2C2C]">
+                    <div className="mt-1 space-y-1 bg-[#EFBF04]">
                         {item.children.map((child, index) => (
                             <Link
                                 key={index}
                                 href={child.href}
-                                className="block px-6 py-2 text-sm text-white/80 hover:text-[#0f7a4a]"
+                                className="block px-6 py-2 text-sm text-black hover:bg-[#0F7A4A] hover:text-white transition-colors"
                             >
                                 {child.label}
                             </Link>
@@ -90,7 +85,7 @@ function NavItem({
     return (
         <Link
             href={item.href || '#'}
-            className={`block px-4 py-3 text-base font-medium text-white hover:text-[#0f7a4a] ${
+            className={`block px-4 py-3 text-base font-medium text-white hover:text-[#EFBF04] transition-colors ${
                 isMobile ? '' : 'xl:inline-block'
             }`}
         >
@@ -110,7 +105,7 @@ export default function HomeNavbar() {
                 />
             </Link>
 
-            <div className="hidden items-center gap-1 lg:gap-2 xl:flex">
+            <div className="hidden items-center gap-1 xl:gap-2 xl:flex">
                 {navItems.map((item, index) => (
                     <div key={index}>
                         {item.children ? (
@@ -152,7 +147,7 @@ export default function HomeNavbar() {
                     </SheetTrigger>
                     <SheetContent
                         side="right"
-                        className="w-[280px] bg-[#1C1C1C] p-0"
+                        className="w-[280px] bg-[#0f7a4a] p-0"
                     >
                         <div className="flex flex-col py-6">
                             {navItems.map((item, index) => (

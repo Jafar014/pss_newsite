@@ -14,6 +14,10 @@ return [
     |
     */
 
+    'football_api_key' => [
+        'key' => env('FOOTBALL_API_KEY'),
+    ],
+
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
     ],

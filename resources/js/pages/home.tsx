@@ -1,10 +1,11 @@
 import { Head } from '@inertiajs/react';
-import HomeNavbar from '@/components/home/home-navbar';
+import HomeFooter from '@/components/home/home-footer';
 import HomeHero from '@/components/home/home-hero';
+import HomeNavbar from '@/components/home/home-navbar';
+import HomePlayers from '@/components/home/home-players';
 import MatchCards from '@/components/home/match-cards';
 import StoreCollection from '@/components/home/store-collection';
-import HomeContent from '@/components/home/home-content';
-import HomeFooter from '@/components/home/home-footer';
+import HomeNews from '@/components/home/home-news';
 
 export default function HomePage() {
     return (
@@ -12,13 +13,12 @@ export default function HomePage() {
             <Head title="Home" />
             <div className="min-h-screen w-full bg-white">
                 <HomeNavbar />
-                <HomeHero
-                    videoId="_oBRlFb3qGM"
-                    dark
-                />
-                <MatchCards dark />
-                <StoreCollection dark />
-                <HomeFooter dark />
+                <HomeHero />
+                <MatchCards />
+                <HomeNews />
+                <StoreCollection />
+                <HomePlayers />
+                <HomeFooter />
             </div>
         </>
     );
