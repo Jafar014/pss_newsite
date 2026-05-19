@@ -69,9 +69,9 @@ export default function HomeHero() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
 
                 <div className="absolute bottom-16 left-0 right-18 z-20 p-4 md:p-8 lg:p-12">
-                    <div className="mx-auto max-w-7xl">
+                    <div className="mx-auto max-w-7xl ">
                         <div className="mb-2 h-1 w-20 bg-[#0F7A4A]" />
-                        <h2 className="font-calcio-italiano text-lg font-bold tracking-wider text-white uppercase md:text-3xl lg:text-5xl">
+                        <h2 className=" font-calcio-italiano text-lg font-bold tracking-wider text-white uppercase md:text-3xl lg:text-5xl">
                             {slides[currentSlide].title}
                         </h2>
                     </div>

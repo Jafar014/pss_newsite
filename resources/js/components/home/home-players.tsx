@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from '@inertiajs/react';
 
 interface Player {
     id: number;
@@ -10,164 +11,27 @@ interface Player {
 }
 
 interface HomePlayersProps {
-    players?: Player[];
+    players: Player[];
 }
 
-export default function HomePlayers({
-    players = [
-        {
-            id: 1,
-            firstName: 'Muhammad',
-            lastName: 'Rifqi',
-            number: '1',
-            position: 'Goalkeeper',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 9,
-            firstName: 'Muhammad',
-            lastName: 'Rifqi',
-            number: '15',
-            position: 'Goalkeeper',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 2,
-            firstName: 'Alan',
-            lastName: 'Alexandre',
-            number: '2',
-            position: 'Defender',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 3,
-            firstName: 'Ricky',
-            lastName: 'Pratama',
-            number: '4',
-            position: 'Defender',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 10,
-            firstName: 'Alan',
-            lastName: 'Alexandre',
-            number: '21',
-            position: 'Defender',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 11,
-            firstName: 'Ricky',
-            lastName: 'Pratama',
-            number: '14',
-            position: 'Defender',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 4,
-            firstName: 'Dimas',
-            lastName: 'Samudra',
-            number: '6',
-            position: 'Midfielder',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 5,
-            firstName: 'Febriansyah',
-            lastName: '',
-            number: '8',
-            position: 'Midfielder',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 12,
-            firstName: 'Dimas',
-            lastName: 'Samudra',
-            number: '16',
-            position: 'Midfielder',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 13,
-            firstName: 'Febriansyah',
-            lastName: '',
-            number: '18',
-            position: 'Midfielder',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 6,
-            firstName: 'Sahal',
-            lastName: 'Abud',
-            number: '10',
-            position: 'Forward',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 7,
-            firstName: 'Rezki',
-            lastName: 'Alberto',
-            number: '11',
-            position: 'Forward',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 8,
-            firstName: 'Rendi',
-            lastName: 'Irham',
-            number: '9',
-            position: 'Forward',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 14,
-            firstName: 'Sahal',
-            lastName: 'Abud',
-            number: '30',
-            position: 'Forward',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 15,
-            firstName: 'Rezki',
-            lastName: 'Alberto',
-            number: '31',
-            position: 'Forward',
-            image: '../../half_body.jpg',
-        },
-        {
-            id: 16,
-            firstName: 'Rendi',
-            lastName: 'Irham',
-            number: '19',
-            position: 'Forward',
-            image: '../../half_body.jpg',
-        },
-    ],
-}: HomePlayersProps) {
+export default function HomePlayers({ players }: HomePlayersProps) {
     const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
 
-    const getRandomPlayers = () => {
-        const shuffled = [...players].sort(() => Math.random() - 0.5);
-
-        return shuffled.slice(0, 4);
-    };
-
-    const randomPlayers = getRandomPlayers();
+    const randomPlayers = [...players].slice(0, 4);
 
     return (
-        <section className="w-full bg-[#1c1c1c] ">
+        <section className="w-full bg-[#f5f5f5]">
             <div className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-[#f5f5f5]" />
+                <div className="absolute inset-0 bg-[#1c1c1c]" />
                 <div className="relative mx-auto max-w-7xl px-4 py-12 md:py-16">
-                    <h2 className="font-calcio-italiano text-4xl md:text-6xl lg:text-7xl font-bold tracking-wider text-[#0f7a4a] uppercase">
+                    <h2 className="font-calcio-italiano text-4xl md:text-6xl lg:text-7xl font-bold tracking-wider text-[#f5f5f5] uppercase">
                         Skuat Utama
                     </h2>
-                    <div className="h-1 w-24 bg-[#EFBF04]" />
+                    <div className="h-1 w-24 bg-[#0f7a4a]" />
                 </div>
             </div>
 
-            <div className="mx-auto max-w-7xl px-4 pb-16 mt-8">
+            <div className="mx-auto max-w-7xl px-4 pb-8 mt-8">
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-3">
                     {randomPlayers.map((player) => (
                         <div
@@ -190,7 +54,7 @@ export default function HomePlayers({
                                     <img
                                         src={player.image}
                                         alt={`${player.firstName} ${player.lastName}`}
-                                        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105 mix-blend-multiply"
                                     />
                                 </div>
 
@@ -213,6 +77,18 @@ export default function HomePlayers({
                         </div>
                     ))}
                 </div>
+            </div>
+
+            <div className="flex justify-center pb-12 md:pb-16">
+                <Link
+                    href="/skuad"
+                    className="inline-flex items-center gap-2 px-8 py-3 bg-[#0f7a4a] text-white font-calcio-italiano text-lg md:text-xl uppercase tracking-wider hover:bg-[#0c6339] transition-colors duration-300"
+                >
+                    Lihat Lainnya
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </Link>
             </div>
         </section>
     );

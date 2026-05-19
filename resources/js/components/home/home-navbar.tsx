@@ -15,28 +15,25 @@ const navItems = [
     {
         label: 'Klub',
         children: [
-            { label: 'Sejarah', href: '#sejarah' },
+            { label: 'Sejarah', href: '/sejarah' },
             { label: 'Profil', href: '#profil' },
         ],
     },
     {
-        label: 'Tim',
-        children: [
-            { label: 'Senior', href: '#senior' },
-            { label: 'U20', href: '#u20' },
-            { label: 'U18', href: '#u18' },
-        ],
+        label: 'Skuad',
+        href: '/skuad',
     },
     {
         label: 'Kompetisi',
-        children: [
-            { label: 'Jadwal', href: '#jadwal' },
-            { label: 'Klasemen', href: '#klasemen' },
-        ],
+        href: '/kompetisi',
+    },
+    {
+        label: 'Galeri',
+        href: '#galeri',
     },
     {
         label: 'Toko',
-        href: '#Toko',
+        href: '/toko',
     },
 ];
 
@@ -96,12 +93,12 @@ function NavItem({
 
 export default function HomeNavbar() {
     return (
-        <nav className="relative left-0 right-0 top-0 z-50 flex h-16 w-full items-center justify-between bg-[#0f7a4a] px-4 backdrop-blur-sm md:h-20 lg:h-24 lg:px-8">
+        <nav className="fixed font-calcio-italiano text-2xl left-0 right-0 top-0 z-50 flex h-16 w-full items-center justify-between bg-[#0f7a4a] px-4 backdrop-blur-sm md:h-20 lg:h-24 lg:px-8">
             <Link href="/" className="flex items-center">
                 <img
                     src="/pssLogo.png"
                     alt="PSS Logo"
-                    className="h-12 w-auto md:h-14 lg:h-16"
+                    className="h-8 w-auto sm:h-12 md:h-14 lg:h-16"
                 />
             </Link>
 
