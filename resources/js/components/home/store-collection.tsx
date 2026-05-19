@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 
 interface Product {
     id: string;
@@ -87,8 +87,15 @@ export default function StoreCollection({
     ],
 }: StoreCollectionProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isAnimating, setIsAnimating] = useState(false);
     const [itemsPerView, setItemsPerView] = useState(5);
+    const [cardWidthWithGap, setCardWidthWithGap] = useState(0);
+    const [transitionEnabled, setTransitionEnabled] = useState(true);
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragOffset, setDragOffset] = useState(0);
+    const carouselRef = useRef<HTMLDivElement>(null);
+    const dragStartX = useRef(0);
+    const dragTotal = useRef(0);
+    const snapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {
         const updateItemsPerView = () => {
@@ -111,35 +118,85 @@ export default function StoreCollection({
         return () => window.removeEventListener('resize', updateItemsPerView);
     }, []);
 
-    const nextSlide = () => {
-        if (isAnimating) {
-return;
-}
+    useEffect(() => {
+        const el = carouselRef.current;
+        if (!el) return;
 
-        setIsAnimating(true);
-        setCurrentIndex((prev) => (prev + 1) % products.length);
-        setTimeout(() => setIsAnimating(false), 300);
-    };
+        const updateDimensions = () => {
+            if (el.children.length > 0) {
+                const firstCard = el.children[0] as HTMLElement;
+                const cardW = firstCard.getBoundingClientRect().width;
+                const style = getComputedStyle(el);
+                const gap = parseFloat(style.columnGap) || 0;
+                setCardWidthWithGap(cardW + gap);
+            }
+        };
 
-    const prevSlide = () => {
-        if (isAnimating) {
-return;
-}
+        updateDimensions();
 
-        setIsAnimating(true);
-        setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
-        setTimeout(() => setIsAnimating(false), 300);
-    };
+        const observer = new ResizeObserver(updateDimensions);
+        observer.observe(el);
+        window.addEventListener('resize', updateDimensions);
 
-    const getVisibleProducts = () => {
-        const visible = [];
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('resize', updateDimensions);
+        };
+    }, [itemsPerView]);
 
-        for (let i = 0; i < itemsPerView; i++) {
-            visible.push(products[(currentIndex + i) % products.length]);
+    useEffect(() => {
+        setCurrentIndex(itemsPerView);
+    }, [itemsPerView]);
+
+    const extendedProducts = useMemo(() => {
+        return [
+            ...products.slice(-itemsPerView),
+            ...products,
+            ...products.slice(0, itemsPerView),
+        ];
+    }, [products, itemsPerView]);
+
+    const OFFSET = itemsPerView;
+    const REAL_MAX = OFFSET + Math.max(0, products.length - itemsPerView);
+
+    const snapFromClone = useCallback((index: number): number => {
+        if (index < OFFSET) {
+            return index + products.length;
         }
+        if (index > REAL_MAX) {
+            return index - products.length;
+        }
+        return index;
+    }, [OFFSET, REAL_MAX, products.length]);
 
-        return visible;
-    };
+    useEffect(() => {
+        if (currentIndex < OFFSET || currentIndex > REAL_MAX) {
+            snapTimerRef.current = setTimeout(() => {
+                setTransitionEnabled(false);
+                const mirror = snapFromClone(currentIndex);
+                setCurrentIndex(mirror);
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        setTransitionEnabled(true);
+                    });
+                });
+            }, 500);
+
+            return () => {
+                if (snapTimerRef.current) {
+                    clearTimeout(snapTimerRef.current);
+                }
+            };
+        }
+    }, [currentIndex, OFFSET, REAL_MAX, snapFromClone]);
+
+    const goNext = useCallback(() => {
+        setCurrentIndex((prev) => prev + 1);
+    }, []);
+
+    const goPrev = useCallback(() => {
+        setCurrentIndex((prev) => prev - 1);
+    }, []);
 
     const formatPrice = (price: number) => {
         return new Intl.NumberFormat('id-ID', {
@@ -149,58 +206,163 @@ return;
         }).format(price);
     };
 
-    const visibleProducts = getVisibleProducts();
+    const handleDragStart = (clientX: number) => {
+        if (snapTimerRef.current) {
+            clearTimeout(snapTimerRef.current);
+        }
+        setIsDragging(true);
+        setTransitionEnabled(false);
+        dragStartX.current = clientX;
+        dragTotal.current = 0;
+    };
+
+    const handleDragMove = (clientX: number) => {
+        if (!isDragging) return;
+        const offset = clientX - dragStartX.current;
+        dragTotal.current = offset;
+        setDragOffset(offset);
+    };
+
+    const handleDragEnd = () => {
+        if (!isDragging) return;
+        setIsDragging(false);
+        setDragOffset(0);
+
+        const threshold = cardWidthWithGap * 0.25;
+        if (dragTotal.current < -threshold) {
+            setCurrentIndex((prev) => prev + 1);
+        } else if (dragTotal.current > threshold) {
+            setCurrentIndex((prev) => prev - 1);
+        }
+
+        requestAnimationFrame(() => {
+            setTransitionEnabled(true);
+        });
+    };
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        e.preventDefault();
+        handleDragStart(e.clientX);
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        handleDragMove(e.clientX);
+    };
+
+    const handleMouseUp = () => {
+        handleDragEnd();
+    };
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        handleDragStart(e.touches[0].clientX);
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        handleDragMove(e.touches[0].clientX);
+    };
+
+    const handleTouchEnd = () => {
+        handleDragEnd();
+    };
 
     return (
         <section className="w-full bg-[#0f7a4a] pb-8 md:pb-12">
             <div className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-[#f5f5f5]" />
+                <div className="absolute inset-0 bg-[#f5f5f5]"/>
                 <div className="relative mx-auto max-w-7xl px-4 py-8 md:py-16">
-                    <h2 className="font-calcio-italiano text-3xl md:text-5xl lg:text-7xl font-bold tracking-wider text-[#0f7a4a] uppercase">
+                    <h2 className="font-calcio-italiano text-3xl md:text-5xl lg:text-7xl font-bold tracking-wider text-[#0f7a4a] uppercase animate-typing animate-delay-400 overflow-hidden whitespace-nowrap">
                         Koleksi
                     </h2>
-                    <div className="h-1 w-20 md:w-24 bg-[#1c1c1c] mt-2" />
+                    <div className="h-1 w-20 md:w-24 bg-[#Efbf04] mt-2" />
                 </div>
             </div>
-
-            <div className="mx-auto max-w-full sm:px-8 lg:px-3 mt-8">
-                <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden w-full flex h-auto md:h-[14vh]">
+                <div className="absolute inset-0 bg-[#1c1c1c] "/>
+                <div className="relative w-full px-4 sm:px-10 py-3 md:py-6 flex flex-wrap justify-center gap-1 sm:gap-2">
+                    <button className='font-calcio-italiano text-sm sm:text-base lg:text-xl rounded-xl border-[#f5f5f5] border py-2 md:py-3 px-4 sm:px-8 lg:px-14 cursor-pointer hover:bg-[#f5f5f5] transition duration-300 hover:text-[#0f7a4a]'>
+                        Katalog 1
+                    </button>
+                    <button className='font-calcio-italiano text-sm sm:text-base lg:text-xl rounded-xl border-[#f5f5f5] border py-2 md:py-3 px-4 sm:px-8 lg:px-14 cursor-pointer hover:bg-[#f5f5f5] transition duration-300 hover:text-[#0f7a4a]'>
+                        Katalog 2
+                    </button>
+                    <button className='font-calcio-italiano text-sm sm:text-base lg:text-xl rounded-xl border-[#f5f5f5] border py-2 md:py-3 px-4 sm:px-8 lg:px-14 cursor-pointer hover:bg-[#f5f5f5] transition duration-300 hover:text-[#0f7a4a]'>
+                        Katalog 3
+                    </button>
+                    <button className='font-calcio-italiano text-sm sm:text-base lg:text-xl rounded-xl border-[#f5f5f5] border py-2 md:py-3 px-4 sm:px-8 lg:px-14 cursor-pointer hover:bg-[#f5f5f5] transition duration-300 hover:text-[#0f7a4a]'>
+                        Katalog 4
+                    </button>
+                    <button className='font-calcio-italiano text-sm sm:text-base lg:text-xl rounded-xl border-[#f5f5f5] border py-2 md:py-3 px-4 sm:px-8 lg:px-14 cursor-pointer hover:bg-[#f5f5f5] transition duration-300 hover:text-[#0f7a4a]'>
+                        Katalog 5
+                    </button>
+                    <button className='font-calcio-italiano text-sm sm:text-base lg:text-xl rounded-xl border-[#f5f5f5] border py-2 md:py-3 px-4 sm:px-8 lg:px-14 cursor-pointer hover:bg-[#f5f5f5] transition duration-300 hover:text-[#0f7a4a]'>
+                        Katalog 6
+                    </button>
+                    <button className='font-calcio-italiano text-sm sm:text-base lg:text-xl rounded-xl border-[#f5f5f5] border py-2 md:py-3 px-4 sm:px-8 lg:px-14 cursor-pointer hover:bg-[#f5f5f5] transition duration-300 hover:text-[#0f7a4a]'>
+                        Katalog 7
+                    </button>
+                </div>
+            </div>
+            <div className="mx-auto max-w-full sm:px-8 lg:px-3 mt-8 select-none">
+                <div className="relative">
                     <div
-                        className={`hidden sm:flex gap-4 sm:gap-6 justify-center sm:justify-start transition-transform duration-300 ${isAnimating ? 'ease-linear' : ''}`}
-                        style={{ transform: `translateX(0)` }}
+                        className="hidden sm:block overflow-hidden"
+                        onMouseDown={handleMouseDown}
+                        onMouseMove={handleMouseMove}
+                        onMouseUp={handleMouseUp}
+                        onMouseLeave={handleMouseUp}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
                     >
-                        {visibleProducts.map((product, index) => (
-                            <div
-                                key={`${product.id}-${currentIndex}-${index}`}
-                                className="min-w-[280px] md:min-w-[280px] lg:min-w-[240px] xl:min-w-[280px] w-[280px] sm:w-[280px] lg:w-[240px] xl:w-[280px] mx-auto sm:mx-0 bg-white rounded-lg shadow-lg overflow-hidden flex-shrink-0"
-                            >
-                                <div className="w-full h-72 bg-gray-200">
-                                    <img
-                                        src={product.image}
-                                        alt={product.name}
-                                        className="w-full h-full object-cover"
-                                    />
+                        <div
+                            ref={carouselRef}
+                            className="flex gap-4 sm:gap-6"
+                            style={{
+                                transform: cardWidthWithGap > 0
+                                    ? `translateX(${-currentIndex * cardWidthWithGap + (isDragging ? dragOffset : 0)}px)`
+                                    : 'translateX(0)',
+                                transition: transitionEnabled && !isDragging
+                                    ? 'transform 500ms ease-in-out'
+                                    : 'none',
+                                cursor: isDragging ? 'grabbing' : 'grab',
+                            }}
+                        >
+                            {extendedProducts.map((product, idx) => (
+                                <div
+                                    key={`${product.id}-${idx}`}
+                                    className="min-w-[280px] md:min-w-[280px] lg:min-w-[240px] xl:min-w-[280px] w-[280px] sm:w-[280px] lg:w-[240px] xl:w-[280px] flex-shrink-0 bg-white rounded-lg shadow-lg overflow-hidden"
+                                >
+                                    <div className="w-full h-72 bg-gray-200">
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                            className="w-full h-full object-cover pointer-events-none"
+                                        />
+                                    </div>
+                                    <div className="p-5">
+                                        <span className="text-sm text-[#0F7A4A] font-medium">
+                                            {product.category}
+                                        </span>
+                                        <h3 className="text-base font-bold text-[#1C1C1C] truncate">
+                                            {product.name}
+                                        </h3>
+                                        <p className="text-xl font-bold text-[#0F7A4A] mt-2">
+                                            {formatPrice(product.price)}
+                                        </p>
+                                        <button
+                                            className="w-full mt-4 py-3 bg-[#f5f5f5] text-[#0f7a4a] border border-[#0f7a4a] rounded-xl text-base font-bold hover:bg-[#0f7a4a] hover:text-white transition-colors cursor-pointer pointer-events-auto"
+                                            onClick={(e) => e.stopPropagation()}
+                                        >
+                                            Shopee
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="p-5">
-                                    <span className="text-sm text-[#0F7A4A] font-medium">
-                                        {product.category}
-                                    </span>
-                                    <h3 className="text-base font-bold text-[#1C1C1C] truncate">
-                                        {product.name}
-                                    </h3>
-                                    <p className="text-xl font-bold text-[#0F7A4A] mt-2">
-                                        {formatPrice(product.price)}
-                                    </p>
-                                    <button className="w-full mt-4 py-3 bg-[#f5f5f5] text-[#0f7a4a] border border-[#0f7a4a] rounded-xl text-base font-bold rounded hover:bg-[#0f7a4a] hover:text-white transition-colors cursor-pointer">
-                                        Shopee
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="sm:hidden grid grid-cols-2 gap-3 px-3">
-                        {products.slice(0, 4).map((product) => (
+                    <div className="sm:hidden grid grid-cols-2 gap-2 px-2">
+                        {products.slice(0, 6).map((product) => (
                             <div
                                 key={product.id}
                                 className="bg-white rounded-lg shadow-lg overflow-hidden"
@@ -232,7 +394,7 @@ return;
 
                     <button
                         type="button"
-                        onClick={prevSlide}
+                        onClick={goPrev}
                         className="hidden sm:flex absolute top-0 start-0 z-30 items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                     >
                         <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/90 shadow-lg group-hover:bg-white group-focus:ring-4 group-focus:ring-white">
@@ -245,7 +407,7 @@ return;
 
                     <button
                         type="button"
-                        onClick={nextSlide}
+                        onClick={goNext}
                         className="hidden sm:flex absolute top-0 end-0 z-30 items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                     >
                         <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/90 shadow-lg group-hover:bg-white group-focus:ring-4 group-focus:ring-white">
