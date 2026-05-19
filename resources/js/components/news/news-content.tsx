@@ -18,7 +18,7 @@ const newsData: NewsItem[] = [
             'Gol-gol indah dari pemain PSS Sleman membawa tim meraih kemenangan 3-0 di kandang lawan.',
         category: 'Match Report',
         date: '28 Apr 2026',
-        image: 'https://picsum.photos/600/400?random=1',
+        image: '../../half_body.jpg',
     },
     {
         id: 2,
@@ -98,34 +98,36 @@ export default function NewsContent() {
 
     return (
         <>
+        {/* Header section */}
             <div className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-[#0F7A4A]/20" />
-                <div className="relative mx-auto max-w-7xl px-4 py-12 md:py-16">
-                    <h1 className="font-calcio-italiano text-4xl font-bold tracking-wider text-white uppercase md:text-6xl lg:text-7xl">
-                        Berita
-                    </h1>
-                    <div className="mt-4 h-1 w-24 bg-[#0F7A4A]" />
+                <div className="absolute inset-0 bg-[#0f7a4a]/75" />
+                <div className="relative z-10 flex flex-col items-center justify-center py-16">
+                    <h2 className="font-calcio-italiano mb-8 text-8xl text-white uppercase animate-typing animate-delay-400 overflow-hidden whitespace-nowrap text-center">Berita Terbaru
+                    </h2>
                 </div>
             </div>
-
-            <div className="mx-auto max-w-7xl px-4 pb-16 pt-10">
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {paginatedNews.map((news) => (
+        {/* Grid News Section */}
+            <div className="mx-auto max-w-7xl px-4 pb-16 pt-10 ">
+                
+                <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2">
+                    {paginatedNews.map((news) =>(
                         <Link
                             key={news.id}
                             href={`/berita/${news.id}`}
                             className="group cursor-pointer"
                         >
-                            <div className="overflow-hidden rounded-lg bg-gray-900">
-                                <div className="aspect-[3/2] overflow-hidden">
+                            {/* Gambar berita */}
+                            <div className="w-full grid grid-rows-3 h-[50.5vh] mx-auto border-b-2 my-2 border-b-[#0f7a4a]">
+                                <div className="relative w-full h-[30vh] ">
                                     <img
                                         src={news.image}
                                         alt={news.title}
                                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
                                 </div>
-                                <div className="p-4">
-                                    <div className="mb-2 flex items-center gap-3">
+                                {/* Kategori berita dan tanggal rilis */}
+                                <div className="w-full overflow-hidden h-[6vh]  mt-26">
+                                    <div className="justify-start items-center my-3 mx-4 flex gap-3">
                                         <span className="rounded-full bg-[#0F7A4A] px-2.5 py-0.5 text-xs font-bold text-white uppercase">
                                             {news.category}
                                         </span>
@@ -133,10 +135,13 @@ export default function NewsContent() {
                                             {news.date}
                                         </span>
                                     </div>
-                                    <h3 className="text-lg leading-tight font-bold text-white transition-colors group-hover:text-[#0F7A4A]">
+                                </div>
+                                {/* Judul Berita dan deskripsi singkat */}
+                                <div className="w-full grid h-[14vh] mt-4 p-3">
+                                    <h3 className="text-lg leading-tight font-bold text-[#1c1c1c] transition-colors group-hover:text-[#0F7A4A] mt-1">
                                         {news.title}
                                     </h3>
-                                    <p className="mt-2 line-clamp-2 text-sm text-gray-400">
+                                    <p className="line-clamp-2 text-sm text-gray-400 mb-2">
                                         {news.excerpt}
                                     </p>
                                 </div>
@@ -144,14 +149,15 @@ export default function NewsContent() {
                         </Link>
                     ))}
                 </div>
-
+                
+                {/* Pagination  */}
                 {totalPages > 1 && (
                     <div className="mt-10 flex items-center justify-center gap-2">
                         <button
                             type="button"
                             disabled={currentPage === 1}
                             onClick={() => setCurrentPage((p) => p - 1)}
-                            className="rounded-lg border border-white/20 px-3 py-1.5 text-sm text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50 hover:border-[#0F7A4A] hover:bg-[#0F7A4A]"
+                            className="rounded-lg border border-[#1c1c1c] px-3 py-1.5 text-sm text-[#1c1c1c] transition-colors disabled:cursor-not-allowed disabled:opacity-50 hover:border-[#0F7A4A] hover:bg-[#0F7A4A]"
                         >
                             Sebelumnya
                         </button>
@@ -160,10 +166,10 @@ export default function NewsContent() {
                                 key={page}
                                 type="button"
                                 onClick={() => setCurrentPage(page)}
-                                className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+                                className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors cursor-pointer ${
                                     currentPage === page
-                                        ? 'bg-[#0F7A4A] text-white'
-                                        : 'border border-white/20 text-white hover:border-[#0F7A4A] hover:bg-[#0F7A4A]'
+                                        ? 'bg-[#0F7A4A] text-[#f5f5f5]'
+                                        : 'border border-[#1c1c1c] text-[#0f7a4a] hover:text-[#f5f5f5] hover:bg-[#0F7A4A]'
                                 }`}
                             >
                                 {page}
@@ -173,7 +179,7 @@ export default function NewsContent() {
                             type="button"
                             disabled={currentPage === totalPages}
                             onClick={() => setCurrentPage((p) => p + 1)}
-                            className="rounded-lg border border-white/20 px-3 py-1.5 text-sm text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50 hover:border-[#0F7A4A] hover:bg-[#0F7A4A]"
+                            className="rounded-lg border border-[#1c1c1c] px-3 py-1.5 text-sm text-[#1c1c1c] transition-colors disabled:cursor-not-allowed disabled:opacity-50 hover:text-[#f5f5f5] hover:bg-[#0F7A4A] cursor-pointer"
                         >
                             Selanjutnya
                         </button>

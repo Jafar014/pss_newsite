@@ -7,10 +7,10 @@ export default function NewsPage() {
     return (
         <>
             <Head title="Berita" />
-            <div className="min-h-screen w-full bg-[#1a1a1a]">
+            <div className="min-h-screen w-full bg-[#f5f5f5] pt-16 md:pt-20 lg:pt-24">
                 <HomeNavbar />
                 <NewsContent />
-                <HomeFooter dark />
+                <HomeFooter />
             </div>
         </>
     );
