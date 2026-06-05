@@ -82,6 +82,7 @@ function generateCalendarDays(year: number, month: number, fixturesMap: Map<stri
     const daysInMonth = lastDay.getDate();
     
     let startDayOfWeek = firstDay.getDay() - 1;
+
     if (startDayOfWeek < 0) {
         startDayOfWeek = 6;
     }
@@ -104,6 +105,7 @@ function generateCalendarDays(year: number, month: number, fixturesMap: Map<stri
         const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
         const fixture = fixturesMap.get(dateStr);
         let match: FixtureItem | undefined;
+
         if (fixture) {
             const isHome = fixture.home_team === 'PSS SLEMAN';
             match = {
@@ -118,6 +120,7 @@ function generateCalendarDays(year: number, month: number, fixturesMap: Map<stri
                 opponent: isHome ? fixture.away_team : fixture.home_team,
             };
         }
+
         days.push({
             day: i,
             currentMonth: true,
@@ -127,6 +130,7 @@ function generateCalendarDays(year: number, month: number, fixturesMap: Map<stri
     }
     
     const remaining = 42 - days.length;
+
     for (let i = 1; i <= remaining; i++) {
         const nextMonth = month === 11 ? 0 : month + 1;
         const nextYear = month === 11 ? year + 1 : year;
@@ -167,6 +171,7 @@ function TeamLogo({ name, className, clubs }: { name: string; className?: string
             </div>
         );
     }
+
     // Jika logo tidak ada
     const colors = [
         '#0f7a4a', '#1c1c1c', '#Efbf04', '#e74c3c', '#3498db',
@@ -175,6 +180,7 @@ function TeamLogo({ name, className, clubs }: { name: string; className?: string
     const hash = name.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
     const bg = colors[hash % colors.length];
     const initials = getInitials(name);
+
     return (
         <div
             className={`flex items-center justify-center rounded-full text-white font-bold ${className || 'w-10 h-10 text-xs'}`}
@@ -193,6 +199,7 @@ export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureSch
     const fixturesMap = useMemo(() => {
         const map = new Map<string, FixtureData>();
         fixtures.forEach(f => map.set(f.match_date, f));
+
         return map;
     }, [fixtures]);
 
@@ -214,6 +221,7 @@ export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureSch
         };
         updateTime();
         const interval = setInterval(updateTime, 1000);
+
         return () => clearInterval(interval);
     }, []);
 
@@ -228,12 +236,18 @@ export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureSch
     const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1));
 
     const pssGoals = (m: FixtureItem): number | string => {
-        if (m.home_goals === null || m.away_goals === null) return '-';
+        if (m.home_goals === null || m.away_goals === null) {
+return '-';
+}
+
         return m.isHome ? m.home_goals : m.away_goals;
     };
 
     const oppGoals = (m: FixtureItem): number | string => {
-        if (m.home_goals === null || m.away_goals === null) return '-';
+        if (m.home_goals === null || m.away_goals === null) {
+return '-';
+}
+
         return m.isHome ? m.away_goals : m.home_goals;
     };
 
@@ -302,6 +316,7 @@ export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureSch
                                     const isHome = item.match?.isHome;
                                     const isSelected = selectedMatch?.date === item.date;
                                     const bgMatch = isHome ? 'bg-[#0f7a4a]/85 text-[#f5f5f5]' : 'bg-[#1c1c1c]/85 text-white';
+
                                     return (
                                         <button key={i} type="button"
                                             onClick={() => item.match && setSelectedMatch({ date: item.date, match: item.match })}
@@ -316,6 +331,7 @@ export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureSch
                                                 const parts = item.match.opponent.split(' ');
                                                 const line1 = parts[0] || '';
                                                 const line2 = parts.slice(1).join(' ') || '';
+
                                                 return (
                                                     <div className="flex flex-col items-center justify-center mt-6">
                                                         <TeamLogo name={item.match.opponent} className="w-24 h-24 text-lg mb-2" clubs={club} />
@@ -343,6 +359,7 @@ export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureSch
                                     const isHome = item.match?.isHome;
                                     const isSelected = selectedMatch?.date === item.date;
                                     const bgMatch = isHome ? 'bg-[#0f7a4a] text-white' : 'bg-[#1c1c1c] text-white';
+
                                     return (
                                         <button key={i} type="button"
                                             onClick={() => item.match && setSelectedMatch({ date: item.date, match: item.match })}
@@ -411,7 +428,7 @@ export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureSch
                                     </div>
                                 </div>
                                 <div className="mt-5">
-                                    <Link href={match.report({ fixture: selectedMatch.match.id })} className={`inline-block px-5 py-3 rounded-lg text-sm font-calcio-italiano text-[#f5f5f5] ${selectedMatch.match.isHome ? 'bg-[#0f7a4a] hover:bg-[#0f7a4a]/75' : 'bg-[#1c1c1c] hover:bg-[#f5f5f5] hover:text-[#0f7a4a]'}`}>
+                                    <Link href={match.report({ fixture: selectedMatch.match.id })} className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0f7a4a] text-white font-calcio-italiano text-sm uppercase tracking-wider rounded-lg hover:bg-white hover:text-[#0f7a4a] border border-transparent hover:border-[#0f7a4a] transition-all duration-300">
                                         Review
                                     </Link>
                                 </div>

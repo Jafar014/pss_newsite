@@ -1,10 +1,10 @@
 import { Head } from '@inertiajs/react';
 import HomeFooter from '@/components/home/home-footer';
 import HomeNavbar from '@/components/home/home-navbar';
-import MatchReportHeader from '@/components/match/match-report-header';
-import MatchReportFormation from '@/components/match/match-report-formation';
-import MatchReportStats from '@/components/match/match-report-stats';
 import MatchReportEvents from '@/components/match/match-report-events';
+import MatchReportFormation from '@/components/match/match-report-formation';
+import MatchReportHeader from '@/components/match/match-report-header';
+import MatchReportStats from '@/components/match/match-report-stats';
 
 interface MatchReportProps {
     fixture: string;

@@ -42,6 +42,7 @@ export default function MatchReportFormation({ fixture }: MatchReportFormationPr
             <div className="max-w-5xl h-[50vh] md:h-[500px] grid grid-cols-6 grid-rows-5 bg-[url(/public/soccer-lines.png)] bg-no-repeat bg-[length:100%_100%] overflow-hidden [transform:rotate(270deg)] lg:[transform:none] origin-center mx-auto my-[calc((100vw-32px-50vh)/2)] md:my-[calc((100vw-64px-500px)/2)] lg:my-0">
                 {items.map((num) => {
                     const player = playerPositions[num];
+
                     return (
                         <div key={num} className="flex items-center justify-center text-[#1c1c1c] p-0.5 md:p-1">
                             {/* Peletakan pemain */}
