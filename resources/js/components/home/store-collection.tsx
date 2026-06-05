@@ -1,3 +1,4 @@
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 
 interface Product {
@@ -265,15 +266,29 @@ export default function StoreCollection({
         handleDragEnd();
     };
 
+
     return (
         <section className="w-full bg-[#0f7a4a] pb-8 md:pb-12">
             <div className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-[#f5f5f5]"/>
                 <div className="relative mx-auto max-w-7xl px-4 py-8 md:py-16">
-                    <h2 className="font-calcio-italiano text-3xl md:text-5xl lg:text-7xl font-bold tracking-wider text-[#0f7a4a] uppercase animate-typing animate-delay-400 overflow-hidden whitespace-nowrap">
-                        Koleksi
-                    </h2>
-                    <div className="h-1 w-20 md:w-24 bg-[#Efbf04] mt-2" />
+                    <div className="grid grid-cols-2 ">
+                        <div className="relative">
+                            <h2 className="font-calcio-italiano text-3xl md:text-5xl lg:text-7xl tracking-wider text-[#0f7a4a] uppercase overflow-hidden whitespace-nowrap">
+                                Koleksi
+                            </h2>
+                            <div className="h-1 w-20 md:w-24 bg-[#Efbf04] mt-2" />
+                        </div>
+                        <div className="items-center justify-end flex font-calcio-italiano">
+                            <a className='group text-right text-[#1c1c1c] text-3xl underline hover:text-[#0f7a4a] cursor-pointer flex ' href='/toko'>
+                                Selengkapnya
+                                <ArrowRight className='text-[#1c1c1c] text-right font-bold mt-0.5 group-hover:text-[#0f7a4a]' 
+                                size={32}/>
+                            </a>
+                            
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             <div className="relative overflow-hidden w-full flex h-auto md:h-[14vh]">
