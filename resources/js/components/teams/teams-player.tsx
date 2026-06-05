@@ -41,13 +41,19 @@ const Position_groups: { key:string; label:string; bg:string} [] = [
 
 function splitName(full_name:string) : [string, string] {
     const nameParts = full_name.split(' ');
-    if(nameParts.length === 1) return [nameParts[0], ''];
+
+    if(nameParts.length === 1) {
+return [nameParts[0], ''];
+}
+
     const last = nameParts.pop()!;
+
     return [nameParts.join(' '), last];
 }
 
 export default function TeamsPlayer({ team, players, staff }: TeamsPlayerProps) {
     const headCoach = staff.find((s) => s.role === 'Pelatih Kepala');
+
     return (
         <>
         {/* Header */}
@@ -64,7 +70,11 @@ export default function TeamsPlayer({ team, players, staff }: TeamsPlayerProps) 
             const groupPlayers = players.filter(
                 (p) => p.position?.toLowerCase() === group.key.toLowerCase()
             );
-            if (groupPlayers.length === 0) return null;
+
+            if (groupPlayers.length === 0) {
+return null;
+}
+
             return (
                 <div key={group.key} className="w-full relative flex flex-col lg:flex-row">
                     <div className="flex flex-col lg:w-1/4 overflow-hidden bg-[#f5f5f5] border-t items-center justify-center py-8 lg:py-0">
@@ -76,6 +86,7 @@ export default function TeamsPlayer({ team, players, staff }: TeamsPlayerProps) 
                     <div className="relative flex flex-row flex-wrap lg:w-3/4 bg-[#f5f5f5] right-0" >
                         {groupPlayers.map((player) => {
                             const [firstName, lastName] = splitName(player.full_name);
+
                             return (
                                 <div key={player.id} className="group relative w-1/2 sm:w-1/3 lg:w-1/5 aspect-[3/4] cursor-pointer overflow-hidden outline outline-1 outline-[#1c1c1c]">
                                     <img
