@@ -6,17 +6,33 @@ import HomeNews from '@/components/home/home-news';
 import HomePlayers from '@/components/home/home-players';
 import MatchCards from '@/components/home/match-cards';
 import StoreCollection from '@/components/home/store-collection';
+import HomeCollection from '@/components/home/home-collection';
 
-export default function HomePage({ players }: { players: any[] }) {
+export default function HomePage({
+    players,
+    lastMatch,
+    upcomingMatch,
+    standings,
+}: {
+    players: any[];
+    lastMatch?: any;
+    upcomingMatch?: any;
+    standings?: any[];
+}) {
     return (
         <>
             <Head title="Home" />
             <div className="min-h-screen w-full overflow-x-hidden bg-[#f5f5f5] pt-16 md:pt-20 lg:pt-24">
                 <HomeNavbar />
                 <HomeHero />
-                <MatchCards />
+                <MatchCards
+                    lastMatch={lastMatch}
+                    upcomingMatch={upcomingMatch}
+                    standings={standings}
+                />
                 <HomeNews />
-                <StoreCollection />
+                <HomeCollection />
+                {/* <StoreCollection /> */}
                 <HomePlayers players={players} />
                 <HomeFooter />
             </div>
