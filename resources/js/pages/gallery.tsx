@@ -1,8 +1,8 @@
+import { Head } from "@inertiajs/react";
 import GalleryListContent from "@/components/gallery/gallery-list-content";
 import GalleryListHeader from "@/components/gallery/gallery-list-header";
 import HomeFooter from "@/components/home/home-footer";
 import HomeNavbar from "@/components/home/home-navbar";
-import { Head } from "@inertiajs/react";
 
 export default function Gallery() {
     return (
