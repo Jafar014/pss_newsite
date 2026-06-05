@@ -155,6 +155,7 @@ export default function StoreProductDetail({ slug }: { slug: string }) {
                             <div className="flex gap-2 flex-wrap">
                                 {product.sizes.map((s) => {
                                     const stok = product.stock[s] ?? 0;
+
                                     return (
                                         <button
                                             key={s}

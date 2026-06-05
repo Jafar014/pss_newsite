@@ -1,6 +1,13 @@
 import { Link } from '@inertiajs/react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from '@/components/ui/pagination';
 
 interface Product {
     slug: string;
@@ -105,27 +112,65 @@ function formatPrice(price: number) {
     }).format(price);
 }
 
-export default function StoreCard() {
+const categoryMap: Record<string, string> = {
+    Aksesoris: 'Accessories',
+};
+
+interface StoreCardProps {
+    category: string;
+    sort: string;
+    searchQuery: string;
+}
+
+export default function StoreCard({ category, sort, searchQuery }: StoreCardProps) {
     const ITEMS_PER_PAGE = 8;
-    const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
     const [currentPage, setCurrentPage] = useState(1);
 
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const currentProducts = products.slice(
+    const filteredProducts = useMemo(() => {
+        let result = [...products];
+
+        if (category !== 'Semua') {
+            const mapped = categoryMap[category] || category;
+            result = result.filter((p) => p.category === mapped);
+        }
+
+        if (searchQuery.trim()) {
+            const q = searchQuery.toLowerCase();
+            result = result.filter(
+                (p) =>
+                    p.name.toLowerCase().includes(q) ||
+                    p.category.toLowerCase().includes(q),
+            );
+        }
+
+        switch (sort) {
+            case 'Termurah':
+                result.sort((a, b) => a.price - b.price);
+                break;
+            case 'Termahal':
+                result.sort((a, b) => b.price - a.price);
+                break;
+            case 'Nama A-Z':
+                result.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+            case 'Nama Z-A':
+                result.sort((a, b) => b.name.localeCompare(a.name));
+                break;
+        }
+
+        return result;
+    }, [category, sort, searchQuery]);
+
+    const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+    const safePage = Math.min(currentPage, Math.max(1, totalPages));
+    const startIndex = (safePage - 1) * ITEMS_PER_PAGE;
+    const currentProducts = filteredProducts.slice(
         startIndex,
         startIndex + ITEMS_PER_PAGE,
     );
 
     const prevPage = () => setCurrentPage((p) => Math.max(1, p - 1));
     const nextPage = () => setCurrentPage((p) => Math.min(totalPages, p + 1));
-
-    const getPageNumbers = () => {
-        const pages: number[] = [];
-        const start = Math.max(1, currentPage - 1);
-        const end = Math.min(totalPages, currentPage + 1);
-        for (let i = start; i <= end; i++) pages.push(i);
-        return pages;
-    };
 
     return (
         <section className="w-full items-center justify-center pb-8">
@@ -159,46 +204,37 @@ export default function StoreCard() {
                     ))}
                 </div>
                     {/* Pagination */}
-                <div className="mt-8 flex items-center justify-center gap-4">
-                    <button
-                        type="button"
-                        onClick={prevPage}
-                        disabled={currentPage === 1}
-                        className="cursor-pointer disabled:cursor-not-allowed disabled:opacity-30"
-                    >
-                        <ChevronLeft
-                            size={20}
-                            className="flex-shrink-0 text-[#1c1c1c] transition hover:text-[#0f7a4a]"
-                        />
-                    </button>
-                    <div className="flex items-center gap-2">
-                        {getPageNumbers().map((page) => (
-                            <button
-                                key={page}
-                                type="button"
-                                onClick={() => setCurrentPage(page)}
-                                className={`cursor-pointer rounded-full px-3 py-1.5 text-sm transition ${
-                                    page === currentPage
-                                        ? 'bg-[#0f7a4a] text-white'
-                                        : 'bg-gray-200 text-[#1c1c1c] hover:bg-gray-300'
-                                }`}
-                            >
-                                {page}
-                            </button>
-                        ))}
-                    </div>
-                    <button
-                        type="button"
-                        onClick={nextPage}
-                        disabled={currentPage === totalPages}
-                        className="cursor-pointer disabled:cursor-not-allowed disabled:opacity-30"
-                    >
-                        <ChevronRight
-                            size={20}
-                            className="flex-shrink-0 text-[#1c1c1c] transition hover:text-[#0f7a4a]"
-                        />
-                    </button>
-                </div>
+                    {totalPages > 1 && (
+                        <Pagination className="mt-8">
+                            <PaginationContent>
+                                <PaginationItem>
+                                    <PaginationPrevious
+                                        onClick={prevPage}
+                                        className={safePage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                                        text="Sebelumnya"
+                                    />
+                                </PaginationItem>
+                                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                                    <PaginationItem key={page}>
+                                        <PaginationLink
+                                            isActive={safePage === page}
+                                            onClick={() => setCurrentPage(page)}
+                                            className="cursor-pointer"
+                                        >
+                                            {page}
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                ))}
+                                <PaginationItem>
+                                    <PaginationNext
+                                        onClick={nextPage}
+                                        className={safePage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                                        text="Selanjutnya"
+                                    />
+                                </PaginationItem>
+                            </PaginationContent>
+                        </Pagination>
+                    )}
             </div>
         </section>
     );

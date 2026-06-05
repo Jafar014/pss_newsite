@@ -1,7 +1,19 @@
-import { SlidersHorizontal, Search, ArrowUpDownIcon, X } from "lucide-react";
+import { SlidersHorizontal, Search, X } from "lucide-react";
 import { useState } from "react";
 
-export default function StoreToolbar() {
+interface StoreToolbarProps {
+    category: string;
+    setCategory: (cat: string) => void;
+    sort: string;
+    setSort: (sort: string) => void;
+    searchQuery: string;
+    setSearchQuery: (query: string) => void;
+}
+
+const categories = ['Semua', 'Jersey', 'Training', 'Outerwear', 'Aksesoris', 'Apparel', 'Souvenir'];
+const sortOptions = ['Terbaru', 'Termurah', 'Termahal', 'Nama A-Z', 'Nama Z-A'];
+
+export default function StoreToolbar({ category, setCategory, sort, setSort, searchQuery, setSearchQuery }: StoreToolbarProps) {
     const [filterOpen, setFilterOpen] = useState(false);
 
     return(
@@ -10,6 +22,8 @@ export default function StoreToolbar() {
                 <div className="relative">
                     <div className="relative flex items-center h-12">
                         <input type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Cari Disini"
                         className="w-full border-b focus:shadow-xl text-[#0f7a4a] font-semibold border-[#0f7a4a]/40 transition rounded-full pl-10 pr-28 md:pr-32 py-2.5 focus:border-b-[#0f7a4a] focus:border-b-2 outline-none bg-white" />
                         <Search size={18} className="absolute left-3.5 text-[#0f7a4a] pointer-events-none" />
@@ -36,9 +50,9 @@ export default function StoreToolbar() {
                                 <div>
                                     <span className="font-calcio-italiano text-sm text-gray-500 block mb-3">Kategori</span>
                                     <div className="flex flex-col gap-2">
-                                        {['Semua', 'Jersey', 'Aksesoris', 'Apparel', 'Souvenir'].map((cat) => (
+                                        {categories.map((cat) => (
                                             <label key={cat} className="flex items-center gap-2 cursor-pointer">
-                                                <input type="radio" name="category" defaultChecked={cat === 'Semua'} className="accent-[#0f7a4a]" />
+                                                <input type="radio" name="category" checked={category === cat} onChange={() => setCategory(cat)} className="accent-[#0f7a4a]" />
                                                 <span className="text-sm text-[#1c1c1c]">{cat}</span>
                                             </label>
                                         ))}
@@ -48,10 +62,10 @@ export default function StoreToolbar() {
                                 <div>
                                     <span className="font-calcio-italiano text-sm text-gray-500 block mb-3">Urutkan</span>
                                     <div className="flex flex-col gap-2">
-                                        {['Terbaru', 'Termurah', 'Termahal', 'Nama A-Z', 'Nama Z-A'].map((sort) => (
-                                            <label key={sort} className="flex items-center gap-2 cursor-pointer">
-                                                <input type="radio" name="sort" defaultChecked={sort === 'Terbaru'} className="accent-[#0f7a4a]" />
-                                                <span className="text-sm text-[#1c1c1c]">{sort}</span>
+                                        {sortOptions.map((opt) => (
+                                            <label key={opt} className="flex items-center gap-2 cursor-pointer">
+                                                <input type="radio" name="sort" checked={sort === opt} onChange={() => setSort(opt)} className="accent-[#0f7a4a]" />
+                                                <span className="text-sm text-[#1c1c1c]">{opt}</span>
                                             </label>
                                         ))}
                                     </div>
@@ -60,7 +74,12 @@ export default function StoreToolbar() {
 
                             <div className="flex justify-end gap-3 mt-5 pt-4 border-t border-gray-100">
                                 <button
-                                    onClick={() => setFilterOpen(false)}
+                                    onClick={() => {
+                                        setCategory('Semua');
+                                        setSort('Terbaru');
+                                        setSearchQuery('');
+                                        setFilterOpen(false);
+                                    }}
                                     className="px-5 py-2 border border-gray-300 rounded-lg text-sm text-[#1c1c1c] hover:bg-gray-50 transition cursor-pointer"
                                 >
                                     Reset
@@ -75,6 +94,26 @@ export default function StoreToolbar() {
                         </div>
                     )}
                 </div>
+
+                {category !== 'Semua' || sort !== 'Terbaru' || searchQuery ? (
+                    <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-500">
+                        {category !== 'Semua' && (
+                            <span>Kategori: <span className="font-semibold text-[#0f7a4a]">{category}</span></span>
+                        )}
+                        {sort !== 'Terbaru' && (
+                            <>
+                                {category !== 'Semua' && <span className="text-gray-300">|</span>}
+                                <span>Urutan: <span className="font-semibold text-[#0f7a4a]">{sort}</span></span>
+                            </>
+                        )}
+                        {searchQuery && (
+                            <>
+                                {(category !== 'Semua' || sort !== 'Terbaru') && <span className="text-gray-300">|</span>}
+                                <span>Cari: "<span className="font-semibold text-[#0f7a4a]">{searchQuery}</span>"</span>
+                            </>
+                        )}
+                    </div>
+                ) : null}
             </div>
         </section>
     );
