@@ -1,7 +1,7 @@
+import { Head } from "@inertiajs/react"
 import HistorySection from "@/components/club/history-section"
 import HomeFooter from "@/components/home/home-footer"
 import HomeNavbar from "@/components/home/home-navbar"
-import { Head } from "@inertiajs/react"
 
 export default function History() {
     return(

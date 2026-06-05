@@ -21,6 +21,7 @@ export default function HistorySection() {
             description:"lorem ipsum dolor sit amet."
         },
     ]
+
     return (
         <section className="relative h-full">
         
