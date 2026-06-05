@@ -1,4 +1,6 @@
+import { Link } from '@inertiajs/react';
 import { useEffect, useMemo, useState } from 'react';
+import match from '@/routes/match';
 
 interface CalendarDay {
     day: number;
@@ -11,12 +13,15 @@ interface FixtureItem {
     id: number;
     home_team: string;
     away_team: string;
+    home_team_logo?: string;
+    away_team_logo?: string;
     home_goals: number | null;
     away_goals: number | null;
     status: string;
     gameweek: string;
     isHome: boolean;
     opponent: string;
+    opponent_logo_url?: string;
 }
 
 interface FixtureData {
@@ -25,6 +30,8 @@ interface FixtureData {
     gameweek: string;
     home_team: string;
     away_team: string;
+    home_team_logo?: string;
+    away_team_logo?: string;
     home_goals: number | null;
     away_goals: number | null;
     match_date: string;
@@ -36,6 +43,7 @@ interface KlasemenData {
     id: number;
     pos: number;
     team_name: string;
+    logo_url?: string;
     played: number;
     win: number;
     draw: number;
@@ -46,9 +54,18 @@ interface KlasemenData {
     points: number;
 }
 
+interface ClubData{
+    id: number,
+    slug: string,
+    name: string,
+    logo_url: string,
+    stadion: string
+}
+
 interface FixtureScheduleProps {
     fixtures: FixtureData[];
     klasemen: KlasemenData[];
+    club: ClubData[];
 }
 
 const MONTHS = [
@@ -58,6 +75,7 @@ const MONTHS = [
 
 const DAYS = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
 
+// Buat Kalender
 function generateCalendarDays(year: number, month: number, fixturesMap: Map<string, FixtureData>): CalendarDay[] {
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
@@ -133,7 +151,23 @@ function getInitials(name: string): string {
         .toUpperCase() || name[0]?.toUpperCase() || '?';
 }
 
-function TeamLogo({ name, className }: { name: string; className?: string }) {
+function TeamLogo({ name, className, clubs }: { name: string; className?: string; clubs?: ClubData[] }) {
+    const club = clubs?.find(c => c.name.toLowerCase() === name.toLowerCase());
+    const logoUrl = club?.logo_url;
+
+    // Logo di kalender
+    if (logoUrl) {
+        return (
+            <div className={`rounded-full overflow-hidden flex-shrink-0 ${className || 'w-10 h-10 text-xs'}`}>
+                <img
+                    src={logoUrl}
+                    alt={name}
+                    className="w-full h-full object-cover"
+                />
+            </div>
+        );
+    }
+    // Jika logo tidak ada
     const colors = [
         '#0f7a4a', '#1c1c1c', '#Efbf04', '#e74c3c', '#3498db',
         '#9b59b6', '#1abc9c', '#e67e22', '#2ecc71', '#f39c12',
@@ -151,7 +185,7 @@ function TeamLogo({ name, className }: { name: string; className?: string }) {
     );
 }
 
-export default function FixtureSchedule({ fixtures, klasemen }: FixtureScheduleProps) {
+export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureScheduleProps) {
     const [currentDate, setCurrentDate] = useState(new Date(2025, 8, 1));
     const [currentTime, setCurrentTime] = useState('');
     const today = new Date();
@@ -205,13 +239,15 @@ export default function FixtureSchedule({ fixtures, klasemen }: FixtureScheduleP
 
     return(
         <section className="w-full relative bg-[#f5f5f5]">
+            {/* Header */}
             <div className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-[#0f7a4a]/75" />
                 <div className="relative z-10 flex flex-col items-center justify-center py-16">
-                    <h2 className="font-calcio-italiano mb-8 text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white uppercase animate-typing animate-delay-400 overflow-hidden whitespace-nowrap text-center">Jadwal, Hasil, dan Klasemen</h2>
+                    <h2 className="font-calcio-italiano mb-6 md:mb-8 text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white uppercase animate-typing animate-delay-400 overflow-hidden whitespace-nowrap text-center">Kompetisi
+                    </h2>
                 </div>
             </div>
-
+            {/* Isi konten */}
             <div className="relative w-full flex flex-col lg:flex-row gap-6 p-8 items-start">
                 {/* Kalender */}
                 <div className="w-full lg:w-3/4 flex flex-col bg-white rounded-lg shadow-lg overflow-hidden">
@@ -282,7 +318,7 @@ export default function FixtureSchedule({ fixtures, klasemen }: FixtureScheduleP
                                                 const line2 = parts.slice(1).join(' ') || '';
                                                 return (
                                                     <div className="flex flex-col items-center justify-center mt-6">
-                                                        <TeamLogo name={item.match.opponent} className="w-24 h-24 text-lg mb-2" />
+                                                        <TeamLogo name={item.match.opponent} className="w-24 h-24 text-lg mb-2" clubs={club} />
                                                         <span className="text-xs font-bold text-white text-center leading-tight block">
                                                             {line1}
                                                         </span>
@@ -316,9 +352,9 @@ export default function FixtureSchedule({ fixtures, klasemen }: FixtureScheduleP
                                                 {item.day}
                                             </time>
                                             {item.match && (
-                                                <span className="-mx-0.5 mt-auto flex flex-wrap-reverse">
-                                                    <span className="mx-0.5 mb-1 h-1.5 w-1.5 rounded-full bg-white" />
-                                                </span>
+                                                <div className="mt-auto flex items-center justify-center">
+                                                    <TeamLogo name={item.match.opponent} className="w-9 h-9 text-[8px]" clubs={club} />
+                                                </div>
                                             )}
                                         </button>
                                     );
@@ -349,7 +385,7 @@ export default function FixtureSchedule({ fixtures, klasemen }: FixtureScheduleP
                                         {selectedMatch.match.home_team === 'PSS SLEMAN' ? (
                                             <img src="/pssLogo.png" alt="PSS" className="w-16 h-16 object-contain" />
                                         ) : (
-                                            <TeamLogo name={selectedMatch.match.home_team} className="w-16 h-16 text-lg" />
+                                            <TeamLogo name={selectedMatch.match.home_team} className="w-16 h-16 text-lg" clubs={club} />
                                         )}
                                         <span className="font-calcio-italiano text-lg  text-[#1c1c1c] text-center leading-tight max-w-[120px] truncate">{selectedMatch.match.home_team === 'PSS SLEMAN' ? 'PSS' : selectedMatch.match.home_team}</span>
                                     </div>
@@ -369,15 +405,15 @@ export default function FixtureSchedule({ fixtures, klasemen }: FixtureScheduleP
                                         {selectedMatch.match.away_team === 'PSS SLEMAN' ? (
                                             <img src="/pssLogo.png" alt="PSS" className="w-16 h-16 object-contain" />
                                         ) : (
-                                            <TeamLogo name={selectedMatch.match.away_team} className="w-16 h-16 text-lg" />
+                                            <TeamLogo name={selectedMatch.match.away_team} className="w-16 h-16 text-lg" clubs={club} />
                                         )}
-                                        <span className="font-calcio-italiano text-lg text-[#1c1c1c] text-center leading-tight max-w-[120px] truncate">{selectedMatch.match.away_team === 'PSS SLEMAN' ? 'PSS' : selectedMatch.match.away_team}</span>
+                                        <span className="font-calcio-italiano text-lg text-[#1c1c1c] text-center leading-tight max-w-[120px] wrap-normal truncate">{selectedMatch.match.away_team === 'PSS SLEMAN' ? 'PSS' : selectedMatch.match.away_team}</span>
                                     </div>
                                 </div>
                                 <div className="mt-5">
-                                    <span className={`px-5 cursor-pointer py-3 rounded-full text-sm font-calcio-italiano  text-white ${selectedMatch.match.isHome ? 'bg-[#0f7a4a]' : 'bg-[#1c1c1c]'}`}>
+                                    <Link href={match.report({ fixture: selectedMatch.match.id })} className={`inline-block px-5 py-3 rounded-lg text-sm font-calcio-italiano text-[#f5f5f5] ${selectedMatch.match.isHome ? 'bg-[#0f7a4a] hover:bg-[#0f7a4a]/75' : 'bg-[#1c1c1c] hover:bg-[#f5f5f5] hover:text-[#0f7a4a]'}`}>
                                         Review
-                                    </span>
+                                    </Link>
                                 </div>
                             </div>
                         ) : (
@@ -408,7 +444,7 @@ export default function FixtureSchedule({ fixtures, klasemen }: FixtureScheduleP
                                                 <tr key={k.id} className={`border-b border-gray-200 hover:bg-gray-50 transition ${k.team_name === 'PSS SLEMAN' ? 'bg-[#0f7a4a]/10' : ''}`}>
                                                     <td className="p-2 text-center font-medium text-gray-500">{k.pos}</td>
                                                     <td className="p-2 flex items-center gap-2">
-                                                        <TeamLogo name={k.team_name} className="w-6 h-6 text-[8px]" />
+                                                        <TeamLogo name={k.team_name} className="w-6 h-6 text-[8px]" clubs={club} />
                                                         <span className={`font-medium font-calcio-italiano truncate ${k.team_name === 'PSS SLEMAN' ? 'text-[#0f7a4a]' : 'text-[#1c1c1c]'}`}>
                                                             {k.team_name}
                                                         </span>
