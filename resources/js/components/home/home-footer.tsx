@@ -54,6 +54,7 @@ export default function HomeFooter({
         if (!isDeleting) {
             setText(currentWord.substring(0, charIndex + 1));
             setCharIndex((prev)=> prev+1)
+
             if (charIndex === currentWord.length) {
                 setTimeout(() => {
                 setIsDeleting(true); 
@@ -62,15 +63,18 @@ export default function HomeFooter({
         } else {
             setText(currentWord.substring(0, charIndex-1));
             setCharIndex((prev)=>prev-1);
+
             if (charIndex === 0) {
                 setIsDeleting(false);
                 setWordIndex((prev) => (prev+1) % words.length)
             }
         }
-    }, isDeleting ? 240 : 120);                                 
+    }, isDeleting ? 240 : 120);
+                                 
     return () => 
         clearTimeout(timeout);
 }, [charIndex, isDeleting, wordIndex]);
+
     return (
         <footer className="w-full bg-black text-[#f5f5f5]">
             <div className="mx-auto max-w-full">
@@ -93,7 +97,7 @@ export default function HomeFooter({
                 <div className="relative h-[40vh] w-full flex flex-col-2 border-[#f5f5f5]/25 ">
                     <div className="w-2/5 pt-12 px-16 grid grid-rows-2">
                         <div className="grid ">
-                            <img src="../pssLogoNegatif.png" alt="PSS Sleman" className='w-12 h-auto pt-2'/>
+                            <img src="/pssLogoNegatif.png" alt="PSS Sleman" className='w-12 h-auto pt-2'/>
                             <p className='font-calcio-italiano text-5xl'>{text}</p>
                         </div>
                         <div className="grid h-18">

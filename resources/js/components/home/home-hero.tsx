@@ -1,3 +1,4 @@
+import { router } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
 interface HeroSlide {
@@ -46,7 +47,10 @@ export default function HomeHero() {
     };
 
     return (
-        <section className="relative w-full overflow-hidden bg-[#1C1C1C]">
+        <section
+            className="relative w-full overflow-hidden bg-[#1C1C1C] cursor-pointer"
+            onClick={() => router.visit(`/berita/${slides[currentSlide].id}`)}
+        >
             <div className="relative h-[35vh] md:h-[60vh] lg:h-[87vh]">
                 {slides.map((slide, index) => (
                     <div
@@ -79,7 +83,9 @@ export default function HomeHero() {
 
                 <button
                     type="button"
-                    onClick={handlePrev}
+                    onClick={(e) => {
+ e.stopPropagation(); handlePrev(); 
+}}
                     className="absolute left-3 top-1/3 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white transition-all hover:bg-[#0F7A4A] md:left-4 md:top-1/2 md:h-12 md:w-12 cursor-pointer"
                 >
                     <svg className="h-4 w-4 md:h-6 md:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,7 +95,9 @@ export default function HomeHero() {
 
                 <button
                     type="button"
-                    onClick={handleNext}
+                    onClick={(e) => {
+ e.stopPropagation(); handleNext(); 
+}}
                     className="absolute right-3 top-1/3 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white transition-all hover:bg-[#0F7A4A] md:right-4 md:top-1/2 md:h-12 md:w-12 cursor-pointer"
                 >
                     <svg className="h-4 w-4 md:h-6 md:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,7 +110,9 @@ export default function HomeHero() {
                         <button
                             key={index}
                             type="button"
-                            onClick={() => setCurrentSlide(index)}
+                            onClick={(e) => {
+ e.stopPropagation(); setCurrentSlide(index); 
+}}
                             className={`h-2 rounded-full transition-all duration-300 ${
                                 index === currentSlide ? 'w-8 bg-[#0F7A4A]' : 'w-4 bg-white/50 hover:bg-white/70'
                             }`}

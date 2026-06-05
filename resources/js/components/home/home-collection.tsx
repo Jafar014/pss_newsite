@@ -1,5 +1,5 @@
+import { Link, router } from '@inertiajs/react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Link } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
 interface Slide {
@@ -75,6 +75,7 @@ export default function HomeCollection() {
         const interval = setInterval(() => {
             setCurrent((prev) => (prev + 1) % slides.length);
         }, AUTO_PLAY);
+
         return () => clearInterval(interval);
     }, []);
 
@@ -85,7 +86,16 @@ export default function HomeCollection() {
 
     return (
         <div className="h-full w-full">
-            <div className="relative h-[60vh] max-w-full overflow-hidden">
+            <div
+                className="relative h-[60vh] max-w-full overflow-hidden cursor-pointer"
+                onClick={() => {
+                    const product = products[current];
+
+                    if (product) {
+router.visit(`/toko/produk/${product.id}`);
+}
+                }}
+            >
                     {/* Hero + Carousel  */}
                 {slides.map((slide, index) => (
                     <div
@@ -105,24 +115,15 @@ export default function HomeCollection() {
                 ))}
 
                 <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                
-                {/* Tombol ke /toko */}
-                <div className="absolute bottom-12 left-1/2 z-20 flex -translate-x-1/2">
-                    <a
-                        className="flex items-center gap-2 rounded-xl bg-[#f5f5f5] px-6 py-3 text-sm font-semibold text-[#0f7a4a] transition-colors hover:bg-[#0f7a4a] hover:text-[#f5f5f5] md:text-base"
-                        href="/toko"
-                    >
-                        Cek Koleksi Selengkapnya
-                        <ArrowRight size={20} />
-                    </a>
-                </div>
 
                 <div className="absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 gap-2">
                     {slides.map((_, index) => (
                         <button
                             key={index}
                             type="button"
-                            onClick={() => goTo(index)}
+                            onClick={(e) => {
+ e.stopPropagation(); goTo(index); 
+}}
                             className={`h-2.5 cursor-pointer rounded-full transition-all duration-300 ${
                                 index === current
                                     ? 'w-8 bg-[#0f7a4a]'
@@ -136,9 +137,10 @@ export default function HomeCollection() {
             <div className="relative p-8">
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 md:gap-5">
                     {products.map((product) => (
-                        <div
+                        <Link
                             key={product.id}
-                            className="group overflow-hidden rounded-xl bg-white shadow-md transition-shadow hover:shadow-lg"
+                            href={`/toko/produk/${product.id}`}
+                            className="group block overflow-hidden rounded-xl bg-white shadow-md transition-shadow hover:shadow-lg cursor-pointer"
                         >
                             <div className="relative h-48 overflow-hidden bg-gray-200 sm:h-56 md:h-60 lg:h-72">
                                 <img
@@ -151,17 +153,14 @@ export default function HomeCollection() {
                                 <span className="text-[10px] font-semibold tracking-wide text-[#0F7A4A] uppercase md:text-xs">
                                     {product.category}
                                 </span>
-                                <Link
-                                    href={`/toko/produk/${product.id}`}
-                                    className="mt-1 block truncate text-sm font-bold text-[#1C1C1C] transition-colors hover:text-[#0F7A4A] md:text-base"
-                                >
+                                <p className="mt-1 block truncate text-sm font-bold text-[#1C1C1C] transition-colors group-hover:text-[#0F7A4A] md:text-base">
                                     {product.name}
-                                </Link>
+                                </p>
                                 <p className="mt-1 text-sm font-bold text-[#0F7A4A] md:text-base">
                                     {formatPrice(product.price)}
                                 </p>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
