@@ -1,12 +1,11 @@
 import { Head } from '@inertiajs/react';
+import HomeCollection from '@/components/home/home-collection';
 import HomeFooter from '@/components/home/home-footer';
 import HomeHero from '@/components/home/home-hero';
 import HomeNavbar from '@/components/home/home-navbar';
 import HomeNews from '@/components/home/home-news';
 import HomePlayers from '@/components/home/home-players';
 import MatchCards from '@/components/home/match-cards';
-import StoreCollection from '@/components/home/store-collection';
-import HomeCollection from '@/components/home/home-collection';
 
 export default function HomePage({
     players,
