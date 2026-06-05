@@ -15,8 +15,9 @@ interface Player {
 
 interface Staff {
     id: number;
-    name: string;
-    photo: string | null;
+    full_name: string;
+    role: string;
+    photo_url: string | null;
 }
 
 interface Team {
@@ -46,6 +47,7 @@ function splitName(full_name:string) : [string, string] {
 }
 
 export default function TeamsPlayer({ team, players, staff }: TeamsPlayerProps) {
+    const headCoach = staff.find((s) => s.role === 'Pelatih Kepala');
     return (
         <>
         {/* Header */}
@@ -114,14 +116,14 @@ export default function TeamsPlayer({ team, players, staff }: TeamsPlayerProps) 
             </div>
             <div className="w-full flex flex-col lg:flex-row h-[30vh] lg:h-[45vh] px-6 md:px-12 lg:px-24 relative">
                 <div className="flex flex-col w-full lg:w-1/2 h-full overflow-hidden justify-center items-center">
-                    <p className="text-[#0f7a4a] font-calcio-italiano text-3xl md:text-4xl lg:text-6xl">Ansyari Lubis</p>
+                    <p className="text-[#0f7a4a] font-calcio-italiano text-3xl md:text-4xl lg:text-6xl">{headCoach?.full_name || 'Ansyari '}</p>
                     <p className="text-[#0f7a4a] font-calcio-italiano text-xl md:text-2xl lg:text-4xl">Indonesia</p>
                 </div>
                 <div className="flex flex-col w-full lg:w-1/2 h-full overflow-hidden justify-center items-center lg:absolute lg:right-16">
                     <img
-                        src={"../../half_body.jpg"}
-                        alt="Player 1"
-                        className="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                        src={headCoach?.photo_url || "../../half_body.jpg"}
+                        alt="Head Coach"
+                        className="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105 mix-blend-multiply"
                     />
                 </div>
             </div>

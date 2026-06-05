@@ -19,8 +19,9 @@ interface Player {
 
 interface Staff {
     id: number;
-    name: string;
-    photo: string | null;
+    full_name: string;
+    role: string;
+    photo_url: string | null;
 }
 
 interface Team {

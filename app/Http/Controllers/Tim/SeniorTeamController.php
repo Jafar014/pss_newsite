@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tim;
 
 use App\Http\Controllers\Controller;
 use App\Models\Players;
+use App\Models\Staff;
 use App\Models\Teams;
 use Inertia\Inertia;
 
@@ -29,6 +30,15 @@ class SeniorTeamController extends Controller
             ];
         })->values();
 
+        $staff = Staff::where('team_id', 4)->get()->map(function ($member) {
+            return [
+                'id' => $member->id,
+                'full_name' => $member->full_name,
+                'role' => $member->role,
+                'photo_url' => $member->photo_url,
+            ];
+        })->values();
+
         return Inertia::render('teams', [
             'team' => [
                 'id' => $team->id,
@@ -36,6 +46,7 @@ class SeniorTeamController extends Controller
                 'competition' => $team->competition,
             ],
             'players' => $players,
+            'staff' => $staff,
         ]);
     }
 }
