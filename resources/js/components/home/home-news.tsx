@@ -57,10 +57,9 @@ export default function HomeNews() {
                 </div>
                 {/* Title Section Berita */}
                 <div className="relative lg:w-1/2 mx-auto lg:max-w-7xl h-auto lg:h-[72vh] py-8 sm:py-12 md:py-16 lg:ml-24">
-                    <h2 className="font-calcio-italiano text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-wider text-[#f5f5f5] uppercase animate-typing overflow-hidden whitespace-nowrap ">
+                    <h2 className="font-calcio-italiano text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-wider text-[#f5f5f5] uppercase animate-typing overflow-hidden whitespace-nowrap ">
                         Berita
                     </h2>
-                    <p className='font-calcio-italiano text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-wider text-[#f5f5f5] uppercase animate-typing animate-delay-400 overflow-hidden whitespace-nowrap'>Utama</p>
                     <div className="h-1 w-16 sm:w-20 md:w-24 bg-[#f5f5f5]" />
                 </div>
             </div>
@@ -152,7 +151,7 @@ export default function HomeNews() {
 
                 </div>
                 {/* Button Lihat Lainnya */}
-                <div className="relative lg:absolute -bottom-0.5 right-0 p-4 cursor-pointer" >
+                <div className="relative lg:absolute -bottom-0.5 -right-4 p-4 cursor-pointer" >
                     <a href='/berita' className='font-calcio-italiano uppercase text-xl sm:text-2xl hover:bg-[#f5f5f5] hover:text-[#0F7A4A] hover:duration-300 p-5'>
                         lihat lainnya
                         <ChevronRight className="inline-block ml-2" />

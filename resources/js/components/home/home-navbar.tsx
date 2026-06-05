@@ -16,7 +16,6 @@ const navItems = [
         label: 'Klub',
         children: [
             { label: 'Sejarah', href: '/sejarah' },
-            { label: 'Profil', href: '#profil' },
         ],
     },
     {
@@ -29,7 +28,7 @@ const navItems = [
     },
     {
         label: 'Galeri',
-        href: '#galeri',
+        href: '/galeri',
     },
     {
         label: 'Toko',
@@ -102,7 +101,7 @@ export default function HomeNavbar() {
                 />
             </Link>
 
-            <div className="hidden items-center gap-1 xl:gap-2 xl:flex">
+            <div className="hidden items-center gap-1 xl:gap-2 xl:flex ">
                 {navItems.map((item, index) => (
                     <div key={index}>
                         {item.children ? (
@@ -138,15 +137,15 @@ export default function HomeNavbar() {
             <div className="flex items-center gap-2 xl:hidden">
                 <Sheet>
                     <SheetTrigger asChild>
-                        <button className="p-2 text-white">
+                        <button className="p-2 text-white cursor-pointer">
                             <Menu className="h-6 w-6" />
                         </button>
                     </SheetTrigger>
                     <SheetContent
                         side="right"
-                        className="w-[280px] bg-[#0f7a4a] p-0"
+                        className="w-[280px] bg-[#0f7a4a] p-0 cursor-pointer"
                     >
-                        <div className="flex flex-col py-6">
+                        <div className="flex flex-col py-6 ">
                             {navItems.map((item, index) => (
                                 <NavItem key={index} item={item} isMobile />
                             ))}

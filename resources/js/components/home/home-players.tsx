@@ -17,21 +17,20 @@ interface HomePlayersProps {
 export default function HomePlayers({ players }: HomePlayersProps) {
     const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
 
-    const randomPlayers = [...players].slice(0, 4);
+    const randomPlayers = [...players].slice(0, 5);
 
     return (
         <section className="w-full bg-[#f5f5f5]">
             <div className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-[#1c1c1c]" />
                 <div className="relative mx-auto max-w-7xl px-4 py-12 md:py-16">
-                    <h2 className="font-calcio-italiano text-4xl md:text-6xl lg:text-7xl font-bold tracking-wider text-[#f5f5f5] uppercase">
+                    <h2 className="font-calcio-italiano text-4xl text-center md:text-6xl lg:text-7xl tracking-wider text-[#f5f5f5] uppercase">
                         Skuat Utama
                     </h2>
-                    <div className="h-1 w-24 bg-[#0f7a4a]" />
                 </div>
             </div>
 
-            <div className="mx-auto max-w-7xl px-4 pb-8 mt-8">
+            <div className="max-w-full px-4 pb-8 mt-8">
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-3">
                     {randomPlayers.map((player) => (
                         <div
