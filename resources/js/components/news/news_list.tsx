@@ -1,5 +1,13 @@
 import { Link } from '@inertiajs/react';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from '@/components/ui/pagination';
 
 interface NewsItem {
     id: number;
@@ -150,40 +158,37 @@ export default function NewsContent() {
                     ))}
                 </div>
                 
-                {/* Pagination  */}
+                {/* Pagination */}
                 {totalPages > 1 && (
-                    <div className="mt-10 flex items-center justify-center gap-2">
-                        <button
-                            type="button"
-                            disabled={currentPage === 1}
-                            onClick={() => setCurrentPage((p) => p - 1)}
-                            className="rounded-lg border border-[#1c1c1c] px-3 py-1.5 text-sm text-[#1c1c1c] transition-colors disabled:cursor-not-allowed disabled:opacity-50 hover:border-[#0F7A4A] hover:bg-[#0F7A4A]"
-                        >
-                            Sebelumnya
-                        </button>
-                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                            <button
-                                key={page}
-                                type="button"
-                                onClick={() => setCurrentPage(page)}
-                                className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors cursor-pointer ${
-                                    currentPage === page
-                                        ? 'bg-[#0F7A4A] text-[#f5f5f5]'
-                                        : 'border border-[#1c1c1c] text-[#0f7a4a] hover:text-[#f5f5f5] hover:bg-[#0F7A4A]'
-                                }`}
-                            >
-                                {page}
-                            </button>
-                        ))}
-                        <button
-                            type="button"
-                            disabled={currentPage === totalPages}
-                            onClick={() => setCurrentPage((p) => p + 1)}
-                            className="rounded-lg border border-[#1c1c1c] px-3 py-1.5 text-sm text-[#1c1c1c] transition-colors disabled:cursor-not-allowed disabled:opacity-50 hover:text-[#f5f5f5] hover:bg-[#0F7A4A] cursor-pointer"
-                        >
-                            Selanjutnya
-                        </button>
-                    </div>
+                    <Pagination className="mt-10">
+                        <PaginationContent>
+                            <PaginationItem>
+                                <PaginationPrevious
+                                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                                    className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                                    text="Sebelumnya"
+                                />
+                            </PaginationItem>
+                            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                                <PaginationItem key={page}>
+                                    <PaginationLink
+                                        isActive={currentPage === page}
+                                        onClick={() => setCurrentPage(page)}
+                                        className="cursor-pointer"
+                                    >
+                                        {page}
+                                    </PaginationLink>
+                                </PaginationItem>
+                            ))}
+                            <PaginationItem>
+                                <PaginationNext
+                                    onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                                    className={currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                                    text="Selanjutnya"
+                                />
+                            </PaginationItem>
+                        </PaginationContent>
+                    </Pagination>
                 )}
             </div>
         </>
