@@ -16,45 +16,7 @@ export default function HomeNews() {
 
     return (
         <section className="w-full relative flex flex-col lg:flex-row">
-            <div className="flex flex-col w-full lg:w-1/3 overflow-hidden bg-[#0F7A4A]">
-                <div className="absolute inset-0 ">
-
-                    {/* bagian atas */}
-                    <div className="absolute top-0 left-4 sm:left-8 md:left-15 w-16 sm:w-20 md:w-24 h-1/2 
-                        bg-[#1c1c1c] opacity-30 mix-blend-overlay 
-                        transform skew-x-25 origin-bottom border border-[#1c1c1c]">
-                    </div>
-
-                    {/* bagian bawah (dibalik arah) */}
-                    <div className="absolute bottom-0 left-4 sm:left-8 md:left-15 w-16 sm:w-20 md:w-24 h-1/2 
-                        bg-[#1c1c1c] opacity-30 mix-blend-overlay 
-                        transform -skew-x-25 origin-top">
-                    </div>
-
-                    {/* bagian atas */}
-                    <div className="absolute top-0 left-24 sm:left-36 md:left-60 w-16 sm:w-20 md:w-24 h-1/2 
-                        bg-[#1c1c1c] opacity-30 mix-blend-overlay 
-                        transform skew-x-25 origin-bottom">
-                    </div>
-
-                    {/* bagian bawah (dibalik arah) */}
-                    <div className="absolute bottom-0 left-24 sm:left-36 md:left-60 w-16 sm:w-20 md:w-24 h-1/2 
-                        bg-[#1c1c1c] opacity-30 mix-blend-overlay 
-                        transform -skew-x-25 origin-top">
-                    </div>
-                    {/* bagian atas */}
-                    <div className="absolute top-0 left-44 sm:left-72 md:left-102.5 w-16 sm:w-20 md:w-24 h-1/2 
-                        bg-[#1c1c1c] opacity-30 mix-blend-overlay 
-                        transform skew-x-25 origin-bottom">
-                    </div>
-
-                    {/* bagian bawah (dibalik arah) */}
-                    <div className="absolute bottom-0 left-44 sm:left-72 md:left-102.5 w-16 sm:w-20 md:w-24 h-1/2 
-                        bg-[#1c1c1c] opacity-30 mix-blend-overlay 
-                        transform -skew-x-25 origin-top">
-                    </div>
-
-                </div>
+            <div className="flex flex-col w-full lg:w-1/3 overflow-hidden bg-[#1c1c1c] border-[#f5f5f5] border-b lg:border-b-0 border-r">
                 {/* Title Section Berita */}
                 <div className="relative lg:w-1/2 mx-auto lg:max-w-7xl h-auto lg:h-[72vh] py-8 sm:py-12 md:py-16 lg:ml-24">
                     <h2 className="font-calcio-italiano text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-wider text-[#f5f5f5] uppercase animate-typing overflow-hidden whitespace-nowrap ">
@@ -70,7 +32,14 @@ export default function HomeNews() {
                 <div className="relative flex flex-col lg:flex-row lg:w-full pb-8 lg:pb-16 h-auto lg:h-[71.5vh] ">
 
                     <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#f5f5f5] border-b lg:border-b-0 overflow-hidden min-h-[250px] lg:min-h-0">
-                        <img src="https://picsum.photos/400/300?random=1" alt="News 1" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-gray-300">
+                                    <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
+                                        Banner Berita 1
+                                    </span>
+                                    <span className="text-xs font-medium text-gray-400">
+                                        400 x 300 px
+                                    </span>
+                                </div>
                         {/* Efek overlay gelap */}
                         <div className="absolute bottom-0 left-0 right-0 h-1/2 
                             bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent 
@@ -90,7 +59,14 @@ export default function HomeNews() {
                     </div>
 
                     <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#f5f5f5] border-b lg:border-b-0 overflow-hidden min-h-[250px] lg:min-h-0">
-                        <img src="https://picsum.photos/400/300?random=2" alt="News 2" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-gray-300">
+                                    <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
+                                        Banner Berita 2
+                                    </span>
+                                    <span className="text-xs font-medium text-gray-400">
+                                        400 x 300 px
+                                    </span>
+                                </div>
                         {/* Efek overlay gelap */}
                         <div className="absolute bottom-0 left-0 right-0 h-1/2 
                             bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent 
@@ -110,7 +86,14 @@ export default function HomeNews() {
                     </div>
 
                     <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#f5f5f5] border-b lg:border-b-0 overflow-hidden min-h-[250px] lg:min-h-0">
-                        <img src="https://picsum.photos/400/300?random=3" alt="News 3" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-gray-300">
+                                    <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
+                                        Banner Berita 3
+                                    </span>
+                                    <span className="text-xs font-medium text-gray-400">
+                                        400 x 300 px
+                                    </span>
+                                </div>
                         {/* Efek overlay gelap */}
                         <div className="absolute bottom-0 left-0 right-0 h-1/2 
                             bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent 
@@ -130,7 +113,14 @@ export default function HomeNews() {
                     </div>
 
                     <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#f5f5f5] border-b lg:border-b-0 overflow-hidden min-h-[250px] lg:min-h-0">
-                        <img src="https://picsum.photos/400/300?random=4" alt="News 4" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-gray-300">
+                                    <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
+                                        Banner Berita 4
+                                    </span>
+                                    <span className="text-xs font-medium text-gray-400">
+                                        400 x 300 px
+                                    </span>
+                                </div>
                         {/* Efek overlay gelap */}
                         <div className="absolute bottom-0 left-0 right-0 h-1/2 
                             bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent 
@@ -151,8 +141,8 @@ export default function HomeNews() {
 
                 </div>
                 {/* Button Lihat Lainnya */}
-                <div className="relative lg:absolute -bottom-0.5 -right-4 p-4 cursor-pointer" >
-                    <a href='/berita' className='font-calcio-italiano uppercase text-xl sm:text-2xl hover:bg-[#f5f5f5] hover:text-[#0F7A4A] hover:duration-300 p-5'>
+                <div className="relative lg:absolute bottom-0 -right-4 p-4 cursor-pointer" >
+                    <a href='/berita' className='font-calcio-italiano uppercase text-xl sm:text-2xl hover:bg-[#f5f5f5] hover:text-[#1c1c1c] hover:duration-300 p-5'>
                         lihat lainnya
                         <ChevronRight className="inline-block ml-2" />
                         

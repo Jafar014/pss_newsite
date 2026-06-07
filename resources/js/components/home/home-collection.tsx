@@ -96,7 +96,7 @@ router.visit(`/toko/produk/${product.id}`);
 }
                 }}
             >
-                    {/* Hero + Carousel  */}
+                    {/* Hero Banner Carousel */}
                 {slides.map((slide, index) => (
                     <div
                         key={slide.id}
@@ -106,15 +106,16 @@ router.visit(`/toko/produk/${product.id}`);
                             zIndex: index === current ? 1 : 0,
                         }}
                     >
-                        <img
-                            src={slide.image}
-                            alt={`Slide ${slide.id}`}
-                            className="h-full w-full object-cover"
-                        />
+                        <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gray-300">
+                            <span className="text-2xl font-bold tracking-widest text-gray-500 uppercase md:text-4xl">
+                                Banner Hero {index + 1}
+                            </span>
+                            <span className="text-sm font-medium text-gray-400 md:text-base">
+                                1920 x 600 px
+                            </span>
+                        </div>
                     </div>
                 ))}
-
-                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
                 <div className="absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 gap-2">
                     {slides.map((_, index) => (

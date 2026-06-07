@@ -22,7 +22,7 @@ export default function HomePlayers({ players }: HomePlayersProps) {
     return (
         <section className="w-full bg-[#f5f5f5]">
             <div className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-[#1c1c1c]" />
+                <div className="absolute inset-0 bg-[#0f7a4a]" />
                 <div className="relative mx-auto max-w-7xl px-4 py-12 md:py-16">
                     <h2 className="font-calcio-italiano text-4xl text-center md:text-6xl lg:text-7xl tracking-wider text-[#f5f5f5] uppercase">
                         Skuat Utama
@@ -44,7 +44,7 @@ export default function HomePlayers({ players }: HomePlayersProps) {
                         >
                             <div className="relative aspect-[3/4] overflow-hidden">
                                 <div className="absolute top-2 left-2 z-10">
-                                    <span className="font-calcio-italiano text-3xl sm:text-4xl md:text-5xl font-bold text-[#0f7a5a]">
+                                    <span className="font-calcio-italiano text-3xl sm:text-4xl md:text-5xl lg:text-8xl text-[#0f7a5a]">
                                         {player.number}
                                     </span>
                                 </div>
