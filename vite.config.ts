@@ -12,6 +12,11 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/js/app.tsx'],
             refresh: true,
         }),
+        process.env.APP_ENV !== '1'
+            ? wayfinder({
+            formVariants: true,
+        })
+            : null,
         inertia(),
         react({
             babel: {
@@ -19,9 +24,6 @@ export default defineConfig({
             },
         }),
         tailwindcss(),
-        wayfinder({
-            formVariants: true,
-        }),
-    ],
+    ].filter(Boolean),
     assetsInclude: ['**/*.ttf'],
 });

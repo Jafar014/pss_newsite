@@ -13,7 +13,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
-        "APP_URL": "https://your.url.from.vercel.app",
+        "APP_URL": "https://portfolio-PssSleman.vercel.app",
         "APP_KEY": "base64:os5u7TMGajRdd62iAGkLoixjHm1hzzVA/uzz2D0vuPM=",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
