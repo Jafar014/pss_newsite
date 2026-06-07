@@ -2,6 +2,7 @@ import { Link } from '@inertiajs/react';
 import { useEffect, useMemo, useState } from 'react';
 import match from '@/routes/match';
 
+/** Hari dalam kalender (gabungan hari bulan ini + padding bulan lalu & depan) */
 interface CalendarDay {
     day: number;
     currentMonth: boolean;
@@ -9,6 +10,7 @@ interface CalendarDay {
     match?: FixtureItem;
 }
 
+/** Data ringkas pertandingan untuk ditampilkan di kalender */
 interface FixtureItem {
     id: number;
     home_team: string;
@@ -19,11 +21,14 @@ interface FixtureItem {
     away_goals: number | null;
     status: string;
     gameweek: string;
+    /** true jika PSS bermain kandang */
     isHome: boolean;
+    /** Lawan PSS (tim lawan) */
     opponent: string;
     opponent_logo_url?: string;
 }
 
+/** Data mentah jadwal pertandingan dari API */
 interface FixtureData {
     id: number;
     competition: string;
@@ -39,6 +44,7 @@ interface FixtureData {
     venue: string;
 }
 
+/** Data klasemen dari API */
 interface KlasemenData {
     id: number;
     pos: number;
@@ -54,6 +60,7 @@ interface KlasemenData {
     points: number;
 }
 
+/** Data klub dari API */
 interface ClubData{
     id: number,
     slug: string,
@@ -68,19 +75,27 @@ interface FixtureScheduleProps {
     club: ClubData[];
 }
 
+/** Nama bulan dalam Bahasa Indonesia */
 const MONTHS = [
     'JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI',
     'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'
 ];
 
+/** Nama hari (Sen–Min) */
 const DAYS = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
 
-// Buat Kalender
+/**
+ * Hasilkan array 42 hari (6 baris) untuk kalender.
+ * - Hari dari bulan sebelumnya (padding)
+ * - Hari bulan aktif (bisa berisi pertandingan)
+ * - Hari dari bulan depan (padding)
+ */
 function generateCalendarDays(year: number, month: number, fixturesMap: Map<string, FixtureData>): CalendarDay[] {
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const daysInMonth = lastDay.getDate();
     
+    /* === Hitung offset hari pertama (Sen=0 ... Min=6) === */
     let startDayOfWeek = firstDay.getDay() - 1;
 
     if (startDayOfWeek < 0) {
@@ -90,6 +105,7 @@ function generateCalendarDays(year: number, month: number, fixturesMap: Map<stri
     const days: CalendarDay[] = [];
     const prevMonthLastDay = new Date(year, month, 0).getDate();
 
+    /* -- Padding: hari dari bulan sebelumnya -- */
     for (let i = startDayOfWeek - 1; i >= 0; i--) {
         const day = prevMonthLastDay - i;
         const prevMonth = month === 0 ? 11 : month - 1;
@@ -101,6 +117,7 @@ function generateCalendarDays(year: number, month: number, fixturesMap: Map<stri
         });
     }
     
+    /* -- Hari dalam bulan aktif -- */
     for (let i = 1; i <= daysInMonth; i++) {
         const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
         const fixture = fixturesMap.get(dateStr);
@@ -129,6 +146,7 @@ function generateCalendarDays(year: number, month: number, fixturesMap: Map<stri
         });
     }
     
+    /* -- Padding: hari dari bulan depan (total 42 = 6 baris) -- */
     const remaining = 42 - days.length;
 
     for (let i = 1; i <= remaining; i++) {
@@ -144,6 +162,10 @@ function generateCalendarDays(year: number, month: number, fixturesMap: Map<stri
     return days;
 }
 
+/**
+ * Ambil inisial dari nama tim (max 2 karakter).
+ * Huruf F/C/K dihapus karena umum di nama klub (FC/CF/K).
+ */
 function getInitials(name: string): string {
     return name
         .replace(/[FCK]/g, '')
@@ -155,11 +177,12 @@ function getInitials(name: string): string {
         .toUpperCase() || name[0]?.toUpperCase() || '?';
 }
 
+/** Komponen logo tim — pakai gambar jika ada, fallback ke inisial dengan warna acak */
 function TeamLogo({ name, className, clubs }: { name: string; className?: string; clubs?: ClubData[] }) {
     const club = clubs?.find(c => c.name.toLowerCase() === name.toLowerCase());
     const logoUrl = club?.logo_url;
 
-    // Logo di kalender
+    /* Tampilkan gambar logo jika tersedia */
     if (logoUrl) {
         return (
             <div className={`rounded-full overflow-hidden flex-shrink-0 ${className || 'w-10 h-10 text-xs'}`}>
@@ -172,7 +195,7 @@ function TeamLogo({ name, className, clubs }: { name: string; className?: string
         );
     }
 
-    // Jika logo tidak ada
+    /* Fallback: inisial dengan warna berdasarkan hash nama */
     const colors = [
         '#0f7a4a', '#1c1c1c', '#Efbf04', '#e74c3c', '#3498db',
         '#9b59b6', '#1abc9c', '#e67e22', '#2ecc71', '#f39c12',
@@ -191,11 +214,13 @@ function TeamLogo({ name, className, clubs }: { name: string; className?: string
     );
 }
 
+/** Halaman jadwal pertandingan + kalender + klasemen */
 export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureScheduleProps) {
     const [currentDate, setCurrentDate] = useState(new Date(2025, 8, 1));
     const [currentTime, setCurrentTime] = useState('');
     const today = new Date();
 
+    /* Map tanggal → fixture untuk akses O(1) */
     const fixturesMap = useMemo(() => {
         const map = new Map<string, FixtureData>();
         fixtures.forEach(f => map.set(f.match_date, f));
@@ -207,11 +232,13 @@ export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureSch
     const month = currentDate.getMonth();
     const days = generateCalendarDays(year, month, fixturesMap);
 
+    /* Pilih pertandingan pertama di bulan aktif sebagai default */
     const firstMatchDay = days.find(d => d.match && d.currentMonth);
     const [selectedMatch, setSelectedMatch] = useState<{ date: string; match: FixtureItem } | null>(
         firstMatchDay && firstMatchDay.match ? { date: firstMatchDay.date, match: firstMatchDay.match } : null
     );
 
+    /* Jam real-time di header */
     useEffect(() => {
         const updateTime = () => {
             const now = new Date();
@@ -225,6 +252,7 @@ export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureSch
         return () => clearInterval(interval);
     }, []);
 
+    /* Reset pilihan saat bulan berubah */
     useEffect(() => {
         const firstMatch = days.find(d => d.match && d.currentMonth);
         setSelectedMatch(
@@ -235,6 +263,7 @@ export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureSch
     const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1));
     const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1));
 
+    /** Ambil skor PSS (nullable → "-") */
     const pssGoals = (m: FixtureItem): number | string => {
         if (m.home_goals === null || m.away_goals === null) {
 return '-';
@@ -243,6 +272,7 @@ return '-';
         return m.isHome ? m.home_goals : m.away_goals;
     };
 
+    /** Ambil skor lawan (nullable → "-") */
     const oppGoals = (m: FixtureItem): number | string => {
         if (m.home_goals === null || m.away_goals === null) {
 return '-';
@@ -266,8 +296,41 @@ return '-';
                 {/* Kalender */}
                 <div className="w-full lg:w-3/4 flex flex-col bg-white rounded-lg shadow-lg overflow-hidden">
                     <div className="flex flex-col h-full">
-                        <header className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
-                            <div className="flex items-center gap-4">
+                        <header className="flex items-center justify-between border-b border-gray-200 px-3 sm:px-6 py-3 sm:py-4">
+                            {/* Mobile */}
+                            <div className="flex items-center justify-between w-full lg:hidden relative">
+                                <div className="flex items-center gap-1">
+                                    <button onClick={prevMonth} className="p-1 rounded-full hover:bg-gray-100 transition-colors cursor-pointer flex-none" aria-label="Bulan sebelumnya">
+                                        <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <span className="font-calcio-italiano text-lg text-[#1c1c1c] font-bold tabular-nums">
+                                        {String(month + 1).padStart(2, '0')} / {String(year).slice(-2)}
+                                    </span>
+                                    <button onClick={nextMonth} className="p-1 rounded-full hover:bg-gray-100 transition-colors cursor-pointer flex-none" aria-label="Bulan berikutnya">
+                                        <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div className="flex items-center gap-3 absolute left-1/2 -translate-x-1/2">
+                                    <div className="flex items-center gap-1">
+                                        <span className="h-3 w-3 rounded-full bg-[#0f7a4a]" />
+                                        <span className="text-lg font-calcio-italiano text-[#0f7a4a] font-bold">H</span>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <span className="h-3 w-3 rounded-full bg-[#1c1c1c]" />
+                                        <span className="text-lg font-calcio-italiano text-[#1c1c1c] font-bold">A</span>
+                                    </div>
+                                </div>
+                                <span className="font-calcio-italiano text-lg text-[#1c1c1c] tabular-nums">
+                                    {currentTime}
+                                </span>
+                            </div>
+
+                            {/* Desktop */}
+                            <div className="hidden lg:flex items-center gap-4">
                                 <button onClick={prevMonth} className="p-1 rounded-full hover:bg-gray-100 transition-colors cursor-pointer flex-none" aria-label="Bulan sebelumnya">
                                     <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -283,20 +346,20 @@ return '-';
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                     </svg>
                                 </button>
-                            </div>
-                            <div className="flex items-center gap-4 font-calcio-italiano">
-                                <div className="flex items-center gap-2">
-                                    <span className="h-3 w-3 rounded-full bg-[#0f7a4a]" />
-                                    <span className="text-2xl text-[#0f7a4a]">Home</span>
+                                <div className="flex items-center gap-4 font-calcio-italiano">
+                                    <div className="flex items-center gap-2">
+                                        <span className="h-3 w-3 rounded-full bg-[#0f7a4a]" />
+                                        <span className="text-2xl text-[#0f7a4a]">Home</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="h-3 w-3 rounded-full bg-[#1c1c1c]" />
+                                        <span className="text-2xl text-[#1c1c1c]">Away</span>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="h-3 w-3 rounded-full bg-[#1c1c1c]" />
-                                    <span className="text-2xl text-[#1c1c1c]">Away</span>
-                                </div>
+                                <span className="font-calcio-italiano text-2xl text-[#1c1c1c] leading-6">
+                                    {currentTime}
+                                </span>
                             </div>
-                            <span className="font-calcio-italiano text-2xl text-[#1c1c1c] leading-6">
-                                {currentTime}
-                            </span>
                         </header>
 
                         <div className="flex flex-col flex-auto">
@@ -351,7 +414,7 @@ return '-';
                                 })}
                             </div>
 
-                            {/* Mobile */}
+                            {/* Mobile  */}
                             <div className="grid grid-cols-7 lg:hidden flex-auto bg-gray-200 gap-px">
                                 {days.map((item, i) => {
                                     const isToday = item.currentMonth && item.day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
@@ -370,7 +433,7 @@ return '-';
                                             </time>
                                             {item.match && (
                                                 <div className="mt-auto flex items-center justify-center">
-                                                    <TeamLogo name={item.match.opponent} className="w-9 h-9 text-[8px]" clubs={club} />
+                                                    <TeamLogo name={item.match.opponent} className="w-8 h-8 text-[7px]" clubs={club} />
                                                 </div>
                                             )}
                                         </button>
@@ -391,44 +454,44 @@ return '-';
                             </h3>
                         </div>
                         {selectedMatch ? (
-                            <div className="p-6 flex flex-col items-center">
-                                <span className="text-sm text-gray-500 font-calcio-italiano mb-5">
+                            <div className="p-4 sm:p-6 flex flex-col items-center">
+                                <span className="text-xs sm:text-sm text-gray-500 font-calcio-italiano mb-4 sm:mb-5 text-center">
                                     {new Date(selectedMatch.date + 'T00:00:00').toLocaleDateString('id-ID', {
                                         weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
                                     })}
                                 </span>
-                                <div className="flex items-center justify-center w-full gap-6">
-                                    <div className="flex flex-col items-center gap-2 flex-1">
+                                <div className="flex items-center justify-center w-full gap-3 sm:gap-6">
+                                    <div className="flex flex-col items-center gap-1 sm:gap-2 flex-1 min-w-0">
                                         {selectedMatch.match.home_team === 'PSS SLEMAN' ? (
-                                            <img src="/pssLogo.png" alt="PSS" className="w-16 h-16 object-contain" />
+                                            <img src="/pssLogo.png" alt="PSS" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
                                         ) : (
-                                            <TeamLogo name={selectedMatch.match.home_team} className="w-16 h-16 text-lg" clubs={club} />
+                                            <TeamLogo name={selectedMatch.match.home_team} className="w-12 h-12 sm:w-16 sm:h-16 text-sm sm:text-lg" clubs={club} />
                                         )}
-                                        <span className="font-calcio-italiano text-lg  text-[#1c1c1c] text-center leading-tight max-w-[120px] truncate">{selectedMatch.match.home_team === 'PSS SLEMAN' ? 'PSS' : selectedMatch.match.home_team}</span>
+                                        <span className="font-calcio-italiano text-sm sm:text-lg text-[#1c1c1c] text-center leading-tight max-w-[80px] sm:max-w-[120px] truncate">{selectedMatch.match.home_team === 'PSS SLEMAN' ? 'PSS' : selectedMatch.match.home_team}</span>
                                     </div>
-                                    <div className="flex flex-col items-center">
-                                        <div className="flex items-center gap-3">
-                                            <span className={`text-3xl font-calcio-italiano ${selectedMatch.match.home_team === 'PSS SLEMAN' ? 'text-[#0f7a4a]' : 'text-[#1c1c1c]'}`}>
+                                    <div className="flex flex-col items-center flex-shrink-0">
+                                        <div className="flex items-center gap-2 sm:gap-3">
+                                            <span className={`text-2xl sm:text-3xl font-calcio-italiano ${selectedMatch.match.home_team === 'PSS SLEMAN' ? 'text-[#0f7a4a]' : 'text-[#1c1c1c]'}`}>
                                                 {selectedMatch.match.home_goals ?? '-'}
                                             </span>
-                                            <span className="text-3xl font-calcio-italiano  text-[#1c1c1c]">-</span>
-                                            <span className={`text-3xl  font-calcio-italiano ${selectedMatch.match.away_team === 'PSS SLEMAN' ? 'text-[#0f7a4a]' : 'text-[#1c1c1c]'}`}>
+                                            <span className="text-2xl sm:text-3xl font-calcio-italiano text-[#1c1c1c]">-</span>
+                                            <span className={`text-2xl sm:text-3xl font-calcio-italiano ${selectedMatch.match.away_team === 'PSS SLEMAN' ? 'text-[#0f7a4a]' : 'text-[#1c1c1c]'}`}>
                                                 {selectedMatch.match.away_goals ?? '-'}
                                             </span>
                                         </div>
-                                        <span className="text-xs text-gray-400 mt-2 font-calcio-italiano">Pekan {selectedMatch.match.gameweek}</span>
+                                        <span className="text-[10px] sm:text-xs text-gray-400 mt-1 sm:mt-2 font-calcio-italiano">Pekan {selectedMatch.match.gameweek}</span>
                                     </div>
-                                    <div className="flex flex-col items-center gap-2 flex-1">
+                                    <div className="flex flex-col items-center gap-1 sm:gap-2 flex-1 min-w-0">
                                         {selectedMatch.match.away_team === 'PSS SLEMAN' ? (
-                                            <img src="/pssLogo.png" alt="PSS" className="w-16 h-16 object-contain" />
+                                            <img src="/pssLogo.png" alt="PSS" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
                                         ) : (
-                                            <TeamLogo name={selectedMatch.match.away_team} className="w-16 h-16 text-lg" clubs={club} />
+                                            <TeamLogo name={selectedMatch.match.away_team} className="w-12 h-12 sm:w-16 sm:h-16 text-sm sm:text-lg" clubs={club} />
                                         )}
-                                        <span className="font-calcio-italiano text-lg text-[#1c1c1c] text-center leading-tight max-w-[120px] wrap-normal truncate">{selectedMatch.match.away_team === 'PSS SLEMAN' ? 'PSS' : selectedMatch.match.away_team}</span>
+                                        <span className="font-calcio-italiano text-sm sm:text-lg text-[#1c1c1c] text-center leading-tight max-w-[80px] sm:max-w-[120px] truncate">{selectedMatch.match.away_team === 'PSS SLEMAN' ? 'PSS' : selectedMatch.match.away_team}</span>
                                     </div>
                                 </div>
-                                <div className="mt-5">
-                                    <Link href={match.report({ fixture: selectedMatch.match.id })} className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0f7a4a] text-white font-calcio-italiano text-sm uppercase tracking-wider rounded-lg hover:bg-white hover:text-[#0f7a4a] border border-transparent hover:border-[#0f7a4a] transition-all duration-300">
+                                <div className="mt-4 sm:mt-5">
+                                    <Link href={match.report({ fixture: selectedMatch.match.id })} className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-[#0f7a4a] text-white font-calcio-italiano text-xs sm:text-sm uppercase tracking-wider rounded-lg hover:bg-white hover:text-[#0f7a4a] border border-transparent hover:border-[#0f7a4a] transition-all duration-300">
                                         Review
                                     </Link>
                                 </div>
