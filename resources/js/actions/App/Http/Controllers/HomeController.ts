@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
 * @see app/Http/Controllers/HomeController.php:12
@@ -47,42 +47,6 @@ __invoke.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-/**
-* @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:12
-* @route '/'
-*/
-const __invokeForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: __invoke.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:12
-* @route '/'
-*/
-__invokeForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: __invoke.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:12
-* @route '/'
-*/
-__invokeForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: __invoke.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-__invoke.form = __invokeForm
 
 const HomeController = { __invoke }
 

@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../wayfinder'
 /**
 * @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
 * @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
@@ -47,42 +47,6 @@ login.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-/**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
-* @route '/login'
-*/
-const loginForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: login.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
-* @route '/login'
-*/
-loginForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: login.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
-* @route '/login'
-*/
-loginForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: login.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-login.form = loginForm
 
 /**
 * @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::logout
@@ -122,27 +86,6 @@ logout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     method: 'post',
 })
 
-/**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::logout
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:100
-* @route '/logout'
-*/
-const logoutForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: logout.url(options),
-    method: 'post',
-})
-
-/**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::logout
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:100
-* @route '/logout'
-*/
-logoutForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: logout.url(options),
-    method: 'post',
-})
-
-logout.form = logoutForm
 
 /**
 * @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
@@ -192,42 +135,6 @@ register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-/**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
-* @route '/register'
-*/
-const registerForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: register.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
-* @route '/register'
-*/
-registerForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: register.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
-* @route '/register'
-*/
-registerForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: register.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-register.form = registerForm
 
 /**
 * @see \App\Http\Controllers\HomeController::home
@@ -277,42 +184,6 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-/**
-* @see \App\Http\Controllers\HomeController::home
-* @see app/Http/Controllers/HomeController.php:12
-* @route '/'
-*/
-const homeForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: home.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\HomeController::home
-* @see app/Http/Controllers/HomeController.php:12
-* @route '/'
-*/
-homeForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: home.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\HomeController::home
-* @see app/Http/Controllers/HomeController.php:12
-* @route '/'
-*/
-homeForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: home.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-home.form = homeForm
 
 /**
 * @see \Inertia\Controller::__invoke
@@ -362,42 +233,6 @@ news.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/berita'
-*/
-const newsForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: news.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/berita'
-*/
-newsForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: news.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/berita'
-*/
-newsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: news.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-news.form = newsForm
 
 /**
 * @see \App\Http\Controllers\Tim\SeniorTeamController::teams
@@ -447,42 +282,6 @@ teams.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-/**
-* @see \App\Http\Controllers\Tim\SeniorTeamController::teams
-* @see app/Http/Controllers/Tim/SeniorTeamController.php:13
-* @route '/skuad'
-*/
-const teamsForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: teams.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Tim\SeniorTeamController::teams
-* @see app/Http/Controllers/Tim/SeniorTeamController.php:13
-* @route '/skuad'
-*/
-teamsForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: teams.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Tim\SeniorTeamController::teams
-* @see app/Http/Controllers/Tim/SeniorTeamController.php:13
-* @route '/skuad'
-*/
-teamsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: teams.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-teams.form = teamsForm
 
 /**
 * @see \App\Http\Controllers\KompetisiController::competition
@@ -532,42 +331,6 @@ competition.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-/**
-* @see \App\Http\Controllers\KompetisiController::competition
-* @see app/Http/Controllers/KompetisiController.php:10
-* @route '/kompetisi'
-*/
-const competitionForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: competition.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\KompetisiController::competition
-* @see app/Http/Controllers/KompetisiController.php:10
-* @route '/kompetisi'
-*/
-competitionForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: competition.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\KompetisiController::competition
-* @see app/Http/Controllers/KompetisiController.php:10
-* @route '/kompetisi'
-*/
-competitionForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: competition.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-competition.form = competitionForm
 
 /**
 * @see \Inertia\Controller::__invoke
@@ -617,42 +380,6 @@ gallery.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/galeri'
-*/
-const galleryForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: gallery.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/galeri'
-*/
-galleryForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: gallery.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/galeri'
-*/
-galleryForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: gallery.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-gallery.form = galleryForm
 
 /**
 * @see \Inertia\Controller::__invoke
@@ -702,42 +429,6 @@ history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/sejarah'
-*/
-const historyForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: history.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/sejarah'
-*/
-historyForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: history.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/sejarah'
-*/
-historyForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: history.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-history.form = historyForm
 
 /**
 * @see \Inertia\Controller::__invoke
@@ -787,42 +478,6 @@ store.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/toko'
-*/
-const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: store.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/toko'
-*/
-storeForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: store.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/toko'
-*/
-storeForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: store.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-store.form = storeForm
 
 /**
 * @see \Inertia\Controller::__invoke
@@ -872,42 +527,6 @@ oldHome.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/old'
-*/
-const oldHomeForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: oldHome.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/old'
-*/
-oldHomeForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: oldHome.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/old'
-*/
-oldHomeForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: oldHome.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-oldHome.form = oldHomeForm
 
 /**
 * @see \Inertia\Controller::__invoke
@@ -957,39 +576,3 @@ dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/dashboard'
-*/
-const dashboardForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: dashboard.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/dashboard'
-*/
-dashboardForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: dashboard.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/dashboard'
-*/
-dashboardForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: dashboard.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-dashboard.form = dashboardForm
