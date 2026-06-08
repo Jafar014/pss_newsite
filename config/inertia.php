@@ -16,10 +16,9 @@ return [
     */
 
     'ssr' => [
-        // 'enabled' => true,
+        'enabled' => app()->environment('local'),
         'url' => 'http://127.0.0.1:13714',
         // 'bundle' => base_path('bootstrap/ssr/ssr.mjs'),
-
     ],
 
     /*

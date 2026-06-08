@@ -7,9 +7,19 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
 Route::get('/', [HomeController::class, '__invoke'])->name('home');
+Route::get('/debug', function () {
+    return response()->json([
+        'app_key' => env('APP_KEY') ? 'Set' : 'Not Set',
+        'env' => app()->environment(),
+        'php' => phpversion(),
+        'time' => now()->toDateTimeString(),
+    ]);
+});
 
 Route::inertia('/berita', 'news')->name('news');
-Route::inertia('/berita/{id}', 'content-news')->name('berita.detail');
+Route::get('/berita/{id}', function ($id) {
+    return inertia('content-news', ['id' => $id]);
+})->name('berita.detail');
 Route::get('/skuad', [SeniorTeamController::class, 'index'])->name('teams');
 Route::get('/kompetisi', [KompetisiController::class, 'index'])->name('competition');
 Route::inertia('/galeri', 'gallery')->name('gallery');
