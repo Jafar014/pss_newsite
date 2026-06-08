@@ -1,6 +1,8 @@
 <?php
 
-// Vercel: buat direktori storage di /tmp sebelum Laravel boot
+define('LARAVEL_START', microtime(true));
+
+// Vercel: siapkan /tmp/storage sebelum apapun
 if (getenv('VERCEL')) {
     $dirs = [
         '/tmp/storage/logs',
@@ -8,25 +10,19 @@ if (getenv('VERCEL')) {
         '/tmp/storage/framework/sessions',
         '/tmp/storage/framework/views',
         '/tmp/storage/app/public',
+        '/tmp/bootstrap/cache',   // <-- INI YANG KURANG, untuk packages/services cache
     ];
     foreach ($dirs as $dir) {
         if (!is_dir($dir)) {
             mkdir($dir, 0775, true);
         }
     }
-    // Override konstanta path sebelum autoload
-    define('LARAVEL_STORAGE_PATH', '/tmp/storage');
 }
-
-use Illuminate\Foundation\Application;
-
-define('LARAVEL_START', microtime(true));
 
 require __DIR__.'/../vendor/autoload.php';
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
-// Set storage path setelah app dibuat tapi sebelum handle request
 if (getenv('VERCEL')) {
     $app->useStoragePath('/tmp/storage');
 }
