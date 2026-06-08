@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 define('LARAVEL_START', microtime(true));
 
 // Vercel: siapkan /tmp/storage sebelum apapun
@@ -13,7 +15,7 @@ if (getenv('VERCEL')) {
         '/tmp/bootstrap/cache',   // <-- INI YANG KURANG, untuk packages/services cache
     ];
     foreach ($dirs as $dir) {
-        if (!is_dir($dir)) {
+        if (! is_dir($dir)) {
             mkdir($dir, 0775, true);
         }
     }
@@ -27,4 +29,4 @@ if (getenv('VERCEL')) {
     $app->useStoragePath('/tmp/storage');
 }
 
-$app->handleRequest(Illuminate\Http\Request::capture());
+$app->handleRequest(Request::capture());
