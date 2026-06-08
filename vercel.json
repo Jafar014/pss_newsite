@@ -23,6 +23,6 @@
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
         "DB_CONNECTION": "pgsql",
-        "APP_URL": "https://pss-sleman-remake.vercel.app/"
+        "APP_URL": "https://pss-sleman-remake.vercel.app"
     }
 }
