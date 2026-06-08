@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react';
 import laravel from 'laravel-vite-plugin';
 import { defineConfig } from 'vite';
 
+const isVercel = process.env.VERCEL === '1';
+
 
 export default defineConfig({
     plugins: [
@@ -12,11 +14,8 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/js/app.tsx'],
             refresh: true,
         }),
-        process.env.APP_ENV !== '1'
-            ? wayfinder({
-            formVariants: true,
-        })
-            : null,
+         !isVercel &&
+            wayfinder(),
         inertia(),
         react({
             babel: {
