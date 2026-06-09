@@ -19,7 +19,7 @@
             })();
         </script>
 
-        {{-- Inline style to set the HTML background color based on our theme in app.css --}}
+        {{-- Inline style for splash screen and HTML background --}}
         <style>
             html {
                 background-color: oklch(1 0 0);
@@ -27,6 +27,60 @@
 
             html.dark {
                 background-color: oklch(0.145 0 0);
+            }
+
+            #splash-screen {
+                position: fixed;
+                inset: 0;
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #splash-screen .top {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 33.33vh;
+                background: #0f7a4a;
+            }
+
+            #splash-screen .mid {
+                position: absolute;
+                top: 33.33vh;
+                left: 0;
+                right: 0;
+                height: 33.34vh;
+                background: #f5f5f5;
+            }
+
+            #splash-screen .bot {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 33.33vh;
+                background: #1c1c1c;
+            }
+
+            #splash-screen img {
+                position: relative;
+                z-index: 1;
+                width: 120px;
+                animation: splash-blink 1.5s ease-in-out infinite;
+            }
+
+            @keyframes splash-blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.3; }
+            }
+
+            #splash-screen.fade-out {
+                opacity: 0;
+                transition: opacity 0.5s ease;
+                pointer-events: none;
             }
         </style>
 
@@ -44,6 +98,32 @@
         </x-inertia::head>
     </head>
     <body class="font-sans antialiased overflow-x-hidden">
+        <div id="splash-screen">
+            <div class="top"></div>
+            <div class="mid"></div>
+            <div class="bot"></div>
+            <img src="/pssLogo.png" alt="PSS Sleman">
+        </div>
+
         <x-inertia::app />
+
+        <script>
+            (function() {
+                if (localStorage.getItem('pss_visited')) {
+                    document.getElementById('splash-screen').style.display = 'none';
+                } else {
+                    window.addEventListener('load', function() {
+                        setTimeout(function() {
+                            var el = document.getElementById('splash-screen');
+                            el.classList.add('fade-out');
+                            setTimeout(function() {
+                                el.style.display = 'none';
+                                localStorage.setItem('pss_visited', 'true');
+                            }, 500);
+                        }, 2000);
+                    });
+                }
+            })();
+        </script>
     </body>
 </html>
