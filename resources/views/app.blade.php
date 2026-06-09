@@ -82,6 +82,12 @@
                 transition: opacity 0.5s ease;
                 pointer-events: none;
             }
+
+            html.splash-active,
+            html.splash-active body {
+                overflow: hidden;
+                height: 100%;
+            }
         </style>
 
         <link rel="icon" href="/favicon.ico" sizes="any">
@@ -109,15 +115,19 @@
 
         <script>
             (function() {
+                var splash = document.getElementById('splash-screen');
+
                 if (localStorage.getItem('pss_visited')) {
-                    document.getElementById('splash-screen').style.display = 'none';
+                    splash.style.display = 'none';
                 } else {
+                    document.documentElement.classList.add('splash-active');
+
                     window.addEventListener('load', function() {
                         setTimeout(function() {
-                            var el = document.getElementById('splash-screen');
-                            el.classList.add('fade-out');
+                            splash.classList.add('fade-out');
                             setTimeout(function() {
-                                el.style.display = 'none';
+                                splash.style.display = 'none';
+                                document.documentElement.classList.remove('splash-active');
                                 localStorage.setItem('pss_visited', 'true');
                             }, 500);
                         }, 2000);
