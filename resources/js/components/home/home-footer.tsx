@@ -96,7 +96,7 @@ export default function HomeFooter({
                 {/*Slot 2: Logo, animasi teks, alamat, & navigasi */}
                 <div className="flex flex-col lg:flex-row border-[#f5f5f5]/25">
                     {/* Kiri: Logo + animasi + alamat */}
-                    <div className="w-full lg:w-2/5 px-6 sm:px-10 lg:px-16 pt-4 pb-4 lg:pt-12 lg:pb-0 flex flex-col gap-2 sm:gap-6">
+                    <div className="w-full lg:w-2/5 px-6 sm:px-10 lg:px-16 pt-4 pb-4 lg:pt-12 lg:pb-0 flex flex-col">
                         <div className="flex flex-col items-start gap-2">
                             <img src="/pssLogoNegatif.png" alt="PSS Sleman" className='w-12 sm:w-12 h-auto'/>
                             <div className='h-[2.5rem] sm:h-[3rem] lg:h-[3.75rem] flex items-center'>
@@ -104,8 +104,8 @@ export default function HomeFooter({
                             </div>
                         </div>
                         <div>
-                            <p className='text-xs sm:text-base text-[#f5f5f5]/70 font-bold tracking-wider'>ALAMAT KANTOR</p>
-                            <p className='text-[#f5f5f5]/40 text-xs sm:text-sm text-justify mt-1 max-w-xs lg:max-w-sm'>Jalan Raya Randugowang, Sariharjo, Ngaglik, Sleman, Daerah Istimewa Yogyakarta</p>
+                            <p className='text-xs sm:text-base lg:text-sm text-[#f5f5f5]/70 font-bold tracking-wider'>ALAMAT KANTOR</p>
+                            <p className='text-[#f5f5f5]/40 text-xs sm:text-sm lg:text-sm text-justify mt-1 max-w-xs lg:max-w-sm'>Jalan Raya Randugowang, Sariharjo, Ngaglik, Sleman, Daerah Istimewa Yogyakarta</p>
                         </div>
                     </div>
                     {/* Kanan: navigasi links */}
@@ -113,40 +113,40 @@ export default function HomeFooter({
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
                             <div>
                                 <p className='py-2 lg:py-4 text-sm lg:text-lg font-bold text-white/80'>Klub</p>
-                                <p className='text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
+                                <p className='text-[#f5f5f5]/45 text-sm lg:text-base cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='#kerjasama'>Kerjasama</a>
                                 </p>
-                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
+                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-sm lg:text-base cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='#karir'>Karir</a>
                                 </p>
-                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
+                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-sm lg:text-base cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='/skuad'>Skuad</a>
                                 </p>
-                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
+                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-sm lg:text-base cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='/toko'>Toko</a>
                                 </p>
                             </div>
                             <div>
                                 <p className='py-2 lg:py-4 text-sm lg:text-lg font-bold text-white/80'>Dokumentasi</p>
-                                <p className='text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
+                                <p className='text-[#f5f5f5]/45 text-sm lg:text-base cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='/galeri'>Galeri</a>
                                 </p>
-                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
+                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-sm lg:text-base cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='https://www.youtube.com/@PSS_SLEMAN1976'>Video</a>
                                 </p>
                             </div>
                             <div>
                                 <p className='py-2 lg:py-4 text-sm lg:text-lg font-bold text-white/80'>Berita</p>
-                                <p className='text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
+                                <p className='text-[#f5f5f5]/45 text-sm lg:text-base cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='/berita'>Berita Terbaru</a>
                                 </p>
                             </div>
                             <div>
                                 <p className='py-2 lg:py-4 text-sm lg:text-lg font-bold text-white/80'>Kompetisi</p>
-                                <p className='text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
+                                <p className='text-[#f5f5f5]/45 text-sm lg:text-base cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='/kompetisi'>Jadwal</a>
                                 </p>
-                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
+                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-sm lg:text-base cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='/kompetisi'>Klasemen</a>
                                 </p>
                             </div>
