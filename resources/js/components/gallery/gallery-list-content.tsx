@@ -40,36 +40,34 @@ export default function GalleryListContent() {
     const nextPage = () => setCurrentPage((p) => Math.min(totalPages, p + 1));
 
     return (
-        <div className="w-full py-8">
-            <div className="mx-auto max-w-7xl grid grid-cols-2 py-4 gap-x-8 gap-y-4 px-16">
+        <div className="w-full py-4 md:py-8">
+            <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-6 px-4 md:px-16">
                 {currentGallery.map((item) => (
-                    <div
+                    <Link
                         key={item.id}
-                        className="w-full grid grid-rows-2 h-[40vh] border-[#0f7a4a] py-4 cursor-pointer group"
+                        href={`/galeri/${item.matchday}`}
+                        className="group block border border-[#0f7a4a]/20 rounded-lg overflow-hidden hover:border-[#0f7a4a]/50 transition-colors"
                     >
-                        <Link
-                            href={`/galeri/${item.matchday}`}
-                            className="group cursor-pointer h-61"
-                        >
-                            <div className="row-span-2 mx-4">
-                                <div className="bg-gray-400 h-60">
-                                    <p className="text-center">Image here</p>
-                                </div>
-                            </div>
-                            <div className=""></div>
-                            <div className="mx-4 mt-2">
-                                <span className="text-[#1c1c1c] font-calcio-italiano text-2xl group-hover:text-[#0f7a4a] transition-colors cursor-pointer">
-                                    {item.title}
-                                </span>
-                            </div>
-                        </Link>
-                    </div>
+                        <div className="aspect-video bg-gray-300 flex flex-col items-center justify-center gap-1">
+                            <span className="text-sm font-bold tracking-widest text-gray-500 uppercase md:text-lg">
+                                Galeri {item.id}
+                            </span>
+                            <span className="text-[10px] font-medium text-gray-400 md:text-sm">
+                                <span className="md:hidden">640 x 360 px</span>
+                                <span className="hidden md:inline">1920 x 1080 px</span>
+                            </span>
+                        </div>
+                        <div className="p-3 md:p-4">
+                            <span className="text-[#1c1c1c] text-base md:text-2xl font-bold group-hover:text-[#0f7a4a] transition-colors">
+                                {item.title}
+                            </span>
+                        </div>
+                    </Link>
                 ))}
             </div>
 
-            {/* Pagination */}
             {totalPages > 1 && (
-                <Pagination className="mt-8">
+                <Pagination className="mt-6 md:mt-8">
                     <PaginationContent>
                         <PaginationItem>
                             <PaginationPrevious
