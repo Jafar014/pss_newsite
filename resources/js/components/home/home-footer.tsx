@@ -80,73 +80,73 @@ export default function HomeFooter({
             <div className="mx-auto max-w-full">
                 {/* Logo partner sponsor */}
                 <div className="border-[#f5f5f5]/10 w-full border-b">
-                    <div className="py-4 sm:py-6 lg:py-8">
-                        <p className="text-lg sm:text-xl md:text-2xl lg:text-4xl text-center font-calcio-italiano">Partner Kami</p>
+                    <div className="pt-4 pb-2  sm:py-6 lg:py-8">
+                        <p className="text-2xl sm:text-xl md:text-2xl lg:text-4xl text-center font-calcio-italiano">Partner Kami</p>
                     </div>
                     <Marquee className='pb-4 sm:pb-6 lg:pb-8'>
-                        <span className='text-xs sm:text-sm lg:text-base text-red-300 border mx-2 sm:mx-3 px-3 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4'>Sponsor 1</span>
-                        <span className='text-xs sm:text-sm lg:text-base text-amber-300 border mx-2 sm:mx-3 px-3 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4'>Sponsor 2</span>
-                        <span className='text-xs sm:text-sm lg:text-base text-blue-300 border mx-2 sm:mx-3 px-3 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4'>Sponsor 3</span>
-                        <span className='text-xs sm:text-sm lg:text-base text-green-300 border mx-2 sm:mx-3 px-3 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4'>Sponsor 4</span>
-                        <span className='text-xs sm:text-sm lg:text-base text-fuchsia-300 border mx-2 sm:mx-3 px-3 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4'>Sponsor 5</span>
-                        <span className='text-xs sm:text-sm lg:text-base text-cyan-400 border mx-2 sm:mx-3 px-3 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4'>Sponsor 6</span>
+                        <span className='text-sm sm:text-sm lg:text-base text-white/80 border border-white/20 mx-2 sm:mx-3 px-3 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4'>Sponsor 1</span>
+                        <span className='text-sm sm:text-sm lg:text-base text-white/80 border border-white/20 mx-2 sm:mx-3 px-3 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4'>Sponsor 2</span>
+                        <span className='text-sm sm:text-sm lg:text-base text-white/80 border border-white/20 mx-2 sm:mx-3 px-3 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4'>Sponsor 3</span>
+                        <span className='text-sm sm:text-sm lg:text-base text-white/80 border border-white/20 mx-2 sm:mx-3 px-3 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4'>Sponsor 4</span>
+                        <span className='text-sm sm:text-sm lg:text-base text-white/80 border border-white/20 mx-2 sm:mx-3 px-3 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4'>Sponsor 5</span>
+                        <span className='text-sm sm:text-sm lg:text-base text-white/80 border border-white/20 mx-2 sm:mx-3 px-3 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4'>Sponsor 6</span>
                     </Marquee>
                 </div>
                 
                 {/*Slot 2: Logo, animasi teks, alamat, & navigasi */}
                 <div className="flex flex-col lg:flex-row border-[#f5f5f5]/25">
                     {/* Kiri: Logo + animasi + alamat */}
-                    <div className="w-full lg:w-2/5 px-6 sm:px-10 lg:px-16 pt-8 lg:pt-12 pb-6 lg:pb-0 flex flex-col gap-6">
+                    <div className="w-full lg:w-2/5 px-6 sm:px-10 lg:px-16 pt-4 pb-4 lg:pt-12 lg:pb-0 flex flex-col gap-2 sm:gap-6">
                         <div className="flex flex-col items-start gap-2">
-                            <img src="/pssLogoNegatif.png" alt="PSS Sleman" className='w-10 sm:w-12 h-auto'/>
-                            <div className='min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[3.75rem] flex items-start'>
+                            <img src="/pssLogoNegatif.png" alt="PSS Sleman" className='w-12 sm:w-12 h-auto'/>
+                            <div className='h-[2.5rem] sm:h-[3rem] lg:h-[3.75rem] flex items-center'>
                                 <p className='font-calcio-italiano text-3xl sm:text-4xl lg:text-5xl whitespace-nowrap'>{text}</p>
                             </div>
                         </div>
                         <div>
-                            <p className='text-sm sm:text-base font-bold'>Alamat Kantor:</p>
+                            <p className='text-xs sm:text-base text-[#f5f5f5]/70 font-bold tracking-wider'>ALAMAT KANTOR</p>
                             <p className='text-[#f5f5f5]/40 text-xs sm:text-sm text-justify mt-1 max-w-xs lg:max-w-sm'>Jalan Raya Randugowang, Sariharjo, Ngaglik, Sleman, Daerah Istimewa Yogyakarta</p>
                         </div>
                     </div>
                     {/* Kanan: navigasi links */}
-                    <div className="w-full lg:w-3/5 px-4 sm:px-6 lg:px-8 py-6 lg:py-14">
+                    <div className="w-full lg:w-3/5 px-6 sm:px-6 lg:px-8 pt-2 pb-4 lg:py-14">
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
                             <div>
-                                <p className='py-3 lg:py-4 text-base lg:text-lg font-bold'>Klub</p>
-                                <p className='text-[#f5f5f5]/45 text-sm lg:text-md cursor-pointer hover:text-[#f5f5f5]'>
+                                <p className='py-2 lg:py-4 text-sm lg:text-lg font-bold text-white/80'>Klub</p>
+                                <p className='text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='#kerjasama'>Kerjasama</a>
                                 </p>
-                                <p className='pt-1.5 lg:pt-2 text-[#f5f5f5]/45 text-sm lg:text-md cursor-pointer hover:text-[#f5f5f5]'>
+                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='#karir'>Karir</a>
                                 </p>
-                                <p className='pt-1.5 lg:pt-2 text-[#f5f5f5]/45 text-sm lg:text-md cursor-pointer hover:text-[#f5f5f5]'>
+                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='/skuad'>Skuad</a>
                                 </p>
-                                <p className='pt-1.5 lg:pt-2 text-[#f5f5f5]/45 text-sm lg:text-md cursor-pointer hover:text-[#f5f5f5]'>
+                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='/toko'>Toko</a>
                                 </p>
                             </div>
                             <div>
-                                <p className='py-3 lg:py-4 text-base lg:text-lg font-bold'>Dokumentasi</p>
-                                <p className='text-[#f5f5f5]/45 text-sm lg:text-md cursor-pointer hover:text-[#f5f5f5]'>
+                                <p className='py-2 lg:py-4 text-sm lg:text-lg font-bold text-white/80'>Dokumentasi</p>
+                                <p className='text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='/galeri'>Galeri</a>
                                 </p>
-                                <p className='pt-1.5 lg:pt-2 text-[#f5f5f5]/45 text-sm lg:text-md cursor-pointer hover:text-[#f5f5f5]'>
+                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='https://www.youtube.com/@PSS_SLEMAN1976'>Video</a>
                                 </p>
                             </div>
                             <div>
-                                <p className='py-3 lg:py-4 text-base lg:text-lg font-bold'>Berita</p>
-                                <p className='text-[#f5f5f5]/45 text-sm lg:text-md cursor-pointer hover:text-[#f5f5f5]'>
+                                <p className='py-2 lg:py-4 text-sm lg:text-lg font-bold text-white/80'>Berita</p>
+                                <p className='text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='/berita'>Berita Terbaru</a>
                                 </p>
                             </div>
                             <div>
-                                <p className='py-3 lg:py-4 text-base lg:text-lg font-bold'>Kompetisi</p>
-                                <p className='text-[#f5f5f5]/45 text-sm lg:text-md cursor-pointer hover:text-[#f5f5f5]'>
+                                <p className='py-2 lg:py-4 text-sm lg:text-lg font-bold text-white/80'>Kompetisi</p>
+                                <p className='text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='/kompetisi'>Jadwal</a>
                                 </p>
-                                <p className='pt-1.5 lg:pt-2 text-[#f5f5f5]/45 text-sm lg:text-md cursor-pointer hover:text-[#f5f5f5]'>
+                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-xs lg:text-md cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='/kompetisi'>Klasemen</a>
                                 </p>
                             </div>

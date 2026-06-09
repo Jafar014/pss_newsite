@@ -104,8 +104,6 @@ const MatchCard = ({ match, label }: { match: Match; label: string }) => {
                         Final
                     </p>
                 </div>
-                <div className="absolute inset-y-0 top-0 left-0 w-32 origin-top -skew-x-30 transform bg-[#fcfcfc] opacity-10 mix-blend-overlay" />
-                <div className="absolute inset-y-0 top-0 -right-1 w-32 origin-top skew-x-30 transform bg-[#fcfcfc] opacity-10 mix-blend-overlay" />
             </div>
             {/* Info Pertandingan */}
             <div className="flex w-full flex-wrap items-center p-3 md:p-6 lg:-mt-8">

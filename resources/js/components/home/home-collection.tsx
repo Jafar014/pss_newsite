@@ -87,7 +87,7 @@ export default function HomeCollection() {
     return (
         <div className="h-full w-full">
             <div
-                className="relative h-[60vh] max-w-full overflow-hidden cursor-pointer"
+                className="relative aspect-[16/6] lg:aspect-auto lg:h-[60vh] max-w-full overflow-hidden cursor-pointer"
                 onClick={() => {
                     const product = products[current];
 
@@ -107,17 +107,18 @@ router.visit(`/toko/produk/${product.id}`);
                         }}
                     >
                         <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gray-300">
-                            <span className="text-2xl font-bold tracking-widest text-gray-500 uppercase md:text-4xl">
+                            <span className="text-sm font-bold tracking-widest text-gray-500 uppercase md:text-2xl lg:text-4xl">
                                 Banner Hero {index + 1}
                             </span>
-                            <span className="text-sm font-medium text-gray-400 md:text-base">
-                                1920 x 600 px
+                            <span className="text-[10px] font-medium text-gray-400 md:text-sm">
+                                <span className="md:hidden">640 x 200 px</span>
+                                <span className="hidden md:inline">1920 x 600 px</span>
                             </span>
                         </div>
                     </div>
                 ))}
 
-                <div className="absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 gap-2">
+                <div className="absolute bottom-2 left-1/2 z-30 flex -translate-x-1/2 gap-1.5 md:bottom-4 md:gap-2">
                     {slides.map((_, index) => (
                         <button
                             key={index}
@@ -125,10 +126,10 @@ router.visit(`/toko/produk/${product.id}`);
                             onClick={(e) => {
  e.stopPropagation(); goTo(index); 
 }}
-                            className={`h-2.5 cursor-pointer rounded-full transition-all duration-300 ${
+                            className={`cursor-pointer rounded-full transition-all duration-300 ${
                                 index === current
-                                    ? 'w-8 bg-[#0f7a4a]'
-                                    : 'w-2.5 bg-white/50 hover:bg-white/80'
+                                    ? 'w-6 bg-[#0f7a4a] h-1.5 md:h-2.5 md:w-8'
+                                    : 'w-2 bg-white/50 hover:bg-white/80 h-1.5 md:h-2.5 md:w-2.5'
                             }`}
                         />
                     ))}
@@ -141,7 +142,7 @@ router.visit(`/toko/produk/${product.id}`);
                         <Link
                             key={product.id}
                             href={`/toko/produk/${product.id}`}
-                            className="group block overflow-hidden rounded-xl bg-white shadow-md transition-shadow hover:shadow-lg cursor-pointer"
+                            className="group block overflow-hidden rounded-xl bg-white shadow-md transition-shadow hover:shadow-lg cursor-pointer last:hidden md:last:block"
                         >
                             <div className="relative h-48 overflow-hidden bg-gray-200 sm:h-56 md:h-60 lg:h-72">
                                 <img
@@ -163,6 +164,14 @@ router.visit(`/toko/produk/${product.id}`);
                             </div>
                         </Link>
                     ))}
+                </div>
+                <div className="mt-6 text-center md:mt-8">
+                    <Link
+                        href="/toko"
+                        className="text-lg uppercase tracking-wider text-[#0F7A4A] hover:underline transition-all duration-300 md:text-xl font-extrabold"
+                    >
+                        Lihat Produk
+                    </Link>
                 </div>
             </div>
         </div>
