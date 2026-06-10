@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Players;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
@@ -11,7 +12,7 @@ class HomeController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $players = Players::inRandomOrder()->limit(4)->get()->map(function ($player) {
+        $players = Cache::remember('home.players', 600, fn () => Players::inRandomOrder()->limit(4)->get()->map(function ($player) {
             $nameParts = explode(' ', $player->full_name);
             $lastName = count($nameParts) > 1 ? array_pop($nameParts) : '';
             $firstName = implode(' ', $nameParts);
@@ -24,29 +25,34 @@ class HomeController extends Controller
                 'position' => $player->position ?? '',
                 'image' => $player->photo_url ?? '../../half_body.jpg',
             ];
-        })->values();
+        })->values()->all()
+        );
 
-        $clubs = DB::table('clubs')->pluck('logo_url', 'name')->all();
+        $clubs = Cache::remember('home.clubs', 3600, fn () => DB::table('clubs')->pluck('logo_url', 'name')->all()
+        );
 
-        $pssFixtures = DB::table('fixtures')
+        $pssFixtures = Cache::remember('home.fixtures', 300, fn () => DB::table('fixtures')
             ->where('home_team', 'PSS SLEMAN')
             ->orWhere('away_team', 'PSS SLEMAN')
             ->orderBy('match_date', 'desc')
-            ->get();
+            ->get()
+            ->map(fn ($row) => (array) $row)
+            ->all()
+        );
 
-        $lastFixture = $pssFixtures->first();
+        $lastFixture = $pssFixtures ? $pssFixtures[0] : null;
 
         $lastMatch = $lastFixture ? [
-            'id' => (string) $lastFixture->id,
-            'date' => $lastFixture->match_date,
+            'id' => (string) $lastFixture['id'],
+            'date' => $lastFixture['match_date'],
             'time' => '15.00',
-            'homeTeam' => $lastFixture->home_team,
-            'homeTeamLogo' => $clubs[$lastFixture->home_team] ?? null,
-            'awayTeam' => $lastFixture->away_team,
-            'awayTeamLogo' => $clubs[$lastFixture->away_team] ?? null,
-            'homeScore' => $lastFixture->home_goals,
-            'awayScore' => $lastFixture->away_goals,
-            'venue' => $lastFixture->venue,
+            'homeTeam' => $lastFixture['home_team'],
+            'homeTeamLogo' => $clubs[$lastFixture['home_team']] ?? null,
+            'awayTeam' => $lastFixture['away_team'],
+            'awayTeamLogo' => $clubs[$lastFixture['away_team']] ?? null,
+            'homeScore' => $lastFixture['home_goals'],
+            'awayScore' => $lastFixture['away_goals'],
+            'venue' => $lastFixture['venue'],
             'status' => 'finished',
         ] : null;
 
@@ -62,7 +68,7 @@ class HomeController extends Controller
             'status' => 'upcoming',
         ];
 
-        $standings = DB::table('klasemen')
+        $standings = Cache::remember('home.standings', 300, fn () => DB::table('klasemen')
             ->where('competition', 'PEGADAIAN_CHAMPIONSHIP_2025-26')
             ->where('grup', 'Timur')
             ->orderBy('pos')
@@ -76,7 +82,9 @@ class HomeController extends Controller
                 'drawn' => $k->draw,
                 'lost' => $k->lose,
                 'points' => $k->points,
-            ]);
+            ])
+            ->all()
+        );
 
         return Inertia::render('home', [
             'players' => Inertia::defer(fn () => $players),

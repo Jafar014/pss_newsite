@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:12
+* @see app/Http/Controllers/HomeController.php:13
 * @route '/'
 */
 export const __invoke = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ __invoke.definition = {
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:12
+* @see app/Http/Controllers/HomeController.php:13
 * @route '/'
 */
 __invoke.url = (options?: RouteQueryOptions) => {
@@ -29,7 +29,7 @@ __invoke.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:12
+* @see app/Http/Controllers/HomeController.php:13
 * @route '/'
 */
 __invoke.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -39,7 +39,7 @@ __invoke.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:12
+* @see app/Http/Controllers/HomeController.php:13
 * @route '/'
 */
 __invoke.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
