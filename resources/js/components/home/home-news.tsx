@@ -15,7 +15,7 @@ export default function HomeNews() {
     };
 
     return (
-        <section className="w-full relative flex flex-col lg:flex-row">
+        <section className="w-full relative flex flex-col lg:flex-row [content-visibility:auto] [contain-intrinsic-size:auto_400px]">
             <div className="flex flex-col w-full lg:w-1/3 overflow-hidden bg-[#1c1c1c] border-[#f5f5f5] border-b lg:border-b-0 border-r">
                 {/* Title Section Berita */}
                 <div className="relative lg:w-1/2 mx-auto lg:max-w-7xl h-auto lg:h-[72vh] py-8 sm:py-12 md:py-16 lg:ml-24">

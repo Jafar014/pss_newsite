@@ -76,7 +76,7 @@ export default function HomeFooter({
 }, [charIndex, isDeleting, wordIndex]);
 
     return (
-        <footer className="w-full bg-black text-[#f5f5f5]">
+        <footer className="w-full bg-black text-[#f5f5f5] [content-visibility:auto] [contain-intrinsic-size:auto_400px]">
             <div className="mx-auto max-w-full">
                 {/* Logo partner sponsor */}
                 <div className="border-[#f5f5f5]/10 w-full border-b">

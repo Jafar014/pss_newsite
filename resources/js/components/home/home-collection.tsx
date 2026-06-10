@@ -85,7 +85,7 @@ export default function HomeCollection() {
     const next = () => setCurrent((prev) => (prev + 1) % slides.length);
 
     return (
-        <div className="h-full w-full">
+        <div className="h-full w-full [content-visibility:auto] [contain-intrinsic-size:auto_300px]">
             <div
                 className="relative aspect-[16/6] lg:aspect-auto lg:h-[60vh] max-w-full overflow-hidden cursor-pointer"
                 onClick={() => {

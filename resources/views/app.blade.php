@@ -119,7 +119,7 @@
             <div class="top"></div>
             <div class="mid"></div>
             <div class="bot"></div>
-            <img src="/pssLogo.png" alt="PSS Sleman">
+            <img src="/pssLogo.webp" alt="PSS Sleman">
         </div>
 
         <x-inertia::app />

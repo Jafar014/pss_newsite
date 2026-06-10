@@ -24,7 +24,7 @@ export default function HomePlayers({ players = [] }: HomePlayersProps) {
     const randomPlayers = [...players].slice(0, 5);
 
     return (
-        <section className="w-full bg-[#f5f5f5]">
+        <section className="w-full bg-[#f5f5f5] [content-visibility:auto] [contain-intrinsic-size:auto_600px]">
             <div className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-[#0f7a4a]" />
                 <div className="relative mx-auto max-w-7xl px-4 py-12 md:py-16">
