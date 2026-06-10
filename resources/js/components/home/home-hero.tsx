@@ -11,17 +11,17 @@ const slides: HeroSlide[] = [
     {
         id: 1,
         title: 'PSS Sleman Raih Kemenangan Telak di Markas Lawan',
-        image: 'https://picsum.photos/1920/1080.webp?random=1',
+        image: 'https://picsum.photos/1920/1080?random=1',
     },
     {
         id: 2,
         title: 'Persiapan Jelang Derby: Tim Berlatih di Stadion Utama',
-        image: 'https://picsum.photos/1920/1080.webp?random=2',
+        image: 'https://picsum.photos/1920/1080?random=2',
     },
     {
         id: 3,
         title: 'Pemain Baru Resmi Bergabung di PSS Sleman',
-        image: 'https://picsum.photos/1920/1080.webp?random=3',
+        image: 'https://picsum.photos/1920/1080?random=3',
     },
 ];
 
