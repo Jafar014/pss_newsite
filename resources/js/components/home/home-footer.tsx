@@ -104,7 +104,6 @@ export default function HomeFooter({
                             </div>
                         </div>
                         <div>
-                            <p className='text-xs sm:text-base lg:text-sm text-[#f5f5f5]/70 font-bold tracking-wider'>ALAMAT KANTOR</p>
                             <p className='text-[#f5f5f5]/40 text-xs sm:text-sm lg:text-sm text-justify mt-1 max-w-xs lg:max-w-sm'>Jalan Raya Randugowang, Sariharjo, Ngaglik, Sleman, Daerah Istimewa Yogyakarta</p>
                         </div>
                     </div>
@@ -130,9 +129,6 @@ export default function HomeFooter({
                                 <p className='py-2 lg:py-4 text-sm lg:text-lg font-bold text-white/80'>Dokumentasi</p>
                                 <p className='text-[#f5f5f5]/45 text-sm lg:text-base cursor-pointer hover:text-[#f5f5f5] transition-colors'>
                                     <a href='/galeri'>Galeri</a>
-                                </p>
-                                <p className='pt-2 lg:pt-2 text-[#f5f5f5]/45 text-sm lg:text-base cursor-pointer hover:text-[#f5f5f5] transition-colors'>
-                                    <a href='https://www.youtube.com/@PSS_SLEMAN1976'>Video</a>
                                 </p>
                             </div>
                             <div>
@@ -181,7 +177,7 @@ export default function HomeFooter({
                                 {copyright}
                             </p>
                             <p className="text-[10px] sm:text-xs text-white/50 mt-0.5 sm:mt-1">
-                                Kebijakan Privasi | FaQ | Syarat dan Ketentuan
+                                Disclaimer
                             </p>
                         </div>
                     </div>

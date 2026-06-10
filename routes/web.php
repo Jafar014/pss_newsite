@@ -3,6 +3,8 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KompetisiController;
 use App\Http\Controllers\Tim\SeniorTeamController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
@@ -35,6 +37,26 @@ Route::inertia('/old', 'welcome', [
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
+});
+
+Route::inertia('/admin/login', 'admin/login')->name('admin.login');
+
+Route::post('/admin/login', function (Request $request) {
+    $credentials = $request->validate([
+        'username' => ['required'],
+        'password' => ['required'],
+    ]);
+
+    if (Auth::attempt($credentials, $request->boolean('remember'))) {
+        $request->session()->regenerate();
+        return redirect()->intended('/admin');
+    }
+
+    return back()->withErrors(['username' => 'Username atau password salah.']);
+});
+
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::inertia('/', 'admin/dashboard')->name('admin.dashboard');
 });
 
 require __DIR__.'/settings.php';
