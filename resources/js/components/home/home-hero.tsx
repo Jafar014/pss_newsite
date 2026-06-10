@@ -14,11 +14,11 @@ interface HeroImageSet {
 
 function buildImageSet(random: string): HeroImageSet {
     return {
-        src: `https://picsum.photos/1920/1080?random=${random}`,
+        src: `https://picsum.photos/1920/1080.webp?random=${random}`,
         srcSet: [
-            `https://picsum.photos/1024/576?random=${random} 1024w`,
-            `https://picsum.photos/1440/810?random=${random} 1440w`,
-            `https://picsum.photos/1920/1080?random=${random} 1920w`,
+            `https://picsum.photos/1024/576.webp?random=${random} 1024w`,
+            `https://picsum.photos/1440/810.webp?random=${random} 1440w`,
+            `https://picsum.photos/1920/1080.webp?random=${random} 1920w`,
         ].join(', '),
     };
 }
@@ -27,17 +27,17 @@ const slides: HeroSlide[] = [
     {
         id: 1,
         title: 'PSS Sleman Raih Kemenangan Telak di Markas Lawan',
-        image: 'https://picsum.photos/1920/1080?random=1',
+        image: 'https://picsum.photos/1920/1080.webp?random=1',
     },
     {
         id: 2,
         title: 'Persiapan Jelang Derby: Tim Berlatih di Stadion Utama',
-        image: 'https://picsum.photos/1920/1080?random=2',
+        image: 'https://picsum.photos/1920/1080.webp?random=2',
     },
     {
         id: 3,
         title: 'Pemain Baru Resmi Bergabung di PSS Sleman',
-        image: 'https://picsum.photos/1920/1080?random=3',
+        image: 'https://picsum.photos/1920/1080.webp?random=3',
     },
 ];
 
