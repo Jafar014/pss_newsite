@@ -54,12 +54,12 @@ export default function HomePage({
             <div className="min-h-screen w-full overflow-x-hidden bg-[#f5f5f5] pt-16 md:pt-20 lg:pt-24">
                 <HomeNavbar />
                 <HomeHero />
+                <HomeNews />
                 <MatchCards
                     lastMatch={lastMatch}
                     upcomingMatch={upcomingMatch}
                     standings={standings}
                 />
-                <HomeNews />
                 <HomeCollection />
                 {/* <StoreCollection /> */}
                 <Suspense fallback={<PlayersSkeleton />}>

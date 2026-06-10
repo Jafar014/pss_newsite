@@ -4,20 +4,24 @@ import { useEffect, useState } from 'react';
 interface HeroSlide {
     id: number;
     title: string;
+    image: string;
 }
 
 const slides: HeroSlide[] = [
     {
         id: 1,
         title: 'PSS Sleman Raih Kemenangan Telak di Markas Lawan',
+        image: 'https://picsum.photos/1920/1080?random=1',
     },
     {
         id: 2,
         title: 'Persiapan Jelang Derby: Tim Berlatih di Stadion Utama',
+        image: 'https://picsum.photos/1920/1080?random=2',
     },
     {
         id: 3,
         title: 'Pemain Baru Resmi Bergabung di PSS Sleman',
+        image: 'https://picsum.photos/1920/1080?random=3',
     },
 ];
 
@@ -44,50 +48,77 @@ export default function HomeHero() {
 
     return (
         <section
-            className="relative w-full bg-[#1C1C1C] cursor-pointer"
+            className="relative w-full overflow-hidden bg-[#1C1C1C] cursor-pointer"
             onClick={() => router.visit(`/berita/${slides[currentSlide].id}`)}
         >
-            <div className="relative flex h-auto min-h-[20vh] md:min-h-[25vh] items-center px-4 py-6 md:px-8 lg:px-12">
-                <div className="mx-auto flex w-full max-w-7xl flex-col gap-1">
-                    <div className="mb-1 h-1 w-16 bg-[#0F7A4A] md:w-20" />
-                    <h2 className="text-sm font-bold tracking-wider text-[#f5f5f5] uppercase md:text-xl lg:text-2xl">
-                        {slides[currentSlide].title}
-                    </h2>
-                    <span className="text-[10px] text-gray-500 md:text-xs">
-                        <span className="md:hidden">640 x 360 px</span>
-                        <span className="hidden md:inline lg:hidden">1024 x 576 px</span>
-                        <span className="hidden lg:inline">1920 x 1080 px</span>
-                    </span>
+            <div className="relative h-[35vh] md:h-[60vh] lg:h-[87vh]">
+                {slides.map((slide, index) => (
+                    <div
+                        key={slide.id}
+                        className="absolute inset-0 transition-opacity duration-700"
+                        style={{
+                            opacity: index === currentSlide ? 1 : 0,
+                            zIndex: index === currentSlide ? 1 : 0,
+                            pointerEvents: index === currentSlide ? 'auto' : 'none',
+                        }}
+                    >
+                        <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gray-300">
+                            <span className="text-2xl font-bold tracking-widest text-gray-500 uppercase md:text-4xl">
+                                Banner Hero {index + 1}
+                            </span>
+                            <span className="text-[10px] font-medium text-gray-400 md:text-sm">
+                                <span className="md:hidden">640 x 360 px</span>
+                                <span className="hidden md:inline">1920 x 1080 px</span>
+                            </span>
+                        </div>
+                    </div>
+                ))}
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
+
+                <div className="absolute bottom-4 left-0 right-18 z-20 p-4 md:bottom-16 md:p-8 lg:p-12">
+                    <div className="mx-auto max-w-7xl ">
+                        <div className="mb-2 h-1 w-20 bg-[#0F7A4A]" />
+                        <h2 className=" text-sm font-bold tracking-wider text-[#f5f5f5] uppercase md:text-xl lg:text-3xl">
+                            {slides[currentSlide].title}
+                        </h2>
+                    </div>
                 </div>
 
                 <button
                     type="button"
-                    onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-                    className="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white hover:bg-[#0F7A4A] md:left-4 md:h-10 md:w-10 cursor-pointer"
+                    onClick={(e) => {
+ e.stopPropagation(); handlePrev(); 
+}}
+                    className="absolute left-3 top-1/3 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white transition-all hover:bg-[#0F7A4A] md:left-4 md:top-1/2 md:h-12 md:w-12 cursor-pointer"
                 >
-                    <svg className="h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-4 w-4 md:h-6 md:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                 </button>
 
                 <button
                     type="button"
-                    onClick={(e) => { e.stopPropagation(); handleNext(); }}
-                    className="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white hover:bg-[#0F7A4A] md:right-4 md:h-10 md:w-10 cursor-pointer"
+                    onClick={(e) => {
+ e.stopPropagation(); handleNext(); 
+}}
+                    className="absolute right-3 top-1/3 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white transition-all hover:bg-[#0F7A4A] md:right-4 md:top-1/2 md:h-12 md:w-12 cursor-pointer"
                 >
-                    <svg className="h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-4 w-4 md:h-6 md:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
 
-                <div className="absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 gap-1.5">
+                <div className="absolute bottom-2 left-1/2 z-20 flex -translate-x-1/2 gap-1.5 md:bottom-16 lg:bottom-18">
                     {slides.map((_, index) => (
                         <button
                             key={index}
                             type="button"
-                            onClick={(e) => { e.stopPropagation(); setCurrentSlide(index); }}
-                            className={`h-1.5 rounded-full transition-all duration-300 ${
-                                index === currentSlide ? 'w-6 bg-[#0F7A4A]' : 'w-3 bg-white/50 hover:bg-white/70'
+                            onClick={(e) => {
+ e.stopPropagation(); setCurrentSlide(index); 
+}}
+                            className={`h-2 rounded-full transition-all duration-300 ${
+                                index === currentSlide ? 'w-8 bg-[#0F7A4A]' : 'w-4 bg-white/50 hover:bg-white/70'
                             }`}
                         />
                     ))}

@@ -264,7 +264,7 @@ export default function MatchCards({
     const primaryMatch = lastMatch ?? upcomingMatch;
 
     return (
-        <section className="relative z-10 mx-auto max-w-7xl px-2 pb-6 sm:px-3 sm:pb-8 md:mt-10 md:px-4 md:pb-10 lg:-mt-8 [content-visibility:auto] [contain-intrinsic-size:auto_700px]">
+        <section className="relative z-10 mx-auto max-w-7xl px-2 pb-6 sm:px-3 sm:pb-8 md:mt-10 md:px-4 md:pb-10 [content-visibility:auto] [contain-intrinsic-size:auto_700px]">
             <div className="flex flex-col overflow-hidden bg-[#f5f5f5] shadow-2xl md:rounded-xl lg:flex-row">
                 <div className="w-full lg:w-1/2">
                     <MatchCard match={primaryMatch} label={primaryMatch.id} />

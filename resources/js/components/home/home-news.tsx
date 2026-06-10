@@ -43,7 +43,7 @@ export default function HomeNews() {
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 h-1/2
                             bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent
-                            transition-all duration-500"
+                            opacity-0 group-hover:opacity-100 transition-all duration-500"
                         />
                         <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
                             <h2 className="text-[#f5f5f5] text-4xl font-medium font-calcio-italiano transition-all duration-300 group-hover:translate-y-[-10px]">
@@ -67,7 +67,7 @@ export default function HomeNews() {
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 h-1/2
                             bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent
-                            transition-all duration-500"
+                            opacity-0 group-hover:opacity-100 transition-all duration-500"
                         />
                         <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
                             <h2 className="text-[#f5f5f5] text-4xl font-medium font-calcio-italiano transition-all duration-300 group-hover:translate-y-[-10px]">
@@ -91,7 +91,7 @@ export default function HomeNews() {
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 h-1/2
                             bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent
-                            transition-all duration-500"
+                            opacity-0 group-hover:opacity-100 transition-all duration-500"
                         />
                         <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
                             <h2 className="text-[#f5f5f5] text-4xl font-medium font-calcio-italiano transition-all duration-300 group-hover:translate-y-[-10px]">
@@ -115,7 +115,7 @@ export default function HomeNews() {
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 h-1/2
                             bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent
-                            transition-all duration-500"
+                            opacity-0 group-hover:opacity-100 transition-all duration-500"
                         />
                         <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
                             <h2 className="text-[#f5f5f5] text-4xl font-medium font-calcio-italiano transition-all duration-300 group-hover:translate-y-[-10px]">
