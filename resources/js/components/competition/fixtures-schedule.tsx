@@ -178,8 +178,8 @@ function getInitials(name: string): string {
 }
 
 /** Komponen logo tim ΓÇö pakai gambar jika ada, fallback ke inisial dengan warna acak */
-function TeamLogo({ name, className, clubs }: { name: string; className?: string; clubs?: ClubData[] }) {
-    const club = clubs?.find(c => c.name.toLowerCase() === name.toLowerCase());
+function TeamLogo({ name, className, clubMap }: { name: string; className?: string; clubMap?: Map<string, ClubData> }) {
+    const club = clubMap?.get(name.toLowerCase());
     const logoUrl = club?.logo_url;
 
     /* Tampilkan gambar logo jika tersedia */
@@ -228,12 +228,18 @@ export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureSch
         return map;
     }, [fixtures]);
 
+    const clubMap = useMemo(() => {
+        const map = new Map<string, ClubData>();
+        club.forEach(c => map.set(c.name.toLowerCase(), c));
+        return map;
+    }, [club]);
+
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
     const days = useMemo(() => generateCalendarDays(year, month, fixturesMap), [year, month, fixturesMap]);
 
     /* Pilih pertandingan pertama di bulan aktif sebagai default */
-    const firstMatchDay = days.find(d => d.match && d.currentMonth);
+    const firstMatchDay = useMemo(() => days.find(d => d.match && d.currentMonth), [days]);
     const [selectedMatch, setSelectedMatch] = useState<{ date: string; match: FixtureItem } | null>(
         firstMatchDay && firstMatchDay.match ? { date: firstMatchDay.date, match: firstMatchDay.match } : null
     );
@@ -397,7 +403,7 @@ return '-';
 
                                                 return (
                                                     <div className="flex flex-col items-center justify-center mt-6">
-                                                        <TeamLogo name={item.match.opponent} className="w-24 h-24 text-lg mb-2" clubs={club} />
+                                                        <TeamLogo name={item.match.opponent} className="w-24 h-24 text-lg mb-2" clubMap={clubMap} />
                                                         <span className="text-xs font-bold text-white text-center leading-tight block">
                                                             {line1}
                                                         </span>
@@ -433,7 +439,7 @@ return '-';
                                             </time>
                                             {item.match && (
                                                 <div className="mt-auto flex items-center justify-center">
-                                                    <TeamLogo name={item.match.opponent} className="w-8 h-8 text-[7px]" clubs={club} />
+                                                    <TeamLogo name={item.match.opponent} className="w-8 h-8 text-[7px]" clubMap={clubMap} />
                                                 </div>
                                             )}
                                         </button>
@@ -465,7 +471,7 @@ return '-';
                                         {selectedMatch.match.home_team === 'PSS SLEMAN' ? (
                                             <img src="/pssLogo.png" alt="PSS" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
                                         ) : (
-                                            <TeamLogo name={selectedMatch.match.home_team} className="w-12 h-12 sm:w-16 sm:h-16 text-sm sm:text-lg" clubs={club} />
+                                            <TeamLogo name={selectedMatch.match.home_team} className="w-12 h-12 sm:w-16 sm:h-16 text-sm sm:text-lg" clubMap={clubMap} />
                                         )}
                                         <span className="font-calcio-italiano text-sm sm:text-lg text-[#1c1c1c] text-center leading-tight max-w-[80px] sm:max-w-[120px] truncate">{selectedMatch.match.home_team === 'PSS SLEMAN' ? 'PSS' : selectedMatch.match.home_team}</span>
                                     </div>
@@ -485,7 +491,7 @@ return '-';
                                         {selectedMatch.match.away_team === 'PSS SLEMAN' ? (
                                             <img src="/pssLogo.png" alt="PSS" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
                                         ) : (
-                                            <TeamLogo name={selectedMatch.match.away_team} className="w-12 h-12 sm:w-16 sm:h-16 text-sm sm:text-lg" clubs={club} />
+                                            <TeamLogo name={selectedMatch.match.away_team} className="w-12 h-12 sm:w-16 sm:h-16 text-sm sm:text-lg" clubMap={clubMap} />
                                         )}
                                         <span className="font-calcio-italiano text-sm sm:text-lg text-[#1c1c1c] text-center leading-tight max-w-[80px] sm:max-w-[120px] truncate">{selectedMatch.match.away_team === 'PSS SLEMAN' ? 'PSS' : selectedMatch.match.away_team}</span>
                                     </div>
@@ -524,7 +530,7 @@ return '-';
                                                 <tr key={k.id} className={`border-b border-gray-200 hover:bg-gray-50 transition ${k.team_name === 'PSS SLEMAN' ? 'bg-[#0f7a4a]/10' : ''}`}>
                                                     <td className="p-2 text-center font-medium text-gray-500">{k.pos}</td>
                                                     <td className="p-2 flex items-center gap-2">
-                                                        <TeamLogo name={k.team_name} className="w-6 h-6 text-[8px]" clubs={club} />
+                                                        <TeamLogo name={k.team_name} className="w-6 h-6 text-[8px]" clubMap={clubMap} />
                                                         <span className={`font-medium font-calcio-italiano truncate ${k.team_name === 'PSS SLEMAN' ? 'text-[#0f7a4a]' : 'text-[#1c1c1c]'}`}>
                                                             {k.team_name}
                                                         </span>

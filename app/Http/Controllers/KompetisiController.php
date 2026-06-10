@@ -10,50 +10,21 @@ class KompetisiController extends Controller
     public function index()
     {
         $fixtures = DB::table('fixtures')
+            ->select('id', 'competition', 'gameweek', 'home_team', 'away_team', 'home_goals', 'away_goals', 'match_date', 'status', 'venue')
             ->orderBy('match_date')
             ->limit(200)
-            ->get()
-            ->map(fn ($f) => [
-                'id' => $f->id,
-                'competition' => $f->competition,
-                'gameweek' => $f->gameweek,
-                'home_team' => $f->home_team,
-                'away_team' => $f->away_team,
-                'home_goals' => $f->home_goals,
-                'away_goals' => $f->away_goals,
-                'match_date' => $f->match_date,
-                'status' => $f->status,
-                'venue' => $f->venue,
-            ]);
+            ->get();
 
         $klasemen = DB::table('klasemen')
+            ->select('id', 'pos', 'team_name', 'played', 'win', 'draw', 'lose', 'goals_for', 'goals_against', 'goal_difference', 'points')
             ->where('competition', 'PEGADAIAN_CHAMPIONSHIP_2025-26')
             ->where('grup', 'Timur')
             ->orderBy('pos')
-            ->get()
-            ->map(fn ($k) => [
-                'id' => $k->id,
-                'pos' => $k->pos,
-                'team_name' => $k->team_name,
-                'played' => $k->played,
-                'win' => $k->win,
-                'draw' => $k->draw,
-                'lose' => $k->lose,
-                'goals_for' => $k->goals_for,
-                'goals_against' => $k->goals_against,
-                'goal_difference' => $k->goal_difference,
-                'points' => $k->points,
-            ]);
+            ->get();
 
         $club = DB::table('clubs')
-            ->get()
-            ->map(fn ($c) => [
-                'id' => $c->id,
-                'slug' => $c->slug,
-                'name' => $c->name,
-                'logo_url' => $c->logo_url,
-                'stadion' => $c->stadion,
-            ]);
+            ->select('id', 'slug', 'name', 'logo_url', 'stadion')
+            ->get();
 
         return Inertia::render('competition', [
             'fixtures' => $fixtures,
