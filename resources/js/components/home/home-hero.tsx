@@ -51,7 +51,7 @@ export default function HomeHero() {
             className="relative w-full overflow-hidden bg-[#1C1C1C] cursor-pointer"
             onClick={() => router.visit(`/berita/${slides[currentSlide].id}`)}
         >
-            <div className="relative h-[35vh] md:h-[60vh] lg:h-[87vh]">
+            <div className="relative h-[50vh] md:h-[60vh] lg:h-[87vh]">
                 {slides.map((slide, index) => (
                     <div
                         key={slide.id}
