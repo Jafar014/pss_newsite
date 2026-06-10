@@ -106,50 +106,45 @@ export default function NewsContent() {
 
     return (
         <>
-        {/* Header section */}
             <div className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-[#0f7a4a]/75" />
-                <div className="relative z-10 flex flex-col items-center justify-center py-16">
-                    <h2 className="font-calcio-italiano mb-6 md:mb-8 text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white uppercase animate-typing animate-delay-400 overflow-hidden whitespace-nowrap text-center">Berita Terbaru
+                <div className="relative z-10 flex flex-col items-center justify-center py-12 md:py-16">
+                    <h2 className="font-calcio-italiano mb-4 md:mb-8 text-3xl sm:text-4xl md:text-6xl lg:text-8xl text-white uppercase text-center px-4">Berita Terbaru
                     </h2>
                 </div>
             </div>
-        {/* Grid News Section */}
-            <div className="mx-auto max-w-7xl px-4 pb-16 pt-10 ">
-                
-                <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-2">
-                    {paginatedNews.map((news) =>(
+
+            <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 md:pt-10">
+                <div className="grid gap-6 sm:gap-8 md:gap-10 grid-cols-1 sm:grid-cols-2">
+                    {paginatedNews.map((news) => (
                         <Link
                             key={news.id}
                             href={`/berita/${news.id}`}
                             className="group cursor-pointer"
                         >
-                            {/* Gambar berita */}
-                            <div className="w-full grid grid-rows-3 h-[50.5vh] mx-auto border-b-2 my-2 border-b-[#0f7a4a]">
-                                <div className="relative w-full h-[30vh] ">
+                            <div className="flex flex-col border-b-2 border-b-[#0f7a4a] pb-4">
+                                <div className="relative w-full aspect-video overflow-hidden">
                                     <img
                                         src={news.image}
                                         alt={news.title}
                                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
                                 </div>
-                                {/* Kategori berita dan tanggal rilis */}
-                                <div className="w-full overflow-hidden h-[6vh]  mt-26">
-                                    <div className="justify-start items-center my-3 mx-4 flex gap-3">
-                                        <span className="rounded-full bg-[#0F7A4A] px-2.5 py-0.5 text-xs font-bold text-white uppercase">
-                                            {news.category}
-                                        </span>
-                                        <span className="text-xs text-gray-400">
-                                            {news.date}
-                                        </span>
-                                    </div>
+
+                                <div className="flex items-center gap-3 mt-3">
+                                    <span className="rounded-full bg-[#0F7A4A] px-2.5 py-0.5 text-[10px] md:text-xs font-bold text-white uppercase">
+                                        {news.category}
+                                    </span>
+                                    <span className="text-[10px] md:text-xs text-gray-400">
+                                        {news.date}
+                                    </span>
                                 </div>
-                                {/* Judul Berita dan deskripsi singkat */}
-                                <div className="w-full grid h-[14vh] mt-4 p-3">
-                                    <h3 className="text-lg leading-tight font-bold text-[#1c1c1c] transition-colors group-hover:text-[#0F7A4A] mt-1">
+
+                                <div className="mt-2">
+                                    <h3 className="text-sm md:text-lg leading-tight font-bold text-[#1c1c1c] transition-colors group-hover:text-[#0F7A4A]">
                                         {news.title}
                                     </h3>
-                                    <p className="line-clamp-2 text-sm text-gray-400 mb-2">
+                                    <p className="line-clamp-2 text-[10px] md:text-sm text-gray-400 mt-1">
                                         {news.excerpt}
                                     </p>
                                 </div>
@@ -157,8 +152,7 @@ export default function NewsContent() {
                         </Link>
                     ))}
                 </div>
-                
-                {/* Pagination */}
+
                 {totalPages > 1 && (
                     <Pagination className="mt-10">
                         <PaginationContent>
