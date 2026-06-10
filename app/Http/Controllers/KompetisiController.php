@@ -10,9 +10,8 @@ class KompetisiController extends Controller
     public function index()
     {
         $fixtures = DB::table('fixtures')
-            ->whereDate('match_date', '>=', now()->subMonth())
             ->orderBy('match_date')
-            ->limit(90)
+            ->limit(200)
             ->get()
             ->map(fn ($f) => [
                 'id' => $f->id,
