@@ -4,40 +4,20 @@ import { useEffect, useState } from 'react';
 interface HeroSlide {
     id: number;
     title: string;
-    image: string;
-}
-
-interface HeroImageSet {
-    src: string;
-    srcSet: string;
-}
-
-function buildImageSet(random: string): HeroImageSet {
-    return {
-        src: `https://picsum.photos/1920/1080.webp?random=${random}`,
-        srcSet: [
-            `https://picsum.photos/1024/576.webp?random=${random} 1024w`,
-            `https://picsum.photos/1440/810.webp?random=${random} 1440w`,
-            `https://picsum.photos/1920/1080.webp?random=${random} 1920w`,
-        ].join(', '),
-    };
 }
 
 const slides: HeroSlide[] = [
     {
         id: 1,
         title: 'PSS Sleman Raih Kemenangan Telak di Markas Lawan',
-        image: 'https://picsum.photos/1920/1080.webp?random=1',
     },
     {
         id: 2,
         title: 'Persiapan Jelang Derby: Tim Berlatih di Stadion Utama',
-        image: 'https://picsum.photos/1920/1080.webp?random=2',
     },
     {
         id: 3,
         title: 'Pemain Baru Resmi Bergabung di PSS Sleman',
-        image: 'https://picsum.photos/1920/1080.webp?random=3',
     },
 ];
 
@@ -68,9 +48,7 @@ export default function HomeHero() {
             onClick={() => router.visit(`/berita/${slides[currentSlide].id}`)}
         >
             <div className="relative h-[35vh] md:h-[60vh] lg:h-[87vh]">
-                {slides.map((slide, index) => {
-                    const img = buildImageSet(String(index + 1));
-                    return (
+                {slides.map((slide, index) => (
                     <div
                         key={slide.id}
                         className="absolute inset-0 transition-opacity duration-700"
@@ -80,21 +58,18 @@ export default function HomeHero() {
                             pointerEvents: index === currentSlide ? 'auto' : 'none',
                         }}
                     >
-                        <img
-                            src={img.src}
-                            srcSet={img.srcSet}
-                            sizes="100vw"
-                            alt={slide.title}
-                            width={1920}
-                            height={1080}
-                            fetchPriority={index === 0 ? 'high' : 'auto'}
-                            loading="eager"
-                            decoding="sync"
-                            className="h-full w-full bg-gray-300 object-cover"
-                        />
+                        <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gray-300">
+                            <span className="px-4 text-center text-lg font-bold tracking-widest text-gray-500 uppercase md:text-2xl lg:text-3xl">
+                                {slide.title}
+                            </span>
+                            <span className="text-[10px] font-medium text-gray-400 md:text-sm">
+                                <span className="md:hidden">640 x 360 px</span>
+                                <span className="hidden md:inline lg:hidden">1024 x 576 px</span>
+                                <span className="hidden lg:inline">1920 x 1080 px</span>
+                            </span>
+                        </div>
                     </div>
-                    );
-                })}
+                ))}
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
 

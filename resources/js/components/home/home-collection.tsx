@@ -144,13 +144,14 @@ router.visit(`/toko/produk/${product.id}`);
                             href={`/toko/produk/${product.id}`}
                             className="group block overflow-hidden rounded-xl bg-white shadow-md transition-shadow hover:shadow-lg cursor-pointer last:hidden md:last:block"
                         >
-                            <div className="relative h-48 overflow-hidden bg-gray-200 sm:h-56 md:h-60 lg:h-72">
-                                <img
-                                    src={product.image}
-                                    alt={product.name}
-                                    loading="lazy"
-                                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                />
+                            <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-gray-200 sm:h-56 md:h-60 lg:h-72">
+                                <span className="px-2 text-center text-xs font-bold tracking-widest text-gray-500 uppercase md:text-sm">
+                                    {product.name}
+                                </span>
+                                <span className="text-[10px] font-medium text-gray-400">
+                                    <span className="md:hidden">300 x 400 px</span>
+                                    <span className="hidden md:inline">400 x 533 px</span>
+                                </span>
                             </div>
                             <div className="p-3 md:p-4">
                                 <span className="text-[10px] font-semibold tracking-wide text-[#0F7A4A] uppercase md:text-xs">

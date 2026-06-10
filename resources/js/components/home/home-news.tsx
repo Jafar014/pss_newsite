@@ -33,26 +33,22 @@ export default function HomeNews() {
 
                     <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#f5f5f5] border-b lg:border-b-0 overflow-hidden aspect-[4/3] lg:aspect-auto">
                         <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-gray-300">
-                                    <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
-                                        Banner Berita 1
-                                    </span>
-                                    <span className="text-[10px] font-medium text-gray-400 md:text-xs">
-                                        <span className="md:hidden">300 x 225 px</span>
-                                        <span className="hidden md:inline">400 x 300 px</span>
-                                    </span>
-                                </div>
-                        {/* Efek overlay gelap */}
-                        <div className="absolute bottom-0 left-0 right-0 h-1/2 
-                            bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent 
-                            transition-all duration-500" 
+                            <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
+                                Banner Berita 1
+                            </span>
+                            <span className="text-[10px] font-medium text-gray-400 md:text-xs">
+                                <span className="md:hidden">300 x 225 px</span>
+                                <span className="hidden md:inline">400 x 300 px</span>
+                            </span>
+                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 h-1/2
+                            bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent
+                            transition-all duration-500"
                         />
-                        {/* Isi konten berita */}
                         <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
-        
                             <h2 className="text-[#f5f5f5] text-4xl font-medium font-calcio-italiano transition-all duration-300 group-hover:translate-y-[-10px]">
                                 Judul Berita Pertama
                             </h2>
-
                             <p className="text-[#f5f5f5] text-sm mt-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
                                 Lihat Berita →
                             </p>
@@ -61,26 +57,22 @@ export default function HomeNews() {
 
                     <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#f5f5f5] border-b lg:border-b-0 overflow-hidden aspect-[4/3] lg:aspect-auto">
                         <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-gray-300">
-                                    <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
-                                        Banner Berita 2
-                                    </span>
-                                    <span className="text-[10px] font-medium text-gray-400 md:text-xs">
-                                        <span className="md:hidden">300 x 225 px</span>
-                                        <span className="hidden md:inline">400 x 300 px</span>
-                                    </span>
-                                </div>
-                        {/* Efek overlay gelap */}
-                        <div className="absolute bottom-0 left-0 right-0 h-1/2 
-                            bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent 
-                            transition-all duration-500" 
+                            <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
+                                Banner Berita 2
+                            </span>
+                            <span className="text-[10px] font-medium text-gray-400 md:text-xs">
+                                <span className="md:hidden">300 x 225 px</span>
+                                <span className="hidden md:inline">400 x 300 px</span>
+                            </span>
+                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 h-1/2
+                            bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent
+                            transition-all duration-500"
                         />
-                        {/* Isi konten berita */}
                         <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
-        
                             <h2 className="text-[#f5f5f5] text-4xl font-medium font-calcio-italiano transition-all duration-300 group-hover:translate-y-[-10px]">
                                 Judul Berita Kedua
                             </h2>
-
                             <p className="text-[#f5f5f5] text-sm mt-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
                                 Lihat Berita →
                             </p>
@@ -89,26 +81,22 @@ export default function HomeNews() {
 
                     <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#f5f5f5] border-b lg:border-b-0 overflow-hidden aspect-[4/3] lg:aspect-auto">
                         <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-gray-300">
-                                    <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
-                                        Banner Berita 3
-                                    </span>
-                                    <span className="text-[10px] font-medium text-gray-400 md:text-xs">
-                                        <span className="md:hidden">300 x 225 px</span>
-                                        <span className="hidden md:inline">400 x 300 px</span>
-                                    </span>
-                                </div>
-                        {/* Efek overlay gelap */}
-                        <div className="absolute bottom-0 left-0 right-0 h-1/2 
-                            bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent 
-                            transition-all duration-500" 
+                            <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
+                                Banner Berita 3
+                            </span>
+                            <span className="text-[10px] font-medium text-gray-400 md:text-xs">
+                                <span className="md:hidden">300 x 225 px</span>
+                                <span className="hidden md:inline">400 x 300 px</span>
+                            </span>
+                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 h-1/2
+                            bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent
+                            transition-all duration-500"
                         />
-                        {/* Isi konten berita */}
                         <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
-        
                             <h2 className="text-[#f5f5f5] text-4xl font-medium font-calcio-italiano transition-all duration-300 group-hover:translate-y-[-10px]">
                                 Judul Berita Ketiga
                             </h2>
-
                             <p className="text-[#f5f5f5] text-sm mt-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
                                 Lihat Berita →
                             </p>
@@ -117,26 +105,22 @@ export default function HomeNews() {
 
                     <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#f5f5f5] border-b lg:border-b-0 overflow-hidden aspect-[4/3] lg:aspect-auto">
                         <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-gray-300">
-                                    <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
-                                        Banner Berita 4
-                                    </span>
-                                    <span className="text-[10px] font-medium text-gray-400 md:text-xs">
-                                        <span className="md:hidden">300 x 225 px</span>
-                                        <span className="hidden md:inline">400 x 300 px</span>
-                                    </span>
-                                </div>
-                        {/* Efek overlay gelap */}
-                        <div className="absolute bottom-0 left-0 right-0 h-1/2 
-                            bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent 
-                            transition-all duration-500" 
+                            <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
+                                Banner Berita 4
+                            </span>
+                            <span className="text-[10px] font-medium text-gray-400 md:text-xs">
+                                <span className="md:hidden">300 x 225 px</span>
+                                <span className="hidden md:inline">400 x 300 px</span>
+                            </span>
+                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 h-1/2
+                            bg-gradient-to-t from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent
+                            transition-all duration-500"
                         />
-                        {/* Isi konten berita */}
                         <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
-        
                             <h2 className="text-[#f5f5f5] text-4xl font-medium font-calcio-italiano transition-all duration-300 group-hover:translate-y-[-10px]">
                                 Judul Berita Keempat
                             </h2>
-
                             <p className="text-[#f5f5f5] text-sm mt-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
                                 Lihat Berita →
                             </p>
