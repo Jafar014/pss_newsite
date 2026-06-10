@@ -62,15 +62,15 @@ export default function HomeHero() {
                             pointerEvents: index === currentSlide ? 'auto' : 'none',
                         }}
                     >
-                        <img
-                            src={slide.image}
-                            alt={slide.title}
-                            width={1920}
-                            height={1080}
-                            fetchPriority={index === 0 ? 'high' : 'auto'}
-                            loading="eager"
-                            className="h-full w-full bg-gray-300 object-cover"
-                        />
+                        <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gray-300">
+                            <span className="text-2xl font-bold tracking-widest text-gray-500 uppercase md:text-4xl">
+                                Banner Hero {index + 1}
+                            </span>
+                            <span className="text-[10px] font-medium text-gray-400 md:text-sm">
+                                <span className="md:hidden">640 x 360 px</span>
+                                <span className="hidden md:inline">1920 x 1080 px</span>
+                            </span>
+                        </div>
                     </div>
                 ))}
 
