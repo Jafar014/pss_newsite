@@ -1,4 +1,5 @@
 import { createInertiaApp } from '@inertiajs/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { initializeTheme } from '@/hooks/use-appearance';
@@ -25,6 +26,7 @@ createInertiaApp({
             <TooltipProvider delayDuration={0}>
                 {app}
                 <Toaster />
+                <SpeedInsights />
             </TooltipProvider>
         );
     },
