@@ -470,7 +470,7 @@ return '-';
                                 <div className="flex items-center justify-center w-full gap-3 sm:gap-6">
                                     <div className="flex flex-col items-center gap-1 sm:gap-2 flex-1 min-w-0">
                                         {selectedMatch.match.home_team === 'PSS SLEMAN' ? (
-                                            <img src="/pssLogo.png" alt="PSS" loading="lazy" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
+                                            <img src="/pssLogo.webp" alt="PSS" loading="lazy" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
                                         ) : (
                                             <TeamLogo name={selectedMatch.match.home_team} className="w-12 h-12 sm:w-16 sm:h-16 text-sm sm:text-lg" clubMap={clubMap} />
                                         )}
