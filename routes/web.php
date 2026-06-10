@@ -55,7 +55,7 @@ Route::post('/admin/login', function (Request $request) {
     return back()->withErrors(['username' => 'Username atau password salah.']);
 });
 
-Route::middleware(['auth'])->prefix('admin')->group(function () {
+Route::prefix('admin')->group(function () {
     Route::inertia('/', 'admin/dashboard')->name('admin.dashboard');
 });
 
