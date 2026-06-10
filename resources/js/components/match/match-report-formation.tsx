@@ -39,7 +39,7 @@ export default function MatchReportFormation({ fixture }: MatchReportFormationPr
                 <span className="font-calcio-italiano text-[#1c1c1c] text-sm md:text-base lg:text-lg ml-auto">Pelatih: Ansyari Lubis</span>
             </div>
             {/* Peletakan formasi */}
-            <div className="max-w-5xl h-[50vh] md:h-[500px] grid grid-cols-6 grid-rows-5 bg-[url(/public/soccer-lines.png)] bg-no-repeat bg-[length:100%_100%] overflow-hidden [transform:rotate(270deg)] lg:[transform:none] origin-center mx-auto my-[calc((100vw-32px-50vh)/2)] md:my-[calc((100vw-64px-500px)/2)] lg:my-0">
+            <div className="max-w-5xl h-[50vh] md:h-[500px] grid grid-cols-6 grid-rows-5 bg-[url(/public/soccer-lines.webp)] bg-no-repeat bg-[length:100%_100%] overflow-hidden [transform:rotate(270deg)] lg:[transform:none] origin-center mx-auto my-[calc((100vw-32px-50vh)/2)] md:my-[calc((100vw-64px-500px)/2)] lg:my-0">
                 {items.map((num) => {
                     const player = playerPositions[num];
 

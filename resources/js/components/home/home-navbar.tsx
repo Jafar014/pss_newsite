@@ -95,7 +95,7 @@ export default function HomeNavbar() {
         <nav className="fixed font-calcio-italiano text-2xl left-0 right-0 top-0 z-50 flex h-16 w-full items-center justify-between bg-[#0f7a4a] px-4 backdrop-blur-sm md:h-20 lg:h-24 lg:px-8">
             <Link href="/" className="flex items-center">
                 <img
-                    src="/pssLogo.png"
+                    src="/pssLogo.webp"
                     alt="PSS Logo"
                     className="h-8 w-auto sm:h-12 md:h-14 lg:h-16"
                 />

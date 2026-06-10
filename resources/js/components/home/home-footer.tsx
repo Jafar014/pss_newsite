@@ -98,7 +98,7 @@ export default function HomeFooter({
                     {/* Kiri: Logo + animasi + alamat */}
                     <div className="w-full lg:w-2/5 px-6 sm:px-10 lg:px-16 pt-4 pb-4 lg:pt-12 lg:pb-0 flex flex-col">
                         <div className="flex flex-col items-start gap-2">
-                            <img src="/pssLogoNegatif.png" alt="PSS Sleman" loading="lazy" className='w-12 sm:w-12 h-auto'/>
+                            <img src="/pssLogoNegatif.webp" alt="PSS Sleman" loading="lazy" className='w-12 sm:w-12 h-auto'/>
                             <div className='h-[2.5rem] sm:h-[3rem] lg:h-[3.75rem] flex items-center'>
                                 <p className='font-calcio-italiano text-3xl sm:text-4xl lg:text-5xl whitespace-nowrap'>{text}</p>
                             </div>
