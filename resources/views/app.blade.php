@@ -97,7 +97,15 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link rel="preconnect" href="https://picsum.photos">
         <link rel="dns-prefetch" href="https://picsum.photos">
-        <link rel="preload" as="image" href="https://picsum.photos/1920/1080?random=1" fetchpriority="high">
+        <link rel="preload" as="image" href="https://picsum.photos/1920/1080?random=1"
+              imagesrcset="https://picsum.photos/1024/576?random=1 1024w, https://picsum.photos/1440/810?random=1 1440w, https://picsum.photos/1920/1080?random=1 1920w"
+              imagesizes="100vw" fetchpriority="high">
+        <link rel="preload" as="image" href="https://picsum.photos/1920/1080?random=2"
+              imagesrcset="https://picsum.photos/1024/576?random=2 1024w, https://picsum.photos/1440/810?random=2 1440w, https://picsum.photos/1920/1080?random=2 1920w"
+              imagesizes="100vw" fetchpriority="high">
+        <link rel="preload" as="image" href="https://picsum.photos/1920/1080?random=3"
+              imagesrcset="https://picsum.photos/1024/576?random=3 1024w, https://picsum.photos/1440/810?random=3 1440w, https://picsum.photos/1920/1080?random=3 1920w"
+              imagesizes="100vw" fetchpriority="high">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap" rel="stylesheet" />
 
         @viteReactRefresh

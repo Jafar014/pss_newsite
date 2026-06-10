@@ -7,6 +7,22 @@ interface HeroSlide {
     image: string;
 }
 
+interface HeroImageSet {
+    src: string;
+    srcSet: string;
+}
+
+function buildImageSet(random: string): HeroImageSet {
+    return {
+        src: `https://picsum.photos/1920/1080?random=${random}`,
+        srcSet: [
+            `https://picsum.photos/1024/576?random=${random} 1024w`,
+            `https://picsum.photos/1440/810?random=${random} 1440w`,
+            `https://picsum.photos/1920/1080?random=${random} 1920w`,
+        ].join(', '),
+    };
+}
+
 const slides: HeroSlide[] = [
     {
         id: 1,
@@ -52,7 +68,9 @@ export default function HomeHero() {
             onClick={() => router.visit(`/berita/${slides[currentSlide].id}`)}
         >
             <div className="relative h-[35vh] md:h-[60vh] lg:h-[87vh]">
-                {slides.map((slide, index) => (
+                {slides.map((slide, index) => {
+                    const img = buildImageSet(String(index + 1));
+                    return (
                     <div
                         key={slide.id}
                         className="absolute inset-0 transition-opacity duration-700"
@@ -63,16 +81,20 @@ export default function HomeHero() {
                         }}
                     >
                         <img
-                            src={slide.image}
+                            src={img.src}
+                            srcSet={img.srcSet}
+                            sizes="100vw"
                             alt={slide.title}
                             width={1920}
                             height={1080}
                             fetchPriority={index === 0 ? 'high' : 'auto'}
                             loading="eager"
+                            decoding="sync"
                             className="h-full w-full bg-gray-300 object-cover"
                         />
                     </div>
-                ))}
+                    );
+                })}
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
 
