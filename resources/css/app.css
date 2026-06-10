@@ -9,6 +9,7 @@
     src: url('../fonts/Calcio-Italiano.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @source '../views';

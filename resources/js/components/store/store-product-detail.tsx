@@ -102,7 +102,7 @@ export default function StoreProductDetail({ slug }: { slug: string }) {
                     <div className="flex flex-col gap-3">
                         <div className="relative bg-gray-300 rounded-lg h-80 md:h-112 flex items-center justify-center overflow-hidden">
                             {currentSrc ? (
-                                <img src={currentSrc} alt={product.name} className="w-full h-full object-cover" />
+                                <img src={currentSrc} alt={product.name} loading="lazy" className="w-full h-full object-cover" />
                             ) : (
                                 <span className="text-gray-500 text-lg">Gambar {imgIndex + 1}</span>
                             )}

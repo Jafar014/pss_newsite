@@ -127,6 +127,7 @@ export default function NewsContent() {
                                     <img
                                         src={news.image}
                                         alt={news.title}
+                                        loading="lazy"
                                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
                                 </div>

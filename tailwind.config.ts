@@ -7,7 +7,6 @@ const config: Config = {
         './resources/**/*.jsx',
         './resources/**/*.ts',
         './resources/**/*.tsx',
-        './node_modules/@material-tailwind/react/**/*.{js,ts,jsx,tsx}',
     ],
     theme: {
         extend: {

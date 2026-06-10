@@ -92,6 +92,7 @@ return null;
                                     <img
                                         src={player.photo_url || "../../half_body.jpg"}
                                         alt={`Player ${player.jersey_number}`}
+                                        loading="lazy"
                                         className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105 mix-blend-multiply"
                                     />
                                     <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-linear-to-t from-[#1c1c1c] via-[#1c1c1c]/80 to-transparent opacity-100 " />
@@ -134,6 +135,7 @@ return null;
                     <img
                         src={headCoach?.photo_url || "../../half_body.jpg"}
                         alt="Head Coach"
+                        loading="lazy"
                         className="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105 mix-blend-multiply"
                     />
                 </div>

@@ -25,4 +25,18 @@ export default defineConfig({
         tailwindcss(),
     ].filter(Boolean),
     assetsInclude: ['**/*.ttf'],
+    build: {
+        rollupOptions: {
+            output: {
+                manualChunks(id: string) {
+                    if (id.includes('node_modules/react/') || id.includes('node_modules/@inertiajs/react/')) {
+                        return 'vendor';
+                    }
+                    if (id.includes('node_modules/@radix-ui/') || id.includes('node_modules/lucide-react/') || id.includes('node_modules/@headlessui/')) {
+                        return 'ui';
+                    }
+                },
+            },
+        },
+    },
 });

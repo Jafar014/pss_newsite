@@ -54,6 +54,7 @@ export function YoutubeThumbnail({
             <img
                 src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
                 alt="Video Thumbnail"
+                loading="lazy"
                 className="aspect-video w-full h-auto object-cover"
                 onError={(e) => {
                     (e.target as HTMLImageElement).src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;

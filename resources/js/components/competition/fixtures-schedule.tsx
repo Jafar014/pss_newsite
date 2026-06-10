@@ -189,6 +189,7 @@ function TeamLogo({ name, className, clubMap }: { name: string; className?: stri
                 <img
                     src={logoUrl}
                     alt={name}
+                    loading="lazy"
                     className="w-full h-full object-cover"
                 />
             </div>
@@ -253,7 +254,7 @@ export default function FixtureSchedule({ fixtures, klasemen, club }: FixtureSch
             );
         };
         updateTime();
-        const interval = setInterval(updateTime, 1000);
+        const interval = setInterval(updateTime, 30000);
 
         return () => clearInterval(interval);
     }, []);
@@ -469,7 +470,7 @@ return '-';
                                 <div className="flex items-center justify-center w-full gap-3 sm:gap-6">
                                     <div className="flex flex-col items-center gap-1 sm:gap-2 flex-1 min-w-0">
                                         {selectedMatch.match.home_team === 'PSS SLEMAN' ? (
-                                            <img src="/pssLogo.png" alt="PSS" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
+                                            <img src="/pssLogo.png" alt="PSS" loading="lazy" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
                                         ) : (
                                             <TeamLogo name={selectedMatch.match.home_team} className="w-12 h-12 sm:w-16 sm:h-16 text-sm sm:text-lg" clubMap={clubMap} />
                                         )}
@@ -489,7 +490,7 @@ return '-';
                                     </div>
                                     <div className="flex flex-col items-center gap-1 sm:gap-2 flex-1 min-w-0">
                                         {selectedMatch.match.away_team === 'PSS SLEMAN' ? (
-                                            <img src="/pssLogo.png" alt="PSS" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
+                                            <img src="/pssLogo.png" alt="PSS" loading="lazy" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
                                         ) : (
                                             <TeamLogo name={selectedMatch.match.away_team} className="w-12 h-12 sm:w-16 sm:h-16 text-sm sm:text-lg" clubMap={clubMap} />
                                         )}

@@ -288,6 +288,7 @@ setCurrentIndex((prev) => prev - 1);
                                         <img
                                             src={product.image}
                                             alt={product.name}
+                                            loading="lazy"
                                             className="w-full h-full object-cover pointer-events-none"
                                         />
                                     </div>
@@ -314,7 +315,7 @@ setCurrentIndex((prev) => prev - 1);
                         {products.slice(0, 6).map((product) => (
                             <div key={product.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                                 <div className="w-full h-48 bg-gray-200">
-                                    <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                                    <img src={product.image} alt={product.name} loading="lazy" className="w-full h-full object-cover" />
                                 </div>
                                 <div className="p-3">
                                     <span className="text-[10px] text-[#0F7A4A] font-medium">{product.category}</span>

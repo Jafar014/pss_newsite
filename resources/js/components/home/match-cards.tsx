@@ -87,7 +87,7 @@ const MatchCard = ({ match, label }: { match: Match; label: string }) => {
         };
 
         calculateCountdown();
-        const interval = setInterval(calculateCountdown, 1000);
+        const interval = setInterval(calculateCountdown, 5000);
 
         return () => clearInterval(interval);
     }, [match.date, match.time]);
@@ -112,6 +112,7 @@ const MatchCard = ({ match, label }: { match: Match; label: string }) => {
                     <img
                         src={match.homeTeamLogo}
                         alt={match.homeTeam}
+                        loading="lazy"
                         className="h-14 w-14 object-contain sm:h-16 sm:w-16 md:h-24 md:w-24 lg:h-44 lg:w-44"
                     />
                     <p className="mt-1 line-clamp-1 text-center text-xs text-[#1c1c1c] sm:text-xs md:text-sm lg:text-xl">
@@ -162,6 +163,7 @@ const MatchCard = ({ match, label }: { match: Match; label: string }) => {
                     <img
                         src={match.awayTeamLogo}
                         alt={match.awayTeam}
+                        loading="lazy"
                         className="h-14 w-14 object-contain sm:h-16 sm:w-16 md:h-24 md:w-24 lg:h-44 lg:w-44"
                     />
                     <p className="mt-1 line-clamp-1 text-center text-xs text-[#1c1c1c] sm:text-xs md:text-sm lg:text-xl">
