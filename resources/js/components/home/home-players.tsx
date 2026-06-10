@@ -11,11 +11,15 @@ interface Player {
 }
 
 interface HomePlayersProps {
-    players: Player[];
+    players?: Player[];
 }
 
-export default function HomePlayers({ players }: HomePlayersProps) {
+export default function HomePlayers({ players = [] }: HomePlayersProps) {
     const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
+
+    if (!players || players.length === 0) {
+        return null;
+    }
 
     const randomPlayers = [...players].slice(0, 5);
 

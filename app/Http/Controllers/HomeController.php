@@ -79,10 +79,10 @@ class HomeController extends Controller
             ]);
 
         return Inertia::render('home', [
-            'players' => $players,
+            'players' => Inertia::defer(fn () => $players),
             'lastMatch' => $lastMatch,
             'upcomingMatch' => $upcomingMatch,
-            'standings' => $standings,
+            'standings' => Inertia::defer(fn () => $standings),
         ]);
     }
 }

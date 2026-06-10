@@ -49,6 +49,7 @@ Route::post('/admin/login', function (Request $request) {
 
     if (Auth::attempt($credentials, $request->boolean('remember'))) {
         $request->session()->regenerate();
+
         return redirect()->intended('/admin');
     }
 

@@ -95,6 +95,9 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
+        <link rel="preconnect" href="https://picsum.photos">
+        <link rel="dns-prefetch" href="https://picsum.photos">
+        <link rel="preload" as="image" href="https://picsum.photos/1920/1080?random=1" fetchpriority="high">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap" rel="stylesheet" />
 
         @viteReactRefresh
