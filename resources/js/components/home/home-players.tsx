@@ -86,7 +86,7 @@ export default function HomePlayers({ players = [] }: HomePlayersProps) {
             <div className="flex justify-center pb-12 md:pb-16">
                 <Link
                     href="/skuad"
-                    className="inline-flex items-center gap-2 px-8 py-3 bg-[#0f7a4a] text-white font-calcio-italiano text-lg md:text-xl uppercase tracking-wider rounded-xl hover:bg-white hover:text-[#0f7a4a] border border-transparent hover:border-[#0f7a4a] transition-all duration-300"
+                    className="inline-flex items-center gap-2 px-8 py-3 bg-[#0f7a4a] text-white font-calcio-italiano text-lg md:text-xl uppercase tracking-wider rounded-full hover:bg-white hover:text-[#0f7a4a] border border-transparent hover:border-[#0f7a4a] transition-all duration-300"
                 >
                     Lihat Lainnya
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,8 +1,10 @@
 import { ChevronLeft, ChevronRight, ChevronRightIcon } from 'lucide-react';
 import { useState } from 'react';
 
+/* News slides */
 const newsItems = [1, 2, 3, 4, 5];
 
+/* News section */
 export default function HomeNews() {
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -16,7 +18,7 @@ export default function HomeNews() {
 
     return (
         <section className="w-full relative flex flex-col lg:flex-row [content-visibility:auto] [contain-intrinsic-size:auto_400px]">
-            <div className="flex flex-col w-full lg:w-1/3 overflow-hidden bg-[#1c1c1c] border-[#f5f5f5] border-b lg:border-b-0 border-r">
+            <div className="flex flex-col w-full lg:w-1/3 overflow-hidden bg-[#1c1c1c] border-[#1c1c1c] border-b lg:border-b-0 border-r">
                 {/* Title Section Berita */}
                 <div className="relative lg:w-1/2 mx-auto lg:max-w-7xl h-auto lg:h-[72vh] py-8 sm:py-12 md:py-16 lg:ml-24">
                     <h2 className="font-calcio-italiano text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-wider text-[#f5f5f5] uppercase animate-typing overflow-hidden whitespace-nowrap ">
@@ -31,14 +33,14 @@ export default function HomeNews() {
                 {/* Segment Berita */}
                 <div className="relative flex flex-col lg:flex-row lg:w-full pb-0 lg:pb-16 h-auto lg:h-[71.5vh] lg:px-0">
 
-                    <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#f5f5f5] border-b lg:border-b-0 overflow-hidden aspect-[4/3] lg:aspect-auto">
+                    <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#1c1c1c] border-b lg:border-b-0 overflow-hidden aspect-[4/3] lg:aspect-[3/4]">
                         <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-gray-300">
                             <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
                                 Banner Berita 1
                             </span>
                             <span className="text-[10px] font-medium text-gray-400 md:text-xs">
-                                <span className="md:hidden">300 x 225 px</span>
-                                <span className="hidden md:inline">400 x 300 px</span>
+                                <span className="lg:hidden">360 x 270 px</span>
+                                <span className="hidden lg:inline">240 x 320 px</span>
                             </span>
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 h-1/2
@@ -55,14 +57,14 @@ export default function HomeNews() {
                         </div>
                     </div>
 
-                    <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#f5f5f5] border-b lg:border-b-0 overflow-hidden aspect-[4/3] lg:aspect-auto">
+                    <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#1c1c1c] border-b lg:border-b-0 overflow-hidden aspect-[4/3] lg:aspect-[3/4]">
                         <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-gray-300">
                             <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
                                 Banner Berita 2
                             </span>
                             <span className="text-[10px] font-medium text-gray-400 md:text-xs">
-                                <span className="md:hidden">300 x 225 px</span>
-                                <span className="hidden md:inline">400 x 300 px</span>
+                                <span className="lg:hidden">360 x 270 px</span>
+                                <span className="hidden lg:inline">240 x 320 px</span>
                             </span>
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 h-1/2
@@ -79,14 +81,14 @@ export default function HomeNews() {
                         </div>
                     </div>
 
-                    <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#f5f5f5] border-b lg:border-b-0 overflow-hidden aspect-[4/3] lg:aspect-auto">
+                    <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#1c1c1c] border-b lg:border-b-0 overflow-hidden aspect-[4/3] lg:aspect-[3/4]">
                         <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-gray-300">
                             <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
                                 Banner Berita 3
                             </span>
                             <span className="text-[10px] font-medium text-gray-400 md:text-xs">
-                                <span className="md:hidden">300 x 225 px</span>
-                                <span className="hidden md:inline">400 x 300 px</span>
+                                <span className="lg:hidden">360 x 270 px</span>
+                                <span className="hidden lg:inline">240 x 320 px</span>
                             </span>
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 h-1/2
@@ -103,14 +105,14 @@ export default function HomeNews() {
                         </div>
                     </div>
 
-                    <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#f5f5f5] border-b lg:border-b-0 overflow-hidden aspect-[4/3] lg:aspect-auto">
+                    <div className="group flex flex-col w-full lg:w-1/4 relative cursor-pointer border-r-0 lg:border-r border-[#f5f5f5] border-b lg:border-b-0 overflow-hidden aspect-[4/3] lg:aspect-[3/4]">
                         <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-gray-300">
                             <span className="text-lg font-bold tracking-widest text-gray-500 uppercase md:text-xl">
                                 Banner Berita 4
                             </span>
                             <span className="text-[10px] font-medium text-gray-400 md:text-xs">
-                                <span className="md:hidden">300 x 225 px</span>
-                                <span className="hidden md:inline">400 x 300 px</span>
+                                <span className="lg:hidden">360 x 270 px</span>
+                                <span className="hidden lg:inline">240 x 320 px</span>
                             </span>
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 h-1/2
