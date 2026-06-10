@@ -65,6 +65,8 @@ export default function HomeHero() {
                         <img
                             src={slide.image}
                             alt={slide.title}
+                            width={1920}
+                            height={1080}
                             fetchPriority={index === 0 ? 'high' : 'auto'}
                             loading="eager"
                             className="h-full w-full bg-gray-300 object-cover"
