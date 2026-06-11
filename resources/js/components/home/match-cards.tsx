@@ -96,11 +96,11 @@ export default function MatchCards(_props: Record<string, unknown>) {
                     {cards.map((card) => (
                         <div
                             key={card.id}
-                            className="grid grid-rows-5 h-[50vh] min-w-[260px] w-1/4 overflow-hidden px-6 py-3 shadow-sm bg-[#ffffff] shrink-0"
+                            className="grid grid-rows-5 h-[50vh] min-w-[260px] w-1/4 overflow-hidden px-6 py-3 shadow-sm bg-[#ffffff] shrink-0 border border-[#1c1c1c]"
                         >
                             {/* Trophy */}
                             <div className="flex flex-col items-center justify-center gap-1">
-                                <img src="https://assets.ileague.id/assets/img/competition-logo/89.png" alt="Pegadaian Championship" className="h-8 object-contain" />
+                                <img src="https://assets.ileague.id/assets/img/competition-logo/89.png" alt="Pegadaian Championship" loading="lazy" className="h-8 object-contain" />
                                 <p className="text-sm font-bold text-[#1c1c1c] uppercase">
                                     {card.homeTeam === 'GARUDAYAKSA FC' || card.awayTeam === 'GARUDAYAKSA FC' ? 'FINAL' : `Matchday ${card.gameweek}`}
                                 </p>
@@ -108,8 +108,8 @@ export default function MatchCards(_props: Record<string, unknown>) {
 
                             {/* Logo */}
                             <div className="mt-0 -ml-2" style={{fontSize: 0}}>
-                                <img src={card.homeTeamLogo ?? undefined} alt="" className="inline-block h-20" />
-                                <img src={card.awayTeamLogo ?? undefined} alt="" className="inline-block h-20 -ml-6" />
+                                <img src={card.homeTeamLogo ?? undefined} alt="" loading="lazy" className="inline-block h-20" />
+                                <img src={card.awayTeamLogo ?? undefined} alt="" loading="lazy" className="inline-block h-20 -ml-6" />
                             </div>
 
                             {/* Skor */}

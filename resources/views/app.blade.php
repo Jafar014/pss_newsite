@@ -108,6 +108,21 @@
               imagesizes="100vw" fetchpriority="high">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap" rel="stylesheet" />
 
+        @php
+            $woff2ManifestPath = public_path('build/manifest.json');
+            $fontPreloadUrl = null;
+            if (file_exists($woff2ManifestPath)) {
+                $woff2Manifest = json_decode(file_get_contents($woff2ManifestPath), true);
+                $woff2Key = 'resources/fonts/Calcio-Italiano.woff2';
+                if (isset($woff2Manifest[$woff2Key])) {
+                    $fontPreloadUrl = asset('build/' . $woff2Manifest[$woff2Key]['file']);
+                }
+            }
+        @endphp
+        @if ($fontPreloadUrl)
+            <link rel="preload" href="{{ $fontPreloadUrl }}" as="font" type="font/woff2" crossorigin>
+        @endif
+
         @viteReactRefresh
         @vite(['resources/css/app.css', 'resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
         <x-inertia::head>
