@@ -94,7 +94,6 @@
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-        <link rel="preconnect" href="https://fonts.bunny.net">
         <link rel="preconnect" href="https://picsum.photos">
         <link rel="dns-prefetch" href="https://picsum.photos">
         <link rel="preload" as="image" href="https://picsum.photos/1920/1080.webp?random=1"
@@ -106,8 +105,6 @@
         <link rel="preload" as="image" href="https://picsum.photos/1920/1080.webp?random=3"
               imagesrcset="https://picsum.photos/1024/576.webp?random=3 1024w, https://picsum.photos/1440/810.webp?random=3 1440w, https://picsum.photos/1920/1080.webp?random=3 1920w"
               imagesizes="100vw" fetchpriority="high">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap" rel="stylesheet" />
-
         @php
             $woff2ManifestPath = public_path('build/manifest.json');
             $fontPreloadUrl = null;
