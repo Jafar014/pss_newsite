@@ -34,39 +34,28 @@ class HomeController extends Controller
         $pssFixtures = Cache::remember('home.fixtures', 300, fn () => DB::table('fixtures')
             ->where('home_team', 'PSS SLEMAN')
             ->orWhere('away_team', 'PSS SLEMAN')
-            ->orderBy('match_date', 'desc')
+            ->orderBy('match_date', 'asc')
             ->get()
             ->map(fn ($row) => (array) $row)
             ->all()
         );
 
-        $lastFixture = $pssFixtures ? $pssFixtures[0] : null;
+        $fixtures = array_map(fn ($f) => [
+            'id' => (string) $f['id'],
+            'gameweek' => $f['gameweek'],
+            'date' => $f['match_date'],
+            'homeTeam' => $f['home_team'],
+            'homeTeamLogo' => $clubs[$f['home_team']] ?? null,
+            'awayTeam' => $f['away_team'],
+            'awayTeamLogo' => $clubs[$f['away_team']] ?? null,
+            'homeScore' => $f['home_goals'],
+            'awayScore' => $f['away_goals'],
+            'venue' => $f['venue'],
+            'status' => $f['status'],
+        ], $pssFixtures);
 
-        $lastMatch = $lastFixture ? [
-            'id' => (string) $lastFixture['id'],
-            'date' => $lastFixture['match_date'],
-            'time' => '15.00',
-            'homeTeam' => $lastFixture['home_team'],
-            'homeTeamLogo' => $clubs[$lastFixture['home_team']] ?? null,
-            'awayTeam' => $lastFixture['away_team'],
-            'awayTeamLogo' => $clubs[$lastFixture['away_team']] ?? null,
-            'homeScore' => $lastFixture['home_goals'],
-            'awayScore' => $lastFixture['away_goals'],
-            'venue' => $lastFixture['venue'],
-            'status' => 'finished',
-        ] : null;
-
-        $upcomingMatch = [
-            'id' => 'upcoming',
-            'date' => '2026-05-24',
-            'time' => '19.00',
-            'homeTeam' => 'PSS SLEMAN',
-            'homeTeamLogo' => $clubs['PSS SLEMAN'] ?? null,
-            'awayTeam' => 'PSIS SEMARANG',
-            'awayTeamLogo' => $clubs['PSIS SEMARANG'] ?? null,
-            'venue' => 'MAGUWOHARJO',
-            'status' => 'upcoming',
-        ];
+        $lastMatch = $fixtures[0] ?? null;
+        $upcomingMatch = null;
 
         $standings = Cache::remember('home.standings', 300, fn () => DB::table('klasemen')
             ->where('competition', 'PEGADAIAN_CHAMPIONSHIP_2025-26')
@@ -91,6 +80,7 @@ class HomeController extends Controller
             'lastMatch' => $lastMatch,
             'upcomingMatch' => $upcomingMatch,
             'standings' => Inertia::defer(fn () => $standings),
+            'fixtures' => $fixtures,
         ]);
     }
 }
