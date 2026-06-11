@@ -29,7 +29,7 @@ export default function HomeHero() {
                 <div className="absolute bottom-4 left-0 right-18 z-20 p-4 md:bottom-16 md:p-8 lg:p-12">
                     <div className="mx-auto max-w-7xl ">
                         <div className="mb-2 h-1 w-20 bg-[#0F7A4A]" />
-                        <h2 className=" text-sm font-bold font-calcio-italiano text-[#f5f5f5] uppercase md:text-xl lg:text-3xl">
+                        <h2 className=" text-sm font-calcio-italiano text-[#f5f5f5] uppercase md:text-5xl tracking-wide lg:text-5xl">
                             {slide.title}
                         </h2>
                     </div>
