@@ -18,7 +18,7 @@ export default function Login() {
             <div className="w-full max-w-md">
                 <div className="bg-white rounded-2xl shadow-lg p-8">
                     <div className="flex justify-center mb-8">
-                        <img src="/pssLogo.png" alt="PSS Sleman" loading="lazy" className="h-20 w-auto" />
+                        <img src="/pssLogo.webp" alt="PSS Sleman" loading="lazy" className="h-20 w-auto" />
                     </div>
 
                     <h1 className="text-2xl font-bold text-center text-gray-800 mb-2">

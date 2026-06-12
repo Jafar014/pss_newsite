@@ -1,1 +1,0 @@
-import{r as e,t}from"./vendor-D2g43Qt8.js";import{q as n}from"./ui-Oyuf7d5C.js";var r=t(),i=n();function a(){let t=(0,r.c)(1),n;return t[0]===Symbol.for(`react.memo_cache_sentinel`)?(n=(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(e,{title:`Dashboard`}),(0,i.jsx)(`div`,{})]}),t[0]=n):n=t[0],n}export{a as default};
