@@ -3,6 +3,8 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KompetisiController;
 use App\Http\Controllers\Tim\SeniorTeamController;
+use App\Models\News;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +60,20 @@ Route::post('/admin/login', function (Request $request) {
 
 Route::prefix('admin')->group(function () {
     Route::inertia('/', 'admin/dashboard')->name('admin.dashboard');
+    Route::get('/berita', function () {
+        $news = News::latest('published_at')->paginate(5);
+
+        return inertia('admin/news', [
+            'news' => $news,
+        ]);
+    })->name('admin.news');
+    Route::get('/staff', function () {
+        $staff = Staff::paginate(10);
+
+        return inertia('admin/staff', [
+            'staff' => $staff,
+        ]);
+    })->name('admin.staff');
 });
 
 require __DIR__.'/settings.php';

@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $players = Cache::remember('home.players', 600, fn () => Players::inRandomOrder()->limit(4)->get()->map(function ($player) {
+        $players = Cache::remember('home.players', 600, fn () => Players::inRandomOrder()->get()->map(function ($player) {
             $nameParts = explode(' ', $player->full_name);
             $lastName = count($nameParts) > 1 ? array_pop($nameParts) : '';
             $firstName = implode(' ', $nameParts);
@@ -24,6 +24,9 @@ class HomeController extends Controller
                 'number' => (string) $player->jersey_number,
                 'position' => $player->position ?? '',
                 'image' => $player->photo_url ?? '../../half_body.jpg',
+                'matches_played' => $player->matches_played ?? 0,
+                'goals' => $player->goals ?? 0,
+                'minutes' => ($player->matches_played ?? 0) * 90,
             ];
         })->values()->all()
         );

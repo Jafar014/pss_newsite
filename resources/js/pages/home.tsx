@@ -51,8 +51,8 @@ export default function HomePage({
     return (
         <>
             <Head title="Home" />
-            <div className="min-h-screen w-full overflow-x-hidden bg-[#f5f5f5] pt-16 md:pt-20 lg:pt-24">
-                <HomeNavbar />
+            <div className="min-h-screen w-full overflow-x-hidden bg-[#f5f5f5]">
+                <HomeNavbar transparent />
                 <HomeHero />
                 <HomeNews />
                 <MatchCards

@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react';
 import { ChevronDown, Menu } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
     Sheet,
     SheetContent,
@@ -90,12 +90,28 @@ function NavItem({
     );
 }
 
-export default function HomeNavbar() {
+export default function HomeNavbar({ transparent }: { transparent?: boolean }) {
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        if (!transparent) return;
+        const onScroll = () => setScrolled(window.scrollY > 0);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, [transparent]);
+
     return (
-        <nav className="fixed font-calcio-italiano text-2xl left-0 right-0 top-0 z-50 flex h-16 w-full items-center justify-between bg-[#0f7a4a] px-4 backdrop-blur-sm md:h-20 lg:h-24 lg:px-8">
+        <nav
+            className={`fixed font-calcio-italiano text-2xl left-0 right-0 top-0 z-50 flex h-16 w-full items-center justify-between px-4 transition-all duration-300 md:h-20 lg:h-24 lg:px-8 ${
+                transparent && !scrolled
+                    ? 'bg-transparent'
+                    : 'bg-[#0f7a4a]/95 shadow-lg backdrop-blur-md'
+            }`}
+        >
             <Link href="/" className="flex items-center">
                 <img
-                    src="/pssLogo.webp"
+                    src="/pssLogoNegatif.webp"
                     alt="PSS Logo"
                     className="h-8 w-auto sm:h-12 md:h-14 lg:h-16"
                 />
