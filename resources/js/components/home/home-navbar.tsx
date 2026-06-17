@@ -50,13 +50,13 @@ function NavItem({
             <div>
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className={`flex w-full items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-white hover:text-[#EFBF04] transition-colors ${
+                    className={`flex w-full items-center justify-between px-6 py-5 sm:py-3 text-lg sm:text-base font-medium text-white hover:text-[#EFBF04] transition-colors ${
                         isMobile ? '' : 'lg:w-auto'
                     }`}
                 >
                     <span>{item.label}</span>
                     <ChevronDown
-                        className={`h-4 w-4 transition-transform ${
+                        className={`h-6 w-6 transition-transform ${
                             isOpen ? 'rotate-180' : ''
                         }`}
                     />
@@ -67,7 +67,7 @@ function NavItem({
                             <Link
                                 key={index}
                                 href={child.href}
-                                className="block px-5 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm text-black hover:bg-[#0F7A4A] hover:text-white transition-colors"
+                                className="block px-7 py-4 sm:py-2 text-base sm:text-sm text-black hover:bg-[#0F7A4A] hover:text-white transition-colors"
                             >
                                 {child.label}
                             </Link>
@@ -81,7 +81,7 @@ function NavItem({
     return (
         <Link
             href={item.href || '#'}
-            className={`block px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-white hover:text-[#EFBF04] transition-colors ${
+            className={`block px-6 py-5 sm:py-3 text-lg sm:text-base font-medium text-white hover:text-[#EFBF04] transition-colors ${
                 isMobile ? '' : 'lg:inline-block'
             }`}
         >
@@ -103,7 +103,7 @@ export default function HomeNavbar({ transparent }: { transparent?: boolean }) {
 
     return (
         <nav
-            className={`fixed font-calcio-italiano text-2xl left-0 right-0 top-0 z-50 flex h-14 sm:h-16 w-full items-center justify-between px-3 sm:px-4 lg:px-6 xl:px-8 transition-all duration-300 md:h-20 lg:h-24 ${
+            className={`fixed font-calcio-italiano text-2xl left-0 right-0 top-0 z-50 flex h-16 sm:h-20 w-full items-center justify-between px-4 sm:px-4 lg:px-6 xl:px-8 transition-all duration-300 md:h-20 lg:h-24 ${
                 transparent && !scrolled
                     ? 'bg-transparent'
                     : 'bg-[#0f7a4a]/95 shadow-lg backdrop-blur-md'
@@ -113,7 +113,7 @@ export default function HomeNavbar({ transparent }: { transparent?: boolean }) {
                 <img
                     src="/pssLogoNegatif.webp"
                     alt="PSS Logo"
-                    className="h-6 w-auto sm:h-8 md:h-12 lg:h-14 xl:h-16"
+                    className="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16"
                 />
             </Link>
 
@@ -153,13 +153,13 @@ export default function HomeNavbar({ transparent }: { transparent?: boolean }) {
             <div className="flex items-center gap-2 lg:hidden">
                 <Sheet>
                     <SheetTrigger asChild>
-                        <button className="p-1.5 sm:p-2 text-white cursor-pointer">
-                            <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
+                        <button className="p-2 sm:p-2.5 text-white cursor-pointer">
+                            <Menu className="h-6 w-6 sm:h-7 sm:w-7" />
                         </button>
                     </SheetTrigger>
                     <SheetContent
                         side="right"
-                        className="w-[260px] sm:w-[280px] bg-[#0f7a4a] p-0 cursor-pointer"
+                        className="w-[300px] sm:w-[320px] bg-[#0f7a4a] p-0 cursor-pointer"
                     >
                         <div className="flex flex-col py-4 sm:py-6 max-h-screen overflow-y-auto">
                             {navItems.map((item, index) => (

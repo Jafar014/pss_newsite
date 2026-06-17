@@ -31,21 +31,19 @@ const playerPositions: Record<number, PlayerInfo> = {
 
 export default function MatchReportFormation({ fixture }: MatchReportFormationProps) {
     return (
-        <div className="w-full h-full p-4 md:p-8">
-            <div className="max-w-5xl flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
-                {/* Title formasi */}
-                <span className="font-calcio-italiano text-[#1c1c1c] text-lg md:text-xl lg:text-2xl">Formasi: 4-3-3</span>
-                <span className="font-calcio-italiano text-[#1c1c1c] text-sm md:text-base lg:text-lg ml-64">3-Mei-2026 | Maguwoharjo | vs Opponent</span>
-                <span className="font-calcio-italiano text-[#1c1c1c] text-sm md:text-base lg:text-lg ml-auto">Pelatih: Ansyari Lubis</span>
+        <div className="w-full h-full px-4 md:px-8 pt-4 md:pt-8 pb-4">
+            <div className="max-w-5xl mx-auto flex flex-wrap items-center gap-x-3 md:gap-x-4 gap-y-1 mb-2 px-0 md:px-0">
+                <span className="font-calcio-italiano text-[#1c1c1c] text-sm md:text-lg lg:text-2xl">Formasi: 4-3-3</span>
+                <span className="font-calcio-italiano text-[#1c1c1c] text-xs md:text-base lg:text-lg">3-Mei-2026 | Maguwoharjo | vs Opponent</span>
+                <span className="font-calcio-italiano text-[#1c1c1c] text-xs md:text-base lg:text-lg ml-auto">Pelatih: Ansyari Lubis</span>
             </div>
             {/* Peletakan formasi */}
-            <div className="max-w-5xl h-[50vh] md:h-[500px] grid grid-cols-6 grid-rows-5 bg-[url(/public/soccer-lines.webp)] bg-no-repeat bg-[length:100%_100%] overflow-hidden [transform:rotate(270deg)] lg:[transform:none] origin-center mx-auto my-[calc((100vw-32px-50vh)/2)] md:my-[calc((100vw-64px-500px)/2)] lg:my-0">
+            <div className="max-w-5xl h-[calc(100vw-2rem)] md:h-[500px] w-full mx-auto py-4 lg:py-0 px-0 lg:px-4 grid grid-cols-6 grid-rows-5 bg-[url(/public/soccer-lines.webp)] bg-no-repeat bg-[length:100%_100%] bg-origin-content overflow-hidden [transform:rotate(270deg)] lg:[transform:none] origin-center my-0 lg:my-0">
                 {items.map((num) => {
                     const player = playerPositions[num];
 
                     return (
                         <div key={num} className="flex items-center justify-center text-[#1c1c1c] p-0.5 md:p-1">
-                            {/* Peletakan pemain */}
                             {player ? (
                                 <span className="bg-[#f5f5f5] rounded shadow font-bold flex flex-col items-stretch [transform:rotate(90deg)] lg:flex-row lg:items-stretch lg:[transform:none] lg:w-[150px] lg:h-auto text-[8px] md:text-xs h-[48px] w-[55px] md:h-[70px] md:w-[85px]">
                                     <span className="px-0.5 md:px-2 py-0.5 md:py-1 flex items-center justify-center lg:justify-start">{player.number}</span>
@@ -66,7 +64,7 @@ export default function MatchReportFormation({ fixture }: MatchReportFormationPr
                     );
                 })}
             </div>
-            <div className="bg-[#f5f5f5] max-w-5xl my-2 border border-[#1c1c1c]">
+            <div className="bg-[#f5f5f5] max-w-5xl mx-auto my-2 border border-[#1c1c1c]">
                 {/* Mobile: List cadangan */}
                 <div className="flex flex-col lg:hidden">
                     <div className="border-b px-2.5 py-1.5">
