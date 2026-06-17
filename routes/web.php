@@ -69,6 +69,18 @@ Route::prefix('admin')->group(function () {
             'news' => $news,
         ]);
     })->name('admin.news');
+    Route::get('/sejarah', function () {
+        $histories = [
+            ['id' => 1, 'title' => 'Lahirnya PSS', 'date' => '1976-05-20', 'description' => 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'],
+            ['id' => 2, 'title' => 'Era Keemasan', 'date' => '1986-05-20', 'description' => 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'],
+            ['id' => 3, 'title' => 'Stadion Baru', 'date' => '2001-05-20', 'description' => 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'],
+            ['id' => 4, 'title' => 'Prestasi Nasional', 'date' => '2010-11-15', 'description' => 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'],
+        ];
+
+        return inertia('admin/history', [
+            'histories' => $histories,
+        ]);
+    })->name('admin.history');
     Route::get('/staff', function () {
         $staff = Staff::paginate(10);
 

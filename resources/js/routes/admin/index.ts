@@ -146,6 +146,51 @@ news.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see routes/web.php:72
+* @route '/admin/sejarah'
+*/
+export const history = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: history.url(options),
+    method: 'get',
+})
+
+history.definition = {
+    methods: ["get","head"],
+    url: '/admin/sejarah',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see routes/web.php:72
+* @route '/admin/sejarah'
+*/
+history.url = (options?: RouteQueryOptions) => {
+
+
+
+
+    return history.definition.url + queryParams(options)
+}
+
+/**
+* @see routes/web.php:72
+* @route '/admin/sejarah'
+*/
+history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: history.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:72
+* @route '/admin/sejarah'
+*/
+history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: history.url(options),
+    method: 'head',
+})
+
+
+/**
+* @see routes/web.php:84
 * @route '/admin/staff'
 */
 export const staff = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -159,7 +204,7 @@ staff.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:72
+* @see routes/web.php:84
 * @route '/admin/staff'
 */
 staff.url = (options?: RouteQueryOptions) => {
@@ -171,7 +216,7 @@ staff.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:72
+* @see routes/web.php:84
 * @route '/admin/staff'
 */
 staff.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -180,7 +225,7 @@ staff.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:72
+* @see routes/web.php:84
 * @route '/admin/staff'
 */
 staff.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -244,6 +289,7 @@ const admin = {
     login: Object.assign(login, login),
     dashboard: Object.assign(dashboard, dashboard),
     news: Object.assign(news, news),
+    history: Object.assign(history, history),
     staff: Object.assign(staff, staff),
     player: Object.assign(player, player895a40),
     kompetisi: Object.assign(kompetisi, kompetisi),
