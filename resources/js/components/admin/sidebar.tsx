@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import { LayoutDashboard, Newspaper, Users, Settings, LogOut, ChevronDown, Images, Trophy, Volleyball, Clock } from 'lucide-react';
 
@@ -24,8 +24,7 @@ const dropdowns = [
         icon: Trophy,
         items: [
             { label: 'Klasemen', href: '/admin/kompetisi/klasemen' },
-            { label: 'Hasil', href: '/admin/kompetisi/hasil' },
-            { label: 'Jadwal', href: '/admin/kompetisi/jadwal' },
+            { label: 'Jadwal & Hasil', href: '/admin/kompetisi/jadwal' },
         ],
     },
     {
@@ -40,12 +39,24 @@ const dropdowns = [
 
 export default function AdminSidebar() {
     const { url } = usePage();
-    const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+    const hasActiveSubmenu = (label: string) =>
+        dropdowns.find((d) => d.label === label)?.items.some((item) => url === item.href) ?? false;
 
-    // Buka/tutup dropdown, cuma 1 dalam satu waktu
+    const [manuallyOpened, setManuallyOpened] = useState<string | null>(null);
+
+    // Efek: tutup manual jika navigasi ke halaman lain yang bukan submenu dari dropdown manual
+    useEffect(() => {
+        if (manuallyOpened && !hasActiveSubmenu(manuallyOpened)) {
+            setManuallyOpened(null);
+        }
+    }, [url]);
+
     const toggleDropdown = (label: string) => {
-        setOpenDropdown((prev) => (prev === label ? null : label));
+        if (hasActiveSubmenu(label)) return;
+        setManuallyOpened((prev) => (prev === label ? null : label));
     };
+
+    const isDropdownOpen = (label: string) => hasActiveSubmenu(label) || manuallyOpened === label;
 
     return (
         <aside className="w-64 bg-[#0F7A4A] text-[#F5F5F5] min-h-screen flex flex-col shrink-0">
@@ -69,7 +80,7 @@ export default function AdminSidebar() {
                             );
                         })()}
                         {dropdowns[i] && (
-                            <DropdownSection label={dropdowns[i].label} icon={dropdowns[i].icon} items={dropdowns[i].items} isOpen={openDropdown === dropdowns[i].label} onToggle={() => toggleDropdown(dropdowns[i].label)} currentUrl={url} />
+                            <DropdownSection label={dropdowns[i].label} icon={dropdowns[i].icon} items={dropdowns[i].items} isOpen={isDropdownOpen(dropdowns[i].label)} onToggle={() => toggleDropdown(dropdowns[i].label)} currentUrl={url} />
                         )}
                     </div>
                 ))}
@@ -109,20 +120,13 @@ function DropdownSection({ label, icon: Icon, items, isOpen, onToggle, currentUr
     onToggle: () => void;
     currentUrl: string;
 }) {
-    // Highlight parent jika ada anak aktif
-    const hasActive = items.some((item) => currentUrl === item.href);
-
     return (
         <div>
             <button
                 onClick={onToggle}
-                className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm transition-colors ${
-                    hasActive
-                        ? 'bg-[#F5F5F5] text-[#0F7A4A] font-medium'
-                        : 'text-[#F5F5F5] hover:bg-[#1C1C1C]/40'
-                }`}
+                className="w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-[#F5F5F5] hover:bg-[#1C1C1C]/40 transition-colors"
             >
-                <Icon className={`w-5 h-5 ${hasActive ? 'text-[#0F7A4A]' : 'text-[#F5F5F5]'}`} />
+                <Icon className="w-5 h-5 text-[#F5F5F5]" />
                 <span className="flex-1 text-left">{label}</span>
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? '' : '-rotate-90'}`} />
             </button>
@@ -140,7 +144,7 @@ function DropdownSection({ label, icon: Icon, items, isOpen, onToggle, currentUr
                                 href={item.href}
                                 className={`block pl-10 pr-3 py-3 rounded-lg text-sm transition-colors ${
                                     active
-                                        ? 'bg-[#1C1C1C] text-[#F5F5F5] font-medium'
+                                        ? 'bg-[#F5F5F5] text-[#0F7A4A] font-medium'
                                         : 'text-[#F5F5F5] hover:bg-[#1C1C1C]/40'
                                 }`}
                             >

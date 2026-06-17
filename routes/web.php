@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\PlayerController;
+use App\Http\Controllers\Admin\StandingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KompetisiController;
 use App\Http\Controllers\Tim\SeniorTeamController;
@@ -74,6 +76,13 @@ Route::prefix('admin')->group(function () {
             'staff' => $staff,
         ]);
     })->name('admin.staff');
+    Route::get('/pemain', [PlayerController::class, 'index'])->name('admin.player');
+    Route::post('/pemain', [PlayerController::class, 'store'])->name('admin.player.store');
+    Route::put('/pemain/{player}', [PlayerController::class, 'update'])->name('admin.player.update');
+    Route::delete('/pemain/{player}', [PlayerController::class, 'destroy'])->name('admin.player.destroy');
+    Route::get('/kompetisi/klasemen', [StandingController::class, 'index'])->name('admin.kompetisi.klasemen');
+    Route::put('/kompetisi/klasemen/{standing}', [StandingController::class, 'update'])->name('admin.kompetisi.klasemen.update');
+    Route::delete('/kompetisi/klasemen/{standing}', [StandingController::class, 'destroy'])->name('admin.kompetisi.klasemen.destroy');
 });
 
 require __DIR__.'/settings.php';

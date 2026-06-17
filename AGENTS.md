@@ -177,4 +177,16 @@ Use Wayfinder to generate TypeScript functions for Laravel routes. Import from `
 
 - IMPORTANT: Activate `inertia-react-development` when working with Inertia React client-side patterns.
 
+=== user-rules ===
+
+# Aturan Pengguna
+
+1. Dilarang mengubah kode diluar file yang saya minta.
+2. Dilarang mengubah struktur kode, desain layout, komposisi, kecuali dalam perintah.
+3. Tidak ada aturan tambahan hingga saya menggunakan keyword 'tambah aturan:'.
+4. Anda hanya bekerja pada kode/section yang saya minta.
+5. Dilarang generate file baru.
+6. Jika ada tambahan kode atau struktur lain harap konfirmasi dan beri alasan mengapa harus ditambah.
+7. Tidak menggunakan aset bawaan laravel kecuali saya yang minta.
+
 </laravel-boost-guidelines>

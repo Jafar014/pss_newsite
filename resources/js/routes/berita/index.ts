@@ -1,6 +1,6 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
-* @see routes/web.php:22
+* @see routes/web.php:26
 * @route '/berita/{id}'
 */
 export const detail = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -14,7 +14,7 @@ detail.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:22
+* @see routes/web.php:26
 * @route '/berita/{id}'
 */
 detail.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -42,7 +42,7 @@ detail.url = (args: { id: string | number } | [id: string | number ] | string | 
 }
 
 /**
-* @see routes/web.php:22
+* @see routes/web.php:26
 * @route '/berita/{id}'
 */
 detail.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -51,7 +51,7 @@ detail.get = (args: { id: string | number } | [id: string | number ] | string | 
 })
 
 /**
-* @see routes/web.php:22
+* @see routes/web.php:26
 * @route '/berita/{id}'
 */
 detail.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({

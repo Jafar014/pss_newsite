@@ -79,9 +79,6 @@ export default function StaffPanel({ staff }: { staff: StaffPaginated }) {
                                         <button className="bg-[#efbf04] text-[#f5f5f5] rounded-md p-2.5 shadow-sm hover:bg-[#d4a903] transition-colors cursor-pointer" title="Edit">
                                             <Pencil className="size-4" />
                                         </button>
-                                        <button className="bg-[#1c1c1c]/40 text-[#f5f5f5] rounded-md p-2.5 ml-2 shadow-sm hover:bg-[#1c1c1c]/60 transition-colors cursor-pointer" title="Archive">
-                                            <Archive className="size-4" />
-                                        </button>
                                         <button className="bg-red-600 text-[#f5f5f5] rounded-md p-2.5 shadow-sm hover:bg-red-700 transition-colors ml-2 cursor-pointer" title="Hapus">
                                             <Trash2 className="size-4" />
                                         </button>
