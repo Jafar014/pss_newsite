@@ -15,8 +15,8 @@ const dropdowns = [
         label: 'Tim',
         icon: Users,
         items: [
-            { label: 'Staff', href: '/admin/tim/profil' },
-            { label: 'Pemain', href: '/admin/tim/pemain' },
+            { label: 'Staff', href: '/admin/staff' },
+            { label: 'Pemain', href: '/admin/pemain' },
         ],
     },
     {
