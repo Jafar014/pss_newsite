@@ -96,7 +96,7 @@ export default function MatchCards(_props: Record<string, unknown>) {
                     {cards.map((card) => (
                         <div
                             key={card.id}
-                            className="grid grid-rows-5 aspect-[5/6] min-w-[260px] w-1/4 overflow-hidden px-6 py-3 shadow-sm bg-[#ffffff] shrink-0 border border-[#1c1c1c]"
+                            className="grid grid-rows-5 h-[50vh] min-w-[260px] w-1/4 overflow-hidden px-6 py-3 shadow-sm bg-[#ffffff] shrink-0 border border-[#1c1c1c]"
                         >
                             {/* Trophy */}
                             <div className="flex flex-col items-center justify-center gap-1">
