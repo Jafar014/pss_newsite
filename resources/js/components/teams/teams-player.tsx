@@ -88,7 +88,7 @@ return null;
                             const [firstName, lastName] = splitName(player.full_name);
 
                             return (
-                                <div key={player.id} className="group relative w-1/2 sm:w-1/3 lg:w-1/5 aspect-[3/4] cursor-pointer overflow-hidden outline outline-1 outline-[#1c1c1c]">
+                                <div key={player.id} className="group relative w-1/2 sm:w-1/3 lg:w-1/5 min-w-[200px] sm:min-w-[240px] lg:min-w-[280px] aspect-[3/5] min-h-[320px] sm:min-h-[380px] lg:min-h-[440px] cursor-pointer overflow-hidden outline outline-1 outline-[#1c1c1c]">
                                     <img
                                         src={player.photo_url || "../../half_body.jpg"}
                                         alt={`Player ${player.jersey_number}`}
