@@ -90,49 +90,49 @@ export default function MatchCards(_props: Record<string, unknown>) {
                 {/* Carousel */}
                 <div
                     ref={scrollRef}
-                    className="flex flex-nowrap gap-4 overflow-x-auto px-8 md:px-12 scroll-auto"
+                    className="flex flex-nowrap gap-3 sm:gap-4 overflow-x-auto px-4 sm:px-6 md:px-12 scroll-auto"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
                     {cards.map((card) => (
                         <div
                             key={card.id}
-                            className="grid grid-rows-5 aspect-[5/6] min-w-[260px] w-1/4 overflow-hidden px-6 py-3 shadow-sm bg-[#ffffff] shrink-0 border border-[#1c1c1c]"
+                            className="grid grid-rows-5 aspect-[4/5] min-w-[200px] sm:min-w-[240px] md:min-w-[260px] w-[200px] sm:w-[240px] md:w-[260px] overflow-hidden px-4 sm:px-5 md:px-6 py-2 sm:py-3 shadow-sm bg-[#ffffff] shrink-0 border border-[#1c1c1c]"
                         >
                             {/* Trophy */}
-                            <div className="flex flex-col items-center justify-center gap-1">
-                                <img src="https://assets.ileague.id/assets/img/competition-logo/89.png" alt="Pegadaian Championship" loading="lazy" className="h-8 object-contain" />
-                                <p className="text-sm font-bold text-[#1c1c1c] uppercase">
+                            <div className="flex flex-col items-center justify-center gap-0.5 sm:gap-1">
+                                <img src="https://assets.ileague.id/assets/img/competition-logo/89.png" alt="Pegadaian Championship" loading="lazy" className="h-5 sm:h-6 md:h-8 object-contain" />
+                                <p className="text-[10px] sm:text-xs md:text-sm font-bold text-[#1c1c1c] uppercase text-center">
                                     {card.homeTeam === 'GARUDAYAKSA FC' || card.awayTeam === 'GARUDAYAKSA FC' ? 'FINAL' : `Matchday ${card.gameweek}`}
                                 </p>
                             </div>
 
                             {/* Logo */}
                             <div className="mt-0 -ml-2" style={{fontSize: 0}}>
-                                <img src={card.homeTeamLogo ?? undefined} alt="" loading="lazy" className="inline-block h-20" />
-                                <img src={card.awayTeamLogo ?? undefined} alt="" loading="lazy" className="inline-block h-20 -ml-6" />
+                                <img src={card.homeTeamLogo ?? undefined} alt="" loading="lazy" className="inline-block h-14 sm:h-16 md:h-20" />
+                                <img src={card.awayTeamLogo ?? undefined} alt="" loading="lazy" className="inline-block h-14 sm:h-16 md:h-20 -ml-4 sm:-ml-5 md:-ml-6" />
                             </div>
 
                             {/* Skor */}
-                            <div className="flex flex-col items-center justify-center mt-6 gap-0.5 px-2 text-[10px]">
-                                <div className="flex w-full items-center justify-between">
-                                    <span className="font-calcio-italiano text-lg md:text-lg lg:text-2xl text-[#1C1C1C] uppercase">{card.homeTeam}</span>
-                                    <span className="font-calcio-italiano text-lg md:text-lg lg:text-2xl text-[#1C1C1C]">{card.homeScore ?? 'X'}</span>
+                            <div className="flex flex-col items-center justify-center mt-3 sm:mt-4 md:mt-6 gap-0.5 px-1 sm:px-2 text-[10px]">
+                                <div className="flex w-full items-center justify-between gap-1">
+                                    <span className="font-calcio-italiano text-sm sm:text-base md:text-lg lg:text-2xl text-[#1C1C1C] uppercase truncate">{card.homeTeam}</span>
+                                    <span className="font-calcio-italiano text-sm sm:text-base md:text-lg lg:text-2xl text-[#1C1C1C] shrink-0">{card.homeScore ?? 'X'}</span>
                                 </div>
-                                <div className="flex w-full items-center justify-between">
-                                    <span className="font-calcio-italiano text-xl md:text-xl lg:text-2xl text-[#1C1C1C] uppercase">{card.awayTeam}</span>
-                                    <span className="font-calcio-italiano text-xl md:text-xl lg:text-2xl text-[#1C1C1C]">{card.awayScore ?? 'X'}</span>
+                                <div className="flex w-full items-center justify-between gap-1">
+                                    <span className="font-calcio-italiano text-sm sm:text-base md:text-lg lg:text-2xl text-[#1C1C1C] uppercase truncate">{card.awayTeam}</span>
+                                    <span className="font-calcio-italiano text-sm sm:text-base md:text-lg lg:text-2xl text-[#1C1C1C] shrink-0">{card.awayScore ?? 'X'}</span>
                                 </div>
                             </div>
 
                             {/* Info */}
-                            <div className="flex flex-col items-start justify-center px-2 mt-4 uppercase">
-                                <p className="text-xs md:text-[13px] font-bold text-gray-500">{card.date}</p>
-                                <p className="text-xs md:text-[13px] font-bold text-gray-500">{card.venue}</p>
+                            <div className="flex flex-col items-start justify-center px-1 sm:px-2 mt-2 sm:mt-3 md:mt-4 uppercase">
+                                <p className="text-[10px] sm:text-xs md:text-[13px] font-bold text-gray-500 leading-tight">{card.date}</p>
+                                <p className="text-[10px] sm:text-xs md:text-[13px] font-bold text-gray-500 leading-tight">{card.venue}</p>
                             </div>
 
                             {/* Tombol */}
                             <div className="flex items-center justify-center">
-                                <a href="/kompetisi/week/1" className="inline-flex items-center gap-1 px-3 py-3 hover:bg-[#0f7a4a] text-[#0f7a4a] text-[10px] md:text-xs uppercase rounded-full bg-[#f5f5f5] hover:text-[#f5f5f5] border border-[#0f7a4a] transition-all duration-200 cursor-pointer font-bold">
+                                <a href="/kompetisi/week/1" className="inline-flex items-center gap-1 px-2 sm:px-3 py-2 sm:py-3 hover:bg-[#0f7a4a] text-[#0f7a4a] text-[9px] sm:text-[10px] md:text-xs uppercase rounded-full bg-[#f5f5f5] hover:text-[#f5f5f5] border border-[#0f7a4a] transition-all duration-200 cursor-pointer font-bold">
                                     Laporan Pertandingan
                                 </a>
                             </div>
@@ -141,22 +141,22 @@ export default function MatchCards(_props: Record<string, unknown>) {
                 </div>
 
                 {/* Kontrol */}
-                <div className="flex items-center justify-between px-8 md:px-12 mt-4">
+                <div className="flex items-center justify-between px-4 sm:px-6 md:px-12 mt-4">
                     <a
                         href="/kompetisi/"
-                        className="inline-flex items-center gap-1 px-4 md:px-6 h-10 md:h-14 text-[10px] md:text-xs uppercase rounded-full
+                        className="inline-flex items-center gap-1 px-3 sm:px-4 md:px-6 h-8 sm:h-10 md:h-14 text-[9px] sm:text-[10px] md:text-xs uppercase rounded-full
                          bg-[#f5f5f5] hover:bg-[#0f7a4a] text-[#0f7a4a] hover:text-[#f5f5f5] border border-[#0f7a4a] transition-all duration-200 cursor-pointer font-bold"
                     >
                         Kalender
                     </a>
-                     <div className="flex gap-2 md:gap-3">
+                     <div className="flex gap-1.5 sm:gap-2 md:gap-3">
                         <button
                             type="button"
                             onClick={() => scroll('left')}
                             disabled={!canScrollLeft}
-                             className="flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-[#f5f5f5] text-[#0f7a4a] shadow-lg transition-all hover:bg-[#0f7a4a] hover:text-[#f5f5f5] border border-[#0f7a4a] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                             className="flex h-8 w-8 sm:h-10 sm:w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-[#f5f5f5] text-[#0f7a4a] shadow-lg transition-all hover:bg-[#0f7a4a] hover:text-[#f5f5f5] border border-[#0f7a4a] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
                         >
-                            <svg className="h-4 w-4 md:h-6 md:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="h-3 w-3 sm:h-4 sm:w-4 md:h-6 md:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                             </svg>
                         </button>
@@ -164,9 +164,9 @@ export default function MatchCards(_props: Record<string, unknown>) {
                             type="button"
                             onClick={() => scroll('right')}
                             disabled={!canScrollRight}
-                            className="flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-[#f5f5f5] text-[#0f7a4a] shadow-lg transition-all hover:bg-[#0f7a4a] hover:text-[#f5f5f5] border border-[#0f7a4a] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                            className="flex h-8 w-8 sm:h-10 sm:w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-[#f5f5f5] text-[#0f7a4a] shadow-lg transition-all hover:bg-[#0f7a4a] hover:text-[#f5f5f5] border border-[#0f7a4a] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
                         >
-                            <svg className="h-4 w-4 md:h-6 md:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="h-3 w-3 sm:h-4 sm:w-4 md:h-6 md:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                             </svg>
                         </button>
