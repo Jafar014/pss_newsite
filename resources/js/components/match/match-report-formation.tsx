@@ -38,16 +38,16 @@ export default function MatchReportFormation({ fixture }: MatchReportFormationPr
                 <span className="font-calcio-italiano text-[#1c1c1c] text-xs md:text-base lg:text-lg ml-auto">Pelatih: Ansyari Lubis</span>
             </div>
             {/* Peletakan formasi */}
-            <div className="md:max-w-5xl h-[calc(100vw-2rem)] md:h-[500px] w-screen md:w-full mx-auto relative p-4 md:p-0 my-0 lg:my-0">
+            <div className="md:max-w-5xl h-[calc(100vw-2rem)] md:h-[500px] w-screen md:w-full relative p-4 md:p-0 left-56.5 -translate-x-1/2 my-0 lg:my-0">
                 <img src="/soccer-lines.webp" className="absolute inset-0 w-full h-full object-fill [transform:rotate(270deg)] lg:[transform:none] origin-center" />
-                <div className="relative grid grid-cols-6 grid-rows-5 h-full w-full">
+                <div className="relative py-4 lg:py-0 px-0 lg:px-4 grid grid-cols-6 grid-rows-5 [transform:rotate(270deg)] lg:[transform:none] origin-center h-full w-full">
                 {items.map((num) => {
                     const player = playerPositions[num];
 
                     return (
                         <div key={num} className="flex items-center justify-center text-[#1c1c1c] p-0.5 md:p-1">
                             {player ? (
-                                <span className="bg-[#f5f5f5] rounded shadow font-bold flex flex-col lg:flex-row items-stretch lg:w-[150px] lg:h-auto text-[8px] md:text-xs h-[48px] w-[55px] md:h-[70px] md:w-[85px]">
+                                <span className="bg-[#f5f5f5] rounded shadow font-bold flex flex-col items-stretch [transform:rotate(90deg)] lg:flex-row lg:items-stretch lg:[transform:none] lg:w-[150px] lg:h-auto text-[8px] md:text-xs h-[48px] w-[55px] md:h-[70px] md:w-[85px]">
                                     <span className="px-0.5 md:px-2 py-0.5 md:py-1 flex items-center justify-center lg:justify-start">{player.number}</span>
                                     <span className="h-px lg:w-px bg-gray-300"></span>
                                     <span className="px-0.5 md:px-2 py-0.5 md:py-1 flex items-center justify-center lg:justify-start flex-1 min-w-0 truncate">{player.name}</span>
