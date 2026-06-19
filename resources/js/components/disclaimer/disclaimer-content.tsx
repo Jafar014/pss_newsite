@@ -19,7 +19,7 @@ export default function DisclaimerContent() {
                             melanjutkan.
                         </p>
                     </div>
-                    <p className="font-bold text-base sm:text-lg md:text-xl text-[#1c1c1c]">
+                    <p className="font-semibold text-base sm:text-lg md:text-xl text-[#1c1c1c]">
                         Situs web ini adalah proyek portofolio pribadi dan tidak memiliki hubungan
                         afiliasi, koneksi, atau keterikatan apapun dengan PSS Sleman, manajemen klub,
                         pemain, staf, maupun entitas resmi lainnya yang terkait dengan PSS Sleman.
