@@ -23,8 +23,8 @@ export default function HomeFooter({
     const sponsorText = 'font-calcio-italiano text-5xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-[#1c1c1c]/80';
 
     return (
-        <footer className="w-full bg-[#f5f5f5] text-[#1c1c1c] h-[calc(100dvh-64px)] sm:h-[calc(100dvh-80px)] lg:h-[calc(100dvh-96px)] [content-visibility:auto] [contain-intrinsic-size:auto_400px]">
-            <div className="mx-auto max-w-full h-full flex flex-col overflow-hidden">
+        <footer className="w-full bg-[#f5f5f5] text-[#1c1c1c] min-h-[calc(100dvh-64px)] sm:min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-96px)] [content-visibility:auto] [contain-intrinsic-size:auto_400px]">
+            <div className="mx-auto max-w-full min-h-full flex flex-col">
                 <div className="border-[#1c1c1c]/10 w-full border-b flex-1 flex flex-col">
                     <div className="flex-1 flex flex-col items-center justify-center gap-8 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 px-4 sm:px-6 md:px-8 py-4 sm:py-6">
                         <div className="grid grid-cols-2 sm:flex items-center justify-items-center sm:justify-center gap-x-5 gap-y-2 sm:gap-4 md:gap-4 lg:gap-6 xl:gap-10 2xl:gap-12">
