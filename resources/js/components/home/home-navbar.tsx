@@ -30,10 +30,6 @@ const navItems = [
         label: 'Galeri',
         href: '/galeri',
     },
-    {
-        label: 'Toko',
-        href: '/toko',
-    },
 ];
 
 function NavItem({
@@ -103,10 +99,10 @@ export default function HomeNavbar({ transparent }: { transparent?: boolean }) {
 
     return (
         <nav
-            className={`fixed font-calcio-italiano text-2xl left-0 right-0 top-0 z-50 flex h-16 sm:h-20 w-full items-center justify-between px-4 sm:px-4 lg:px-6 xl:px-8 transition-all duration-300 md:h-20 lg:h-24 ${
+            className={`fixed font-calcio-italiano left-0 right-0 top-0 z-50 flex h-16 sm:h-20 w-full items-center justify-between px-4 sm:px-4 lg:px-6 xl:px-8 transition-all duration-300 md:h-20 lg:h-24 ${
                 transparent && !scrolled
                     ? 'bg-transparent'
-                    : 'bg-[#0f7a4a]/95 shadow-lg backdrop-blur-md'
+                    : 'bg-[#0f7a4a] shadow-lg'
             }`}
         >
             <Link href="/" className="flex items-center shrink-0">
@@ -117,12 +113,12 @@ export default function HomeNavbar({ transparent }: { transparent?: boolean }) {
                 />
             </Link>
 
-            <div className="hidden items-center gap-1 lg:flex lg:gap-2 tracking-wide">
+            <div className="hidden items-center gap-1 lg:flex lg:gap-2 tracking-wider">
                 {navItems.map((item, index) => (
                     <div key={index}>
                         {item.children ? (
                             <div className="relative group">
-                                <button className="flex items-center gap-1 px-2 lg:px-3 xl:px-4 py-6 lg:py-7 xl:py-8 text-sm lg:text-base xl:text-lg font-medium text-white hover:text-[#EFBF04] cursor-pointer">
+                                <button className="flex items-center gap-1 px-2 lg:px-3 xl:px-4 py-6 lg:py-7 xl:py-8 text-base lg:text-lg xl:text-xl font-medium text-white hover:text-[#EFBF04] cursor-pointer">
                                     {item.label}
                                     <ChevronDown className="h-3 w-3 lg:h-4 lg:w-4 xl:h-5 xl:w-5" />
                                 </button>
@@ -141,7 +137,7 @@ export default function HomeNavbar({ transparent }: { transparent?: boolean }) {
                         ) : (
                             <Link
                                 href={item.href || '#'}
-                                className="px-2 lg:px-3 xl:px-4 py-6 lg:py-7 xl:py-9 text-sm lg:text-base xl:text-lg font-medium text-white hover:text-[#EFBF04] cursor-pointer"
+                                className="px-2 lg:px-3 xl:px-4 py-6 lg:py-7 xl:py-9 text-base lg:text-lg xl:text-xl font-medium text-white hover:text-[#EFBF04] cursor-pointer"
                             >
                                 {item.label}
                             </Link>
