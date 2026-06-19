@@ -20,8 +20,8 @@ export default function HomeNews() {
         <section className="w-full relative flex flex-col lg:flex-row [content-visibility:auto] [contain-intrinsic-size:auto_400px]">
             <div className="flex flex-col w-full lg:w-1/3 overflow-hidden bg-[#1c1c1c] border-[#1c1c1c] border-b lg:border-b-0 border-r">
                 {/* Title Section Berita */}
-                <div className="relative h-auto lg:h-[72vh] flex flex-col justify-end px-4 sm:px-8 md:px-12 pb-8 sm:pb-12 md:pb-16">
-                    <h2 className="font-calcio-italiano text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#f5f5f5] uppercase tracking-wider leading-none">
+                <div className="relative h-auto lg:h-[72vh] flex flex-col justify-center lg:justify-end px-4 sm:px-8 md:px-12 py-8 sm:py-12 md:py-16 lg:pb-16">
+                    <h2 className="font-calcio-italiano text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#f5f5f5] uppercase tracking-wider leading-none text-center lg:text-left">
                         Headlines
                      </h2>
                 </div>
