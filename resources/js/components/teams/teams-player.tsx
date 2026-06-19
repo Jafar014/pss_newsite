@@ -13,13 +13,6 @@ interface Player {
     photo_url: string | null;
 }
 
-interface Staff {
-    id: number;
-    full_name: string;
-    role: string;
-    photo_url: string | null;
-}
-
 interface Team {
     id: number;
     name: string;
@@ -29,7 +22,6 @@ interface Team {
 interface TeamsPlayerProps {
     team: Team;
     players: Player[];
-    staff: Staff[];
 }
 
 const Position_groups: { key:string; label:string; bg:string} [] = [
@@ -51,8 +43,7 @@ return [nameParts[0], ''];
     return [nameParts.join(' '), last];
 }
 
-export default function TeamsPlayer({ team, players, staff }: TeamsPlayerProps) {
-    const headCoach = staff.find((s) => s.role === 'Pelatih Kepala');
+export default function TeamsPlayer({ team, players }: TeamsPlayerProps) {
 
     return (
         <>
@@ -66,7 +57,8 @@ export default function TeamsPlayer({ team, players, staff }: TeamsPlayerProps) 
             </div>
         </div>
 
-        {Position_groups.map((group) => {
+        <div className="pb-12 md:pb-16 lg:pb-20">
+            {Position_groups.map((group) => {
             const groupPlayers = players.filter(
                 (p) => p.position?.toLowerCase() === group.key.toLowerCase()
             );
@@ -76,40 +68,28 @@ return null;
 }
 
             return (
-                <div key={group.key} className="w-full relative flex flex-col lg:flex-row">
-                    <div className="flex flex-col lg:w-1/4 overflow-hidden bg-[#f5f5f5] border-t items-center justify-center py-8 lg:py-0">
-                        <div className="relative -ml-3">
-                            <span className="font-calcio-italiano italic uppercase text-4xl md:text-5xl lg:text-7xl text-[#0f7a4a]">{group.label}</span>
-                        </div>
-                    </div>
+                <div key={group.key} className="w-full relative flex flex-col bg-[#f5f5f5] px-6 sm:px-8 md:px-10 lg:px-12 py-6 md:py-8 lg:py-10">
+                    <span className="font-calcio-italiano uppercase text-3xl md:text-4xl lg:text-5xl text-[#0f7a4a] tracking-wider">
+                        {group.label}
+                    </span>
 
-                    <div className="relative flex flex-row flex-wrap lg:w-3/4 bg-[#f5f5f5] right-0" >
+                    <div className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 mt-4 lg:mt-6 justify-items-center justify-center">
                         {groupPlayers.map((player) => {
-                            const [firstName, lastName] = splitName(player.full_name);
-
                             return (
-                                <div key={player.id} className="group relative w-1/2 sm:w-1/3 lg:w-1/5 min-w-[200px] sm:min-w-[240px] lg:min-w-[280px] aspect-[3/5] min-h-[320px] sm:min-h-[380px] lg:min-h-[440px] cursor-pointer overflow-hidden outline outline-1 outline-[#1c1c1c]">
+                                <div key={player.id} className="w-full flex flex-col overflow-hidden rounded-lg bg-white border border-[#1c1c1c]/20 shadow-md">
                                     <img
                                         src={player.photo_url || "../../half_body.jpg"}
-                                        alt={`Player ${player.jersey_number}`}
+                                        alt={player.full_name}
                                         loading="lazy"
-                                        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105 mix-blend-multiply"
+                                        className="aspect-[3/4] w-full object-cover object-top"
                                     />
-                                    <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-linear-to-t from-[#1c1c1c] via-[#1c1c1c]/80 to-transparent opacity-100 " />
-                                    <div className="absolute w-full bottom-0 p-1 lg:p-2.5">
-                                        <div className="flex items-end gap-2 lg:gap-2">
-                                            <p className="font-calcio-italiano text-[#Efbf04] text-6xl lg:text-7xl uppercase leading-none flex-shrink-0">
-                                                {player.jersey_number}
-                                            </p>
-                                            <div className="flex flex-col">
-                                                <p className="font-calcio-italiano text-[#f5f5f5] text-2xl lg:text-2xl uppercase leading-tight">
-                                                    {firstName}
-                                                </p>
-                                                <p className="font-calcio-italiano text-[#f5f5f5] text-3xl lg:text-4xl uppercase leading-tight">
-                                                    {lastName}
-                                                </p>
-                                            </div>
-                                        </div>
+                                    <div className="flex items-center justify-center gap-2 px-4 py-3 bg-[#0f7a4a]">
+                                        <p className="font-calcio-italiano text-[#f5f5f5] text-2xl sm:text-3xl">
+                                            {player.jersey_number}
+                                        </p>
+                                        <p className="font-calcio-italiano text-[#f5f5f5] text-xl sm:text-2xl uppercase truncate">
+                                            {player.full_name}
+                                        </p>
                                     </div>
                                 </div>
                             );
@@ -118,29 +98,8 @@ return null;
                 </div>
             );
         })}
+        </div>
 
-            {/* Head Coach Section */}
-            <div className="relative overflow-hidden h-[10vh] md:h-[12vh] lg:h-[15vh]">
-                <div className="absolute inset-0 bg-[#1c1c1c]/90" />
-                <div className="relative z-10 flex flex-col items-center justify-center pt-1">
-                    <h2 className="font-calcio-italiano mb-4 md:mb-6 lg:mb-8 text-4xl md:text-6xl lg:text-8xl font-bold text-[#f5f5f5] uppercase text-center">Head Coach</h2>  
-                </div>
-            </div>
-            <div className="w-full flex flex-col lg:flex-row h-[30vh] lg:h-[45vh] px-6 md:px-12 lg:px-24 relative">
-                <div className="flex flex-col w-full lg:w-1/2 h-full overflow-hidden justify-center items-center">
-                    <p className="text-[#0f7a4a] font-calcio-italiano text-3xl md:text-4xl lg:text-6xl">{headCoach?.full_name || 'Ansyari '}</p>
-                    <p className="text-[#0f7a4a] font-calcio-italiano text-xl md:text-2xl lg:text-4xl">Indonesia</p>
-                </div>
-                <div className="flex flex-col w-full lg:w-1/2 h-full overflow-hidden justify-center items-center lg:absolute lg:right-16">
-                    <img
-                        src={headCoach?.photo_url || "../../half_body.jpg"}
-                        alt="Head Coach"
-                        loading="lazy"
-                        className="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105 mix-blend-multiply"
-                    />
-                </div>
-            </div>
-            {/* <div className="mx-auto max-w-7xl px-4 py-8"> <pre className="rounded bg-gray-900 p-4 text-sm text-green-400 overflow-auto"> {JSON.stringify({ team, players, staff }, null, 2)} </pre> </div> */}
         </>
     );
 }

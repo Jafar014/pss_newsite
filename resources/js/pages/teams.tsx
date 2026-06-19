@@ -44,7 +44,7 @@ export default function Teams({ team, players, staff }: Props) {
             <Head title="Skuad" />
             <div className="min-h-screen w-full bg-[#f5f5f5] pt-16 md:pt-20 lg:pt-24">
                 <HomeNavbar />
-                <TeamsPlayer team={team} players={players} staff={staff} />
+                <TeamsPlayer team={team} players={players} />
                 <HomeFooter />
             </div>
         </>
