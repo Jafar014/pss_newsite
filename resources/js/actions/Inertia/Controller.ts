@@ -162,6 +162,54 @@ Controllerf32d98fc125a64f3804aabfa93fac72e.head = (args: { matchday: string | nu
 /**
 * @see \Inertia\Controller::__invoke
 * @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/disclaimer'
+*/
+const Controllereff94f67b6cf4c7adffc444613605a32 = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: Controllereff94f67b6cf4c7adffc444613605a32.url(options),
+    method: 'get',
+})
+
+Controllereff94f67b6cf4c7adffc444613605a32.definition = {
+    methods: ["get","head"],
+    url: '/disclaimer',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/disclaimer'
+*/
+Controllereff94f67b6cf4c7adffc444613605a32.url = (options?: RouteQueryOptions) => {
+
+
+
+
+    return Controllereff94f67b6cf4c7adffc444613605a32.definition.url + queryParams(options)
+}
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/disclaimer'
+*/
+Controllereff94f67b6cf4c7adffc444613605a32.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: Controllereff94f67b6cf4c7adffc444613605a32.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/disclaimer'
+*/
+Controllereff94f67b6cf4c7adffc444613605a32.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: Controllereff94f67b6cf4c7adffc444613605a32.url(options),
+    method: 'head',
+})
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
 * @route '/sejarah'
 */
 const Controllerb60353b9af63346da6531c969f3c88aa = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -628,6 +676,7 @@ const Controller = {
     '/berita': Controller7c2fabf6cf13e33fa98781521c318790,
     '/galeri': Controllerf6d7c31aa90fe6c4f7bac34f2d5f9927,
     '/galeri/{matchday}': Controllerf32d98fc125a64f3804aabfa93fac72e,
+    '/disclaimer': Controllereff94f67b6cf4c7adffc444613605a32,
     '/sejarah': Controllerb60353b9af63346da6531c969f3c88aa,
     '/toko': Controllercdaf2abb28cbdea7312af490ce0209a8,
     '/toko/produk/{slug}': Controller7fcaf28783392f055ba130625810575b,
