@@ -384,6 +384,55 @@ gallery.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 /**
 * @see \Inertia\Controller::__invoke
 * @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/disclaimer'
+*/
+export const disclaimer = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: disclaimer.url(options),
+    method: 'get',
+})
+
+disclaimer.definition = {
+    methods: ["get","head"],
+    url: '/disclaimer',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/disclaimer'
+*/
+disclaimer.url = (options?: RouteQueryOptions) => {
+
+
+
+
+    return disclaimer.definition.url + queryParams(options)
+}
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/disclaimer'
+*/
+disclaimer.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: disclaimer.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/disclaimer'
+*/
+disclaimer.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: disclaimer.url(options),
+    method: 'head',
+})
+
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
 * @route '/sejarah'
 */
 export const history = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({

@@ -100,7 +100,7 @@ dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 
 /**
-* @see routes/web.php:65
+* @see routes/web.php:66
 * @route '/admin/berita'
 */
 export const news = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -114,7 +114,7 @@ news.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:65
+* @see routes/web.php:66
 * @route '/admin/berita'
 */
 news.url = (options?: RouteQueryOptions) => {
@@ -126,7 +126,7 @@ news.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:65
+* @see routes/web.php:66
 * @route '/admin/berita'
 */
 news.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -135,7 +135,7 @@ news.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:65
+* @see routes/web.php:66
 * @route '/admin/berita'
 */
 news.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -145,7 +145,7 @@ news.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 
 /**
-* @see routes/web.php:72
+* @see routes/web.php:73
 * @route '/admin/sejarah'
 */
 export const history = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -159,7 +159,7 @@ history.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:72
+* @see routes/web.php:73
 * @route '/admin/sejarah'
 */
 history.url = (options?: RouteQueryOptions) => {
@@ -171,7 +171,7 @@ history.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:72
+* @see routes/web.php:73
 * @route '/admin/sejarah'
 */
 history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -180,7 +180,7 @@ history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:72
+* @see routes/web.php:73
 * @route '/admin/sejarah'
 */
 history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -190,7 +190,7 @@ history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 
 /**
-* @see routes/web.php:84
+* @see routes/web.php:85
 * @route '/admin/staff'
 */
 export const staff = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -204,7 +204,7 @@ staff.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:84
+* @see routes/web.php:85
 * @route '/admin/staff'
 */
 staff.url = (options?: RouteQueryOptions) => {
@@ -216,7 +216,7 @@ staff.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:84
+* @see routes/web.php:85
 * @route '/admin/staff'
 */
 staff.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -225,7 +225,7 @@ staff.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:84
+* @see routes/web.php:85
 * @route '/admin/staff'
 */
 staff.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
