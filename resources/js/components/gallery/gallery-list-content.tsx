@@ -48,14 +48,7 @@ export default function GalleryListContent() {
                         href={`/galeri/${item.matchday}`}
                         className="group block border border-[#0f7a4a]/20 rounded-lg overflow-hidden hover:border-[#0f7a4a]/50 transition-colors"
                     >
-                        <div className="aspect-video bg-gray-300 flex flex-col items-center justify-center gap-1">
-                            <span className="text-sm font-bold tracking-widest text-gray-500 uppercase md:text-lg">
-                                Galeri {item.id}
-                            </span>
-                            <span className="text-[10px] font-medium text-gray-400 md:text-sm">
-                                <span className="md:hidden">640 x 360 px</span>
-                                <span className="hidden md:inline">1920 x 1080 px</span>
-                            </span>
+                        <div className="aspect-video bg-cover bg-center" style={{ backgroundImage: `url('https://picsum.photos/seed/gallery${item.id}/640/360')` }}>
                         </div>
                         <div className="p-3 md:p-4">
                             <span className="text-[#1c1c1c] text-base md:text-2xl font-bold group-hover:text-[#0f7a4a] transition-colors">
