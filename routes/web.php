@@ -30,6 +30,7 @@ Route::get('/skuad', [SeniorTeamController::class, 'index'])->name('teams');
 Route::get('/kompetisi', [KompetisiController::class, 'index'])->name('competition');
 Route::inertia('/galeri', 'gallery')->name('gallery');
 Route::inertia('galeri/{matchday}', 'content-gallery')->name('content.gallery');
+Route::inertia('/disclaimer', 'disclaimer')->name('disclaimer');
 Route::inertia('/sejarah', 'history')->name('history');
 Route::inertia('/toko', 'store')->name('store');
 Route::inertia('/toko/produk/{slug}', 'store-product')->name('store.product');
