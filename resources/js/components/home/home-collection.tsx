@@ -52,7 +52,7 @@ function formatPrice(price: number) {
 /* Collection section */
 export default function HomeCollection() {
     return (
-        <div className="h-full w-full py-8 sm:py-10 md:py-14 [content-visibility:auto] [contain-intrinsic-size:auto_300px]">
+        <div className="h-full w-full py-8 sm:py-10 md:pb-14 [content-visibility:auto] [contain-intrinsic-size:auto_300px]">
             <div
                 className="relative aspect-[16/6] lg:aspect-auto lg:h-[60vh] max-w-full overflow-hidden cursor-pointer"
                 onClick={() => {
@@ -67,7 +67,7 @@ export default function HomeCollection() {
                 />
             </div>
 
-            <div className="relative px-8 py-6">
+            <div className="relative px-8 pt-16 pb-8">
                 <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4 md:gap-10 max-w-6xl mx-auto">
                     {products.map((product) => (
                         <Link

@@ -117,7 +117,7 @@ export default function HomeNavbar({ transparent }: { transparent?: boolean }) {
                 />
             </Link>
 
-            <div className="hidden items-center gap-1 lg:flex lg:gap-2">
+            <div className="hidden items-center gap-1 lg:flex lg:gap-2 tracking-wide">
                 {navItems.map((item, index) => (
                     <div key={index}>
                         {item.children ? (
