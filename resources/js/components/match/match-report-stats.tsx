@@ -20,7 +20,7 @@ const statData: { label: string; home: string; away: string }[] = [
 
 export default function MatchReportStats({ fixture }: MatchReportStatsProps) {
     return (
-        <div className="w-full h-full px-4 md:px-0 py-6 md:py-8 pr-0 md:pr-8">
+        <div className="w-full h-full px-4 md:px-0 py-6 md:py-8 pr-0 md:pr-8 lg:mt-19">
             <span className="text-[#1c1c1c] text-lg md:text-xl font-calcio-italiano">Statistik Pertandingan</span>
             <div className="w-full mt-2 border border-[#1c1c1c]">
                 <div className="grid grid-cols-3 bg-[#1c1c1c] text-white">

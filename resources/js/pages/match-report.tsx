@@ -16,9 +16,9 @@ export default function MatchReport({ fixture }: MatchReportProps) {
             <Head title={`Match Report Pekan ${fixture}`} />
             <div className="min-h-screen w-full bg-[#f5f5f5] pt-16 md:pt-20 lg:pt-24">
                 <HomeNavbar />
-                <div className="pb-8">
+                <div className="pb-8 ">
                     <MatchReportHeader fixture={fixture} />
-                    <div className="flex flex-col lg:flex-row items-start">
+                    <div className="flex flex-col lg:flex-row items-start ">
                         <div className="lg:w-[70%]">
                             <MatchReportFormation fixture={fixture} />
                         </div>

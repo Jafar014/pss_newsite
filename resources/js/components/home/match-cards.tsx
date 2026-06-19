@@ -84,7 +84,7 @@ export default function MatchCards(_props: Record<string, unknown>) {
     };
 
     return (
-        <section className="relative z-10 mt-8 pb-6 sm:pb-8 md:mt-10 md:pb-10 overflow-hidden">
+        <section className="relative z-10 py-8 sm:py-10 md:py-16 overflow-hidden">
             <div className="relative">
 
                 {/* Carousel */}

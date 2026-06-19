@@ -11,147 +11,124 @@ interface PlayerInfo {
     isCaptain?: boolean;
 }
 
-const items: number[] = Array.from({ length: 30 }, (_, i) => i + 1);
-
-const playerPositions: Record<number, PlayerInfo> = {
-    5: { number: 5, name: 'Iman Fath', subMinute: "80" },
-    2: { number: 2, name: 'S. Wibowo', subMinute: "72" },
-    8: { number: 8, name: 'K. Jefri' },
-    15: { number: 9, name: 'M. Iqbal', subMinute: "72" },
-    13: { number: 13, name: 'Jehan Pahlevi', isCaptain: true },
-    10: { number: 17, name: 'H. Saputro', subMinute: "80" },
-    18: { number: 18, name: 'A. Syahputra' },
-    20: { number: 20, name: 'A. Nugroho',  },
-    22: { number: 21, name: 'D. Pratama' },
-    26: { number: 26, name: 'B. Pahlevi' },
-    29: { number: 29, name: 'R. Sanjaya', subMinute: "60" },
-};
-
 
 
 export default function MatchReportFormation({ fixture }: MatchReportFormationProps) {
     return (
         <div className="w-full h-full px-4 md:px-8 pt-4 md:pt-8 pb-4">
-            <div className="max-w-5xl mx-auto flex flex-wrap items-center gap-x-3 md:gap-x-4 gap-y-1 mb-2 px-0 md:px-0">
-                <span className="font-calcio-italiano text-[#1c1c1c] text-sm md:text-lg lg:text-2xl">Formasi: 4-3-3</span>
-                <span className="font-calcio-italiano text-[#1c1c1c] text-xs md:text-base lg:text-lg">3-Mei-2026 | Maguwoharjo | vs Opponent</span>
-                <span className="font-calcio-italiano text-[#1c1c1c] text-xs md:text-base lg:text-lg ml-auto">Pelatih: Ansyari Lubis</span>
+            <div className="pb-8">
+                <h1 className="text-4xl md:text-5xl text-center font-calcio-italiano italic text-[#1c1c1c] tracking-wide drop-shadow-sm">LINE UP vs. PERSEBAYA</h1>
             </div>
-            {/* Peletakan formasi */}
-            <div className="md:max-w-5xl h-[calc(100vw-2rem)] md:h-[500px] w-screen md:w-full relative p-4 md:p-0 left-56.5 -translate-x-1/2 my-0 lg:my-0">
-                <img src="/soccer-lines.webp" className="absolute inset-0 w-full h-full object-fill [transform:rotate(270deg)] lg:[transform:none] origin-center" />
-                <div className="relative py-4 lg:py-0 px-0 lg:px-4 grid grid-cols-6 grid-rows-5 [transform:rotate(270deg)] lg:[transform:none] origin-center h-full w-full">
-                {items.map((num) => {
-                    const player = playerPositions[num];
-
-                    return (
-                        <div key={num} className="flex items-center justify-center text-[#1c1c1c] p-0.5 md:p-1">
-                            {player ? (
-                                <span className="bg-[#f5f5f5] rounded shadow font-bold flex flex-col items-stretch [transform:rotate(90deg)] lg:flex-row lg:items-stretch lg:[transform:none] lg:w-[150px] lg:h-auto text-[8px] md:text-xs h-[48px] w-[55px] md:h-[70px] md:w-[85px]">
-                                    <span className="px-0.5 md:px-2 py-0.5 md:py-1 flex items-center justify-center lg:justify-start">{player.number}</span>
-                                    <span className="h-px lg:w-px bg-gray-300"></span>
-                                    <span className="px-0.5 md:px-2 py-0.5 md:py-1 flex items-center justify-center lg:justify-start flex-1 min-w-0 truncate">{player.name}</span>
-                                    {player.isCaptain && <span className="text-yellow-600 font-bold flex items-center justify-center lg:justify-start px-0.5">(C)</span>}
-                                    {player.subMinute && (
-                                        <span className="flex items-center justify-center lg:ml-auto px-0.5 py-0.5">
-                                            <ArrowDown size={10} className="text-red-500 shrink-0" />
-                                            <span>{player.subMinute}'</span>
-                                        </span>
-                                    )}
-                                </span>
-                            ) : (
-                                <span></span>
-                            )}
+            <div className="w-full bg-[#f5f5f5] rounded-xl shadow-md border border-gray-200/80 overflow-hidden">
+            <div className="flex flex-row">
+                <div className="w-full flex flex-col border-r-2 border-[#1c1c1c]">
+                    <div className="">
+                        <p className="text-center text-sm font-bold tracking-widest uppercase text-[#f5f5f5] bg-[#0f7a4a] py-3">Starting</p>
+                    </div>
+                    <div className="divide-y divide-gray-100">
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">1</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
                         </div>
-                    );
-                })}
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">2</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">3</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">4</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">5</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">6</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">7</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">8</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">9</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">10</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>            
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">11</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="w-full flex flex-col">
+                    <div className="">
+                        <p className="text-center text-sm font-bold tracking-widest uppercase text-white bg-[#0f7a4a] py-3">Cadangan</p>
+                    </div>
+                    <div className="divide-y divide-gray-100">
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">12</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">13</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">14</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">15</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">16</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">17</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">18</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">19</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">20</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">21</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] bg-[#f5f5f5] p-4 w-16 text-center shrink-0 border-r">22</p>
+                            <p className="text-2xl font-calcio-italiano text-[#1c1c1c] p-4 w-full">GOALKEEPER</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div className="bg-[#f5f5f5] max-w-5xl mx-auto my-2 border border-[#1c1c1c]">
-                {/* Mobile: List cadangan */}
-                <div className="flex flex-col lg:hidden">
-                    <div className="border-b px-2.5 py-1.5">
-                        <span className="text-xs font-bold text-[#1c1c1c]">Pemain Cadangan:</span>
-                    </div>
-                    <div className="px-2.5 py-2 overflow-hidden w-full border-b flex items-center justify-start gap-x-1.5">
-                        <span className="text-xs text-[#1c1c1c] font-bold shrink-0">(60)'</span>
-                        <span className="text-xs text-red-500 font-bold truncate">R. Sanjaya</span>
-                        <ArrowUpDown size={14} className="text-[#1c1c1c] shrink-0" />
-                        <span className="text-xs text-[#0f7a4a] font-bold truncate">Player 27</span>
-                    </div>
-                    <div className="px-2.5 py-2 overflow-hidden w-full border-b flex items-center justify-start gap-x-1.5">
-                        <span className="text-xs text-[#1c1c1c] font-bold shrink-0">(72)'</span>
-                        <span className="text-xs text-red-500 font-bold truncate">S. Wibowo</span>
-                        <ArrowUpDown size={14} className="text-[#1c1c1c] shrink-0" />
-                        <span className="text-xs text-[#0f7a4a] font-bold truncate">Player 20</span>
-                    </div>
-                    <div className="px-2.5 py-2 overflow-hidden w-full border-b flex items-center justify-start gap-x-1.5">
-                        <span className="text-xs text-[#1c1c1c] font-bold shrink-0">(72)'</span>
-                        <span className="text-xs text-red-500 font-bold truncate">M. Iqbal</span>
-                        <ArrowUpDown size={14} className="text-[#1c1c1c] shrink-0" />
-                        <span className="text-xs text-[#0f7a4a] font-bold truncate">Player 26</span>
-                    </div>
-                    <div className="px-2.5 py-2 overflow-hidden w-full border-b flex items-center justify-start gap-x-1.5">
-                        <span className="text-xs text-[#1c1c1c] font-bold shrink-0">(80)'</span>
-                        <span className="text-xs text-red-500 font-bold truncate">F. Fadilah</span>
-                        <ArrowUpDown size={14} className="text-[#1c1c1c] shrink-0" />
-                        <span className="text-xs text-[#0f7a4a] font-bold truncate">Player 25</span>
-                    </div>
-                    <div className="px-2.5 py-2 overflow-hidden w-full border-b flex items-center justify-start gap-x-1.5">
-                        <span className="text-xs text-[#1c1c1c] font-bold shrink-0">(80)'</span>
-                        <span className="text-xs text-red-500 font-bold truncate">H. Saputro</span>
-                        <ArrowUpDown size={14} className="text-[#1c1c1c] shrink-0" />
-                        <span className="text-xs text-[#0f7a4a] font-bold truncate">Player 24</span>
-                    </div>
-                    <div className="px-2.5 py-2 overflow-hidden w-full flex items-center justify-start gap-x-3">
-                        <span className="text-xs text-[#1c1c1c] font-bold">Player 11</span>
-                        <span className="text-xs text-[#1c1c1c] font-bold">Player 13</span>
-                        <span className="text-xs text-[#1c1c1c] font-bold">Player 14</span>
-                        <span className="text-xs text-[#1c1c1c] font-bold">Player 15</span>
-                    </div>
-                </div>
-                {/* PC: list cadangan */}
-                <div className="hidden lg:grid lg:grid-cols-5">
-                    <div className="col-span-5 border-b px-2.5 py-1">
-                        <span className="text-xs font-bold text-[#1c1c1c]">Pemain Cadangan:</span>
-                    </div>
-                    <div className="px-2.5 py-2 overflow-hidden w-full border-r border-b flex items-center justify-center gap-x-1">
-                        <span className="text-xs text-[#1c1c1c] font-bold shrink-0">(60)'</span>
-                        <span className="text-xs text-red-500 font-bold truncate">R. Sanjaya</span>
-                        <ArrowUpDown size={14} className="text-[#1c1c1c] shrink-0" />
-                        <span className="text-xs text-[#0f7a4a] font-bold truncate">Player 27</span>
-                    </div>
-                    <div className="px-2.5 py-2 overflow-hidden w-full border-r border-b flex items-center justify-center gap-x-1">
-                        <span className="text-xs text-[#1c1c1c] font-bold shrink-0">(72)'</span>
-                        <span className="text-xs text-red-500 font-bold truncate">S. Wibowo</span>
-                        <ArrowUpDown size={14} className="text-[#1c1c1c] shrink-0" />
-                        <span className="text-xs text-[#0f7a4a] font-bold truncate">Player 20</span>
-                    </div>
-                    <div className="px-2.5 py-2 overflow-hidden w-full border-r border-b flex items-center justify-center gap-x-1">
-                        <span className="text-xs text-[#1c1c1c] font-bold shrink-0">(72)'</span>
-                        <span className="text-xs text-red-500 font-bold truncate">M. Iqbal</span>
-                        <ArrowUpDown size={14} className="text-[#1c1c1c] shrink-0" />
-                        <span className="text-xs text-[#0f7a4a] font-bold truncate">Player 26</span>
-                    </div>
-                    <div className="px-2.5 py-2 overflow-hidden w-full border-r border-b flex items-center justify-center gap-x-1">
-                        <span className="text-xs text-[#1c1c1c] font-bold shrink-0">(80)'</span>
-                        <span className="text-xs text-red-500 font-bold truncate">F. Fadilah</span>
-                        <ArrowUpDown size={14} className="text-[#1c1c1c] shrink-0" />
-                        <span className="text-xs text-[#0f7a4a] font-bold truncate">Player 25</span>
-                    </div>
-                    <div className="border-b px-2.5 py-2 overflow-hidden w-full flex items-center justify-center gap-x-1">
-                        <span className="text-xs text-[#1c1c1c] font-bold shrink-0">(80)'</span>
-                        <span className="text-xs text-red-500 font-bold truncate">H. Saputro</span>
-                        <ArrowUpDown size={14} className="text-[#1c1c1c] shrink-0" />
-                        <span className="text-xs text-[#0f7a4a] font-bold truncate">Player 24</span>
-                    </div>
-                    <span className="text-xs text-[#1c1c1c] font-bold px-3 md:px-4 border-r border-[#1c1c1c] last:border-r-0">TERENS OWANG PRISKA PUHIRI
-                    </span>
-                    <span className="text-xs text-[#1c1c1c] font-bold px-3 md:px-4 border-r border-[#1c1c1c] last:border-r-0">Player 13</span>
-                    <span className="text-xs text-[#1c1c1c] font-bold px-3 md:px-4 border-r border-[#1c1c1c] last:border-r-0">Player 14</span>
-                    <span className="text-xs text-[#1c1c1c] font-bold px-3 md:px-4 border-r border-[#1c1c1c] last:border-r-0">Player 15</span>
-                </div>
+            <div className="border-t border-gray-200/80 p-4 text-center">
+                <p className="text-2xl font-calcio-italiano tracking-widest uppercase text-[#1c1c1c]/60">Pelatih: <span className="text-[#1c1c1c]">BOJAN HODAK</span></p>
             </div>
         </div>
+        
+    </div>
     );
 }
