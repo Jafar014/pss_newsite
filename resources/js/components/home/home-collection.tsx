@@ -14,28 +14,28 @@ const products: Product[] = [
         id: '1',
         name: 'PSS Sleman 2024 Home Jersey',
         price: 350000,
-        image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=400&fit=crop&crop=face',
+        image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=400&fit=crop&crop=face&fm=webp',
         category: 'Jersey',
     },
     {
         id: '2',
         name: 'PSS Sleman 2024 Away Jersey',
         price: 350000,
-        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=400&fit=crop&crop=face',
+        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=400&fit=crop&crop=face&fm=webp',
         category: 'Jaket',
     },
     {
         id: '3',
         name: 'PSS Sleman Training Kit',
         price: 450000,
-        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=400&fit=crop&crop=face',
+        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=400&fit=crop&crop=face&fm=webp',
         category: 'Training',
     },
     {
         id: '4',
         name: 'PSS Sleman Jacket',
         price: 550000,
-        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=400&fit=crop&crop=face',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=400&fit=crop&crop=face&fm=webp',
         category: 'Outerwear',
     },
 ];
@@ -110,7 +110,7 @@ export default function HomeCollection() {
                     onClick={() => setShowPopup(true)}
                 >
                     <img
-                        src="https://images.pexels.com/photos/15306470/pexels-photo-15306470.jpeg?auto=compress&cs=tinysrgb&w=1920"
+                        src="https://picsum.photos/seed/collectionBanner/1920/720.webp"
                         alt="Promosi Baju"
                         className="absolute inset-0 h-full w-full object-cover"
                     />

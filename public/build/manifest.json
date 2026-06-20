@@ -148,7 +148,7 @@
     "name": "wayfinder"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DmrvlF_A.css",
+    "file": "assets/app-B5VnboCn.css",
     "name": "app",
     "names": [
       "app.css"
@@ -184,7 +184,7 @@
     "src": "resources/fonts/instrument-sans-latin-600-normal.woff2"
   },
   "resources/js/app.tsx": {
-    "file": "assets/app-DEp6NwHO.js",
+    "file": "assets/app-CFQRB9nN.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -321,7 +321,7 @@
     ]
   },
   "resources/js/pages/auth/confirm-password.tsx": {
-    "file": "assets/confirm-password-BLTz0m-i.js",
+    "file": "assets/confirm-password-B40N-mQa.js",
     "name": "confirm-password",
     "src": "resources/js/pages/auth/confirm-password.tsx",
     "isDynamicEntry": true,
@@ -337,7 +337,7 @@
     ]
   },
   "resources/js/pages/auth/forgot-password.tsx": {
-    "file": "assets/forgot-password-Bc3eyNhj.js",
+    "file": "assets/forgot-password-Cl8isgXI.js",
     "name": "forgot-password",
     "src": "resources/js/pages/auth/forgot-password.tsx",
     "isDynamicEntry": true,
@@ -352,7 +352,7 @@
     ]
   },
   "resources/js/pages/auth/login.tsx": {
-    "file": "assets/login-CQ3n3lxn.js",
+    "file": "assets/login-CMpe5aRv.js",
     "name": "login",
     "src": "resources/js/pages/auth/login.tsx",
     "isDynamicEntry": true,
@@ -372,7 +372,7 @@
     ]
   },
   "resources/js/pages/auth/register.tsx": {
-    "file": "assets/register-CaOPFO4F.js",
+    "file": "assets/register-3WHpqpRX.js",
     "name": "register",
     "src": "resources/js/pages/auth/register.tsx",
     "isDynamicEntry": true,
@@ -389,7 +389,7 @@
     ]
   },
   "resources/js/pages/auth/reset-password.tsx": {
-    "file": "assets/reset-password-DgR1YDU-.js",
+    "file": "assets/reset-password-BfpARnl7.js",
     "name": "reset-password",
     "src": "resources/js/pages/auth/reset-password.tsx",
     "isDynamicEntry": true,
@@ -405,7 +405,7 @@
     ]
   },
   "resources/js/pages/auth/two-factor-challenge.tsx": {
-    "file": "assets/two-factor-challenge-ByzwpGwr.js",
+    "file": "assets/two-factor-challenge-D_r0JEgJ.js",
     "name": "two-factor-challenge",
     "src": "resources/js/pages/auth/two-factor-challenge.tsx",
     "isDynamicEntry": true,
@@ -419,7 +419,7 @@
     ]
   },
   "resources/js/pages/auth/verify-email.tsx": {
-    "file": "assets/verify-email-msbHZOBH.js",
+    "file": "assets/verify-email-BC9K5TLg.js",
     "name": "verify-email",
     "src": "resources/js/pages/auth/verify-email.tsx",
     "isDynamicEntry": true,
@@ -472,7 +472,7 @@
     ]
   },
   "resources/js/pages/dashboard.tsx": {
-    "file": "assets/dashboard-DynYKBjB.js",
+    "file": "assets/dashboard-DunR3sfi.js",
     "name": "dashboard",
     "src": "resources/js/pages/dashboard.tsx",
     "isDynamicEntry": true,
@@ -522,7 +522,7 @@
     ]
   },
   "resources/js/pages/home.tsx": {
-    "file": "assets/home-C8GJol2v.js",
+    "file": "assets/home-BOVjESQo.js",
     "name": "home",
     "src": "resources/js/pages/home.tsx",
     "isDynamicEntry": true,
@@ -564,7 +564,7 @@
     ]
   },
   "resources/js/pages/settings/appearance.tsx": {
-    "file": "assets/appearance-B5SsF0VR.js",
+    "file": "assets/appearance-CAfygLc-.js",
     "name": "appearance",
     "src": "resources/js/pages/settings/appearance.tsx",
     "isDynamicEntry": true,
@@ -576,7 +576,7 @@
     ]
   },
   "resources/js/pages/settings/profile.tsx": {
-    "file": "assets/profile-BgCu2iK5.js",
+    "file": "assets/profile-D_ddSTyT.js",
     "name": "profile",
     "src": "resources/js/pages/settings/profile.tsx",
     "isDynamicEntry": true,
@@ -594,7 +594,7 @@
     ]
   },
   "resources/js/pages/settings/security.tsx": {
-    "file": "assets/security-B-K44uDv.js",
+    "file": "assets/security-CHiapCMb.js",
     "name": "security",
     "src": "resources/js/pages/settings/security.tsx",
     "isDynamicEntry": true,
@@ -653,7 +653,7 @@
     ]
   },
   "resources/js/pages/welcome.tsx": {
-    "file": "assets/welcome-CKXcMadl.js",
+    "file": "assets/welcome-C7y0wAQd.js",
     "name": "welcome",
     "src": "resources/js/pages/welcome.tsx",
     "isDynamicEntry": true,
