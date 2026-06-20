@@ -12,8 +12,11 @@ export default function HomeHero() {
             onClick={() => router.visit(`/berita/${slide.id}`)}
         >
             <div className="relative h-[60vh] min-h-[320px] md:h-[80vh] lg:h-screen">
-                <div
-                    className="h-full w-full bg-[url(https://images.unsplash.com/photo-1769859177914-f66488d71193?q=80&w=1920&auto=format&fit=crop)] bg-cover bg-center bg-no-repeat"
+                <img
+                    src="https://images.unsplash.com/photo-1769859177914-f66488d71193?q=80&w=1920&auto=format&fit=crop&fm=webp"
+                    alt={slide.title}
+                    fetchpriority="high"
+                    className="absolute inset-0 h-full w-full object-cover"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
