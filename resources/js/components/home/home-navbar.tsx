@@ -46,7 +46,7 @@ function NavItem({
             <div>
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className={`flex w-full items-center justify-between px-6 py-5 sm:py-3 text-lg sm:text-base font-medium text-white hover:text-[#EFBF04] transition-colors ${
+                    className={`flex w-full items-center justify-between px-6 py-5 sm:py-3 text-lg sm:text-base font-medium text-[#f5f5f5] hover:text-[#EFBF04] transition-colors ${
                         isMobile ? '' : 'lg:w-auto'
                     }`}
                 >

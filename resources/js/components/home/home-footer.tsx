@@ -23,24 +23,24 @@ export default function HomeFooter({
     const headingClass = 'font-calcio-italiano text-lg sm:text-xl lg:text-2xl xl:text-3xl text-[#1c1c1c]/70 uppercase text-center';
 
     return (
-        <footer className="w-full bg-[#f5f5f5] text-[#1c1c1c] h-[calc(100dvh-64px)] sm:h-[calc(100dvh-80px)] lg:h-[calc(100dvh-96px)] border-t border-[#1c1c1c]/30 [content-visibility:auto] [contain-intrinsic-size:auto_400px]">
-            <div className="mx-auto max-w-full h-full flex flex-col overflow-hidden">
+        <footer className="w-full bg-[#f5f5f5] text-[#1c1c1c] border-t border-[#1c1c1c]/30">
+            <div className="mx-auto max-w-full">
 
                 {/* Sponsor Section */}
-                <div className="border-[#1c1c1c]/10 w-full border-b flex-1 flex flex-col min-h-0">
-                    <div className="flex-1 flex flex-col items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-7 px-4 sm:px-6 md:px-8 overflow-y-auto min-h-0 pt-6 sm:pt-8 md:pt-10">
+                <div className="border-[#1c1c1c]/10 w-full border-b px-4 sm:px-6 md:px-8 py-14 sm:py-18 md:py-12">
+                    <div className="flex flex-col items-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6 mb-16">
                         <h2 className={headingClass}>Main Sponsor</h2>
-                        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12">
-                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/adidas/default.svg" alt="Sponsor" className="w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36 h-auto brightness-0" />
-                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/abstract/default.svg" alt="Sponsor" className="w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36 h-auto brightness-0" />
+                        <div className="flex flex-wrap items-center justify-center gap-16 sm:gap-18 md:gap-20 lg:gap-22 xl:gap-24 mb-12 -mt-3">
+                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/adidas/default.svg" alt="Sponsor" className="w-12 sm:w-14 md:w-16 lg:w-20 xl:w-24 h-auto brightness-0" />
+                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/abstract/default.svg" alt="Sponsor" className="w-12 sm:w-14 md:w-16 lg:w-20 xl:w-24 h-auto brightness-0" />
                         </div>
                         <h2 className={headingClass}>Premium Sponsor</h2>
-                        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10">
-                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/accenture/default.svg" alt="Sponsor" className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 h-auto brightness-0" />
-                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/adguard/default.svg" alt="Sponsor" className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 h-auto brightness-0" />
-                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/afterpay/default.svg" alt="Sponsor" className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 h-auto brightness-0" />
-                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/airbnb/default.svg" alt="Sponsor" className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 h-auto brightness-0" />
-                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/algolia/default.svg" alt="Sponsor" className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 h-auto brightness-0" />
+                        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-12 md:gap-14 lg:gap-16 xl:gap-18">
+                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/accenture/default.svg" alt="Sponsor" className="w-10 sm:w-12 md:w-14 lg:w-16 xl:w-20 h-auto brightness-0" />
+                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/adguard/default.svg" alt="Sponsor" className="w-10 sm:w-12 md:w-14 lg:w-16 xl:w-20 h-auto brightness-0" />
+                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/afterpay/default.svg" alt="Sponsor" className="w-10 sm:w-12 md:w-14 lg:w-16 xl:w-20 h-auto brightness-0" />
+                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/airbnb/default.svg" alt="Sponsor" className="w-10 sm:w-12 md:w-14 lg:w-16 xl:w-20 h-auto brightness-0" />
+                            <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/algolia/default.svg" alt="Sponsor" className="w-10 sm:w-12 md:w-14 lg:w-16 xl:w-20 h-auto brightness-0" />
                         </div>
                     </div>
                 </div>
