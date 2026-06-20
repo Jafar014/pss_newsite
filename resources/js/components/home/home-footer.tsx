@@ -30,7 +30,7 @@ export default function HomeFooter({
                 <div className="border-[#1c1c1c]/10 w-full border-b px-4 sm:px-6 md:px-8 py-14 sm:py-18 md:py-12">
                     <div className="flex flex-col items-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6 mb-0 sm:mb-16">
                         <h2 className={headingClass}>Main Sponsor</h2>
-                        <div className="flex flex-wrap items-center justify-center gap-16 sm:gap-18 md:gap-20 lg:gap-22 xl:gap-24 mb-0 sm:mb-12 -mt-3">
+                        <div className="flex flex-wrap items-center justify-center gap-16 sm:gap-18 md:gap-20 lg:gap-22 xl:gap-24 mb-4 sm:mb-12 -mt-3">
                             <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/adidas/default.svg" alt="Sponsor" className="w-14 sm:w-14 md:w-16 lg:w-20 xl:w-24 h-auto brightness-0" />
                             <img src="https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/abstract/default.svg" alt="Sponsor" className="w-14 sm:w-14 md:w-16 lg:w-20 xl:w-24 h-auto brightness-0" />
                         </div>
