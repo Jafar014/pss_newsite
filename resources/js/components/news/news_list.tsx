@@ -105,7 +105,7 @@ export default function NewsContent() {
     );
 
     return (
-        <>
+        <div className="flex flex-col flex-1">
             <div className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-[#0f7a4a]/75" />
                 <div className="relative z-10 flex flex-col items-center justify-center py-10 sm:py-12 md:py-14 lg:py-16">
@@ -114,7 +114,7 @@ export default function NewsContent() {
                 </div>
             </div>
 
-            <div className="mx-auto max-w-[1440px] px-3 sm:px-4 lg:px-6 xl:px-8 pb-12 sm:pb-16 pt-6 sm:pt-8 md:pt-10">
+            <div className="mx-auto w-full max-w-[1440px] px-3 sm:px-4 lg:px-6 xl:px-8 pb-12 sm:pb-16 pt-6 sm:pt-8 md:pt-10 flex flex-col flex-1">
                 <div className="grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                     {paginatedNews.map((news) => (
                         <Link
@@ -151,6 +151,8 @@ export default function NewsContent() {
                     ))}
                 </div>
 
+                <div className="flex-1" />
+
                 {totalPages > 1 && (
                     <Pagination className="mt-10">
                         <PaginationContent>
@@ -183,6 +185,6 @@ export default function NewsContent() {
                     </Pagination>
                 )}
             </div>
-        </>
+        </div>
     );
 }

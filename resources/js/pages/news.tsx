@@ -7,7 +7,7 @@ export default function NewsPage() {
     return (
         <>
             <Head title="Berita" />
-            <div className="min-h-screen w-full bg-[#f5f5f5] pt-16 md:pt-20 lg:pt-24">
+            <div className="min-h-screen w-full bg-[#f5f5f5] pt-16 md:pt-20 lg:pt-24 flex flex-col">
                 <HomeNavbar />
                 <NewsContent />
                 <HomeFooter />
