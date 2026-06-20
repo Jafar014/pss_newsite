@@ -15,7 +15,7 @@ const events: { type: "goal" | "yellow" | "red"; minute: string; player: string 
 
 export default function MatchReportEvents({ fixture }: MatchReportEventsProps) {
     return (
-        <div className="w-full px-4 md:px-0 pb-6 md:pb-8 pr-0 md:pr-8">
+        <div className="w-full px-4 lg:px-0 pb-6 md:pb-8 lg:pr-8">
             <span className="text-[#1c1c1c] text-lg md:text-xl font-calcio-italiano">Match Events</span>
             <div className="w-full mt-2 border border-[#1c1c1c] bg-[#f5f5f5]">
                 <div className="px-2.5 py-1.5 border-b border-[#1c1c1c] bg-[#1c1c1c]">

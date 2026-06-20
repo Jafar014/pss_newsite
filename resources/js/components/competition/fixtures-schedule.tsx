@@ -312,7 +312,7 @@ return '-';
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                         </svg>
                                     </button>
-                                    <span className="font-calcio-italiano text-lg text-[#1c1c1c] font-bold tabular-nums">
+                                    <span className="font-calcio-italiano text-lg text-[#1c1c1c] tabular-nums">
                                         {String(month + 1).padStart(2, '0')} / {String(year).slice(-2)}
                                     </span>
                                     <button onClick={nextMonth} className="p-1 rounded-full hover:bg-gray-100 transition-colors cursor-pointer flex-none" aria-label="Bulan berikutnya">
@@ -324,11 +324,11 @@ return '-';
                                 <div className="flex items-center gap-3 absolute left-1/2 -translate-x-1/2">
                                     <div className="flex items-center gap-1">
                                         <span className="h-3 w-3 rounded-full bg-[#0f7a4a]" />
-                                        <span className="text-lg font-calcio-italiano text-[#0f7a4a] font-bold">H</span>
+                                        <span className="text-lg font-calcio-italiano text-[#0f7a4a]">H</span>
                                     </div>
                                     <div className="flex items-center gap-1">
                                         <span className="h-3 w-3 rounded-full bg-[#1c1c1c]" />
-                                        <span className="text-lg font-calcio-italiano text-[#1c1c1c] font-bold">A</span>
+                                        <span className="text-lg font-calcio-italiano text-[#1c1c1c] ">A</span>
                                     </div>
                                 </div>
                                 <span className="font-calcio-italiano text-lg text-[#1c1c1c] tabular-nums">
@@ -433,14 +433,14 @@ return '-';
                                     return (
                                         <button key={i} type="button"
                                             onClick={() => item.match && setSelectedMatch({ date: item.date, match: item.match })}
-                                            className={`flex h-16 flex-col px-2 py-1 focus:z-10 ${hasMatch ? bgMatch : isToday ? 'bg-[#0f7a4a]/65 text-white' : item.currentMonth ? 'bg-white text-gray-900' : 'bg-gray-50 text-gray-400'} ${hasMatch ? 'cursor-pointer hover:opacity-80' : 'cursor-default'} ${isSelected ? 'ring-2 ring-[#0f7a4a]' : ''}`}
+                                            className={`flex h-16 sm:h-20 flex-col px-2 py-1 focus:z-10 ${hasMatch ? bgMatch : isToday ? 'bg-[#0f7a4a]/65 text-white' : item.currentMonth ? 'bg-white text-gray-900' : 'bg-gray-50 text-gray-400'} ${hasMatch ? 'cursor-pointer hover:opacity-80' : 'cursor-default'} ${isSelected ? 'ring-2 ring-[#0f7a4a]' : ''}`}
                                         >
-                                            <time dateTime={item.date} className="ml-auto text-sm font-semibold">
+                                            <time dateTime={item.date} className="ml-auto text-sm sm:text-base font-semibold">
                                                 {item.day}
                                             </time>
                                             {item.match && (
                                                 <div className="mt-auto flex items-center justify-center">
-                                                    <TeamLogo name={item.match.opponent} className="w-8 h-8 text-[7px]" clubMap={clubMap} />
+                                                    <TeamLogo name={item.match.opponent} className="w-10 h-10 sm:w-12 sm:h-12 text-[9px] sm:text-xs" clubMap={clubMap} />
                                                 </div>
                                             )}
                                         </button>
@@ -531,7 +531,7 @@ return '-';
                                                 <tr key={k.id} className={`border-b border-gray-200 hover:bg-gray-50 transition ${k.team_name === 'PSS SLEMAN' ? 'bg-[#0f7a4a]/10' : ''}`}>
                                                     <td className="p-2 text-center font-medium text-gray-500">{k.pos}</td>
                                                     <td className="p-2 flex items-center gap-2">
-                                                        <TeamLogo name={k.team_name} className="w-6 h-6 text-[8px]" clubMap={clubMap} />
+                                                        <TeamLogo name={k.team_name} className="w-8 h-8 sm:w-10 sm:h-10 text-[9px] sm:text-xs" clubMap={clubMap} />
                                                         <span className={`font-medium font-calcio-italiano truncate ${k.team_name === 'PSS SLEMAN' ? 'text-[#0f7a4a]' : 'text-[#1c1c1c]'}`}>
                                                             {k.team_name}
                                                         </span>

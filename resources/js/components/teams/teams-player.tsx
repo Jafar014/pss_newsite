@@ -83,11 +83,17 @@ return null;
                                         loading="lazy"
                                         className="aspect-[3/4] w-full object-cover object-top"
                                     />
-                                    <div className="flex items-center justify-center gap-2 px-4 py-3 bg-[#0f7a4a]">
-                                        <p className="font-calcio-italiano text-[#f5f5f5] text-2xl sm:text-3xl">
+                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center sm:gap-2 px-4 py-3 bg-[#0f7a4a]">
+                                        <p className="font-calcio-italiano text-[#f5f5f5] text-2xl sm:text-3xl text-center sm:text-left">
                                             {player.jersey_number}
                                         </p>
-                                        <p className="font-calcio-italiano text-[#f5f5f5] text-xl sm:text-2xl uppercase truncate">
+                                        <p className="font-calcio-italiano text-[#f5f5f5] text-sm uppercase text-center leading-tight sm:hidden">
+                                            {(() => {
+                                                const [given, last] = splitName(player.full_name);
+                                                return <>{given}<br />{last}</>;
+                                            })()}
+                                        </p>
+                                        <p className="hidden sm:block font-calcio-italiano text-[#f5f5f5] text-xl sm:text-2xl uppercase truncate">
                                             {player.full_name}
                                         </p>
                                     </div>

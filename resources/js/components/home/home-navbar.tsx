@@ -46,7 +46,7 @@ function NavItem({
             <div>
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className={`flex w-full items-center justify-between px-6 py-5 sm:py-3 text-lg sm:text-base font-medium text-[#f5f5f5] hover:text-[#EFBF04] transition-colors ${
+                    className={`flex w-full items-center justify-between px-6 py-5 text-lg sm:text-lg md:text-xl font-medium text-[#f5f5f5] hover:text-[#EFBF04] transition-colors ${
                         isMobile ? '' : 'lg:w-auto'
                     }`}
                 >
@@ -63,7 +63,7 @@ function NavItem({
                             <Link
                                 key={index}
                                 href={child.href}
-                                className="block px-7 py-4 sm:py-2 text-base sm:text-sm text-black hover:bg-[#0F7A4A] hover:text-white transition-colors"
+                                className="block px-7 py-4 text-base sm:text-base md:text-lg text-black hover:bg-[#0F7A4A] hover:text-white transition-colors"
                             >
                                 {child.label}
                             </Link>
@@ -77,7 +77,7 @@ function NavItem({
     return (
         <Link
             href={item.href || '#'}
-            className={`block px-6 py-5 sm:py-3 text-lg sm:text-base font-medium text-white hover:text-[#EFBF04] transition-colors ${
+            className={`block px-6 py-5 text-lg sm:text-lg md:text-xl font-medium text-white hover:text-[#EFBF04] transition-colors ${
                 isMobile ? '' : 'lg:inline-block'
             }`}
         >
@@ -157,7 +157,7 @@ export default function HomeNavbar({ transparent }: { transparent?: boolean }) {
                         side="right"
                         className="w-[300px] sm:w-[320px] bg-[#0f7a4a] p-0 cursor-pointer font-calcio-italiano"
                     >
-                        <div className="flex flex-col py-4 sm:py-6 max-h-screen overflow-y-auto divide-y divide-white/10">
+                        <div className="flex flex-col pt-10 md:pt-14 pb-4 sm:pb-6 max-h-screen overflow-y-auto divide-y divide-white/10">
                             {navItems.map((item, index) => (
                                 <NavItem key={index} item={item} isMobile />
                             ))}

@@ -57,12 +57,7 @@ export default function SubGallerySuggestion() {
                             href={`/galeri/${item.id}`}
                             className="group cursor-pointer snap-start shrink-0 w-[75vw] md:w-[calc((100%-48px)/3)] lg:w-[calc((100%-72px)/4)] xl:w-[calc((100%-96px)/5)]"
                         >
-                            <div className="aspect-video bg-gray-400 flex flex-col items-center justify-center">
-                                <span className="text-[10px] font-medium text-gray-600 md:text-sm">
-                                    <span className="md:hidden">640 x 360 px</span>
-                                    <span className="hidden md:inline">1920 x 1080 px</span>
-                                </span>
-                            </div>
+                            <div className="aspect-video bg-cover bg-center rounded-md" style={{ backgroundImage: `url('https://picsum.photos/seed/galeriS${item.id}/640/360')` }}></div>
                             <p className="text-[#1c1c1c] text-left font-bold text-sm md:text-md py-2 group-hover:text-[#0f7a4a] transition-colors">
                                 {item.title}
                             </p>
