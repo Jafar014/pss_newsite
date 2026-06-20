@@ -155,9 +155,9 @@ export default function HomeNavbar({ transparent }: { transparent?: boolean }) {
                     </SheetTrigger>
                     <SheetContent
                         side="right"
-                        className="w-[300px] sm:w-[320px] bg-[#0f7a4a] p-0 cursor-pointer"
+                        className="w-[300px] sm:w-[320px] bg-[#0f7a4a] p-0 cursor-pointer font-calcio-italiano"
                     >
-                        <div className="flex flex-col py-4 sm:py-6 max-h-screen overflow-y-auto">
+                        <div className="flex flex-col py-4 sm:py-6 max-h-screen overflow-y-auto divide-y divide-white/10">
                             {navItems.map((item, index) => (
                                 <NavItem key={index} item={item} isMobile />
                             ))}
