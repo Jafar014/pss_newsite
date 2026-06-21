@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\JadwalController;
 use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Admin\StandingController;
 use App\Http\Controllers\HomeController;
@@ -10,6 +11,7 @@ use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 use Laravel\Fortify\Features;
 
 Route::get('/', [HomeController::class, '__invoke'])->name('home');
@@ -89,6 +91,39 @@ Route::prefix('admin')->group(function () {
             'staff' => $staff,
         ]);
     })->name('admin.staff');
+    Route::post('/staff', function (Request $request) {
+        $validated = $request->validate([
+            'full_name' => 'required|string|max:255',
+            'role' => 'nullable|string|max:100',
+            'photo_url' => 'nullable|string',
+        ]);
+
+        Staff::create($validated);
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => 'Staff berhasil ditambahkan.']);
+
+        return redirect()->back();
+    })->name('admin.staff.store');
+    Route::put('/staff/{staff}', function (Request $request, Staff $staff) {
+        $validated = $request->validate([
+            'full_name' => 'required|string|max:255',
+            'role' => 'nullable|string|max:100',
+            'photo_url' => 'nullable|string',
+        ]);
+
+        $staff->update($validated);
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => 'Staff berhasil diperbarui.']);
+
+        return redirect()->back();
+    })->name('admin.staff.update');
+    Route::delete('/staff/{staff}', function (Staff $staff) {
+        $staff->delete();
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => 'Staff berhasil dihapus.']);
+
+        return redirect()->back();
+    })->name('admin.staff.destroy');
     Route::get('/pemain', [PlayerController::class, 'index'])->name('admin.player');
     Route::post('/pemain', [PlayerController::class, 'store'])->name('admin.player.store');
     Route::put('/pemain/{player}', [PlayerController::class, 'update'])->name('admin.player.update');
@@ -96,6 +131,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/kompetisi/klasemen', [StandingController::class, 'index'])->name('admin.kompetisi.klasemen');
     Route::put('/kompetisi/klasemen/{standing}', [StandingController::class, 'update'])->name('admin.kompetisi.klasemen.update');
     Route::delete('/kompetisi/klasemen/{standing}', [StandingController::class, 'destroy'])->name('admin.kompetisi.klasemen.destroy');
+    Route::get('/kompetisi/jadwal', [JadwalController::class, 'index'])->name('admin.kompetisi.jadwal');
+    Route::post('/kompetisi/jadwal', [JadwalController::class, 'store'])->name('admin.kompetisi.jadwal.store');
+    Route::put('/kompetisi/jadwal/{id}', [JadwalController::class, 'update'])->name('admin.kompetisi.jadwal.update');
+    Route::delete('/kompetisi/jadwal/{id}', [JadwalController::class, 'destroy'])->name('admin.kompetisi.jadwal.destroy');
+    Route::inertia('/settings', 'admin/settings')->name('admin.settings');
+
 });
 
 require __DIR__.'/settings.php';
