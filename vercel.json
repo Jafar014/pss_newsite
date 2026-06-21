@@ -21,7 +21,8 @@
     "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
-        "APP_DEBUG": "true",
+        "APP_DEBUG": "false",
+        "APP_KEY": "base64:TboMtooaWDMy2ujh9cFs5kFK6DXLFKh9ENgl+r233L8=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
@@ -32,6 +33,7 @@
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
         "DB_CONNECTION": "pgsql",
+        "DB_URL": "postgresql://neondb_owner:npg_OV2jl1vpmYEb@ep-lucky-bonus-ao9th143-pooler.c-2.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
         "APP_URL": "https://pss-sleman-remake.vercel.app",
         "ASSET_URL": "https://pss-sleman-remake.vercel.app"
     }
