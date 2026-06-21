@@ -1,4 +1,5 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
+import staffC58c8e from './staff'
 import player895a40 from './player'
 import kompetisi from './kompetisi'
 /**
@@ -100,7 +101,7 @@ dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 
 /**
-* @see routes/web.php:66
+* @see routes/web.php:68
 * @route '/admin/berita'
 */
 export const news = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -114,7 +115,7 @@ news.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:66
+* @see routes/web.php:68
 * @route '/admin/berita'
 */
 news.url = (options?: RouteQueryOptions) => {
@@ -126,7 +127,7 @@ news.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:66
+* @see routes/web.php:68
 * @route '/admin/berita'
 */
 news.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -135,7 +136,7 @@ news.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:66
+* @see routes/web.php:68
 * @route '/admin/berita'
 */
 news.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -145,7 +146,7 @@ news.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 
 /**
-* @see routes/web.php:73
+* @see routes/web.php:75
 * @route '/admin/sejarah'
 */
 export const history = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -159,7 +160,7 @@ history.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:73
+* @see routes/web.php:75
 * @route '/admin/sejarah'
 */
 history.url = (options?: RouteQueryOptions) => {
@@ -171,7 +172,7 @@ history.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:73
+* @see routes/web.php:75
 * @route '/admin/sejarah'
 */
 history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -180,7 +181,7 @@ history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:73
+* @see routes/web.php:75
 * @route '/admin/sejarah'
 */
 history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -190,7 +191,7 @@ history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 
 /**
-* @see routes/web.php:85
+* @see routes/web.php:87
 * @route '/admin/staff'
 */
 export const staff = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -204,7 +205,7 @@ staff.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:85
+* @see routes/web.php:87
 * @route '/admin/staff'
 */
 staff.url = (options?: RouteQueryOptions) => {
@@ -216,7 +217,7 @@ staff.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:85
+* @see routes/web.php:87
 * @route '/admin/staff'
 */
 staff.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -225,7 +226,7 @@ staff.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:85
+* @see routes/web.php:87
 * @route '/admin/staff'
 */
 staff.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -283,6 +284,55 @@ player.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/admin/settings'
+*/
+export const settings = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: settings.url(options),
+    method: 'get',
+})
+
+settings.definition = {
+    methods: ["get","head"],
+    url: '/admin/settings',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/admin/settings'
+*/
+settings.url = (options?: RouteQueryOptions) => {
+
+
+
+
+    return settings.definition.url + queryParams(options)
+}
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/admin/settings'
+*/
+settings.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: settings.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/admin/settings'
+*/
+settings.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: settings.url(options),
+    method: 'head',
+})
+
+
 
 
 const admin = {
@@ -290,9 +340,10 @@ const admin = {
     dashboard: Object.assign(dashboard, dashboard),
     news: Object.assign(news, news),
     history: Object.assign(history, history),
-    staff: Object.assign(staff, staff),
+    staff: Object.assign(staff, staffC58c8e),
     player: Object.assign(player, player895a40),
     kompetisi: Object.assign(kompetisi, kompetisi),
+    settings: Object.assign(settings, settings),
 }
 
 export default admin

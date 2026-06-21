@@ -1,15 +1,15 @@
 import { Head } from "@inertiajs/react";
 import AdminSidebar from "@/components/admin/sidebar";
-import StandingPanel from "@/components/admin/klasemenPanel";
+import JadwalPanel from "@/components/admin/jadwalPanel";
 
-export default function AdminStanding({ klasemen, clubs }: { klasemen: any; clubs: any }) {
+export default function AdminJadwal({ fixtures, clubs }: { fixtures: any; clubs: any }) {
     return (
         <>
-            <Head title="Klasemen" />
+            <Head title="Jadwal & Hasil"/>
             <div className="flex h-screen overflow-hidden">
                 <AdminSidebar />
                 <div className="flex-1 overflow-y-auto p-6 bg-[#f5f5f5]">
-                    <StandingPanel klasemen={klasemen} clubs={clubs} />
+                    <JadwalPanel fixtures={fixtures} clubs={clubs}/>
                 </div>
             </div>
         </>
