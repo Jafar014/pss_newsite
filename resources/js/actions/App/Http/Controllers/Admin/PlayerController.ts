@@ -89,7 +89,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PlayerController::update
-* @see app/Http/Controllers/Admin/PlayerController.php:40
+* @see app/Http/Controllers/Admin/PlayerController.php:46
 * @route '/admin/pemain/{player}'
 */
 export const update = (args: { player: number | { id: number } } | [player: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -104,7 +104,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PlayerController::update
-* @see app/Http/Controllers/Admin/PlayerController.php:40
+* @see app/Http/Controllers/Admin/PlayerController.php:46
 * @route '/admin/pemain/{player}'
 */
 update.url = (args: { player: number | { id: number } } | [player: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -138,7 +138,7 @@ update.url = (args: { player: number | { id: number } } | [player: number | { id
 
 /**
 * @see \App\Http\Controllers\Admin\PlayerController::update
-* @see app/Http/Controllers/Admin/PlayerController.php:40
+* @see app/Http/Controllers/Admin/PlayerController.php:46
 * @route '/admin/pemain/{player}'
 */
 update.put = (args: { player: number | { id: number } } | [player: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -149,7 +149,7 @@ update.put = (args: { player: number | { id: number } } | [player: number | { id
 
 /**
 * @see \App\Http\Controllers\Admin\PlayerController::destroy
-* @see app/Http/Controllers/Admin/PlayerController.php:59
+* @see app/Http/Controllers/Admin/PlayerController.php:71
 * @route '/admin/pemain/{player}'
 */
 export const destroy = (args: { player: number | { id: number } } | [player: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -164,7 +164,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PlayerController::destroy
-* @see app/Http/Controllers/Admin/PlayerController.php:59
+* @see app/Http/Controllers/Admin/PlayerController.php:71
 * @route '/admin/pemain/{player}'
 */
 destroy.url = (args: { player: number | { id: number } } | [player: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -198,7 +198,7 @@ destroy.url = (args: { player: number | { id: number } } | [player: number | { i
 
 /**
 * @see \App\Http\Controllers\Admin\PlayerController::destroy
-* @see app/Http/Controllers/Admin/PlayerController.php:59
+* @see app/Http/Controllers/Admin/PlayerController.php:71
 * @route '/admin/pemain/{player}'
 */
 destroy.delete = (args: { player: number | { id: number } } | [player: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({

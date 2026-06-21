@@ -1,4 +1,4 @@
-import { router } from "@inertiajs/react";
+import { router, usePage } from "@inertiajs/react";
 import { Search, Plus, Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
 import {
@@ -13,9 +13,7 @@ import {
 import {
     Dialog,
     DialogContent,
-    DialogHeader,
     DialogTitle,
-    DialogTrigger,
     DialogClose,
 } from "@/components/ui/dialog";
 
@@ -25,8 +23,10 @@ interface PlayerItem {
     full_name: string;
     jersey_number: number | null;
     position: string | null;
+    matches_played: number;
     goals: number;
     assists: number;
+    saved_cleansheet: number;
     age: number | null;
     country: string | null;
     photo_url: string | null;
@@ -50,14 +50,15 @@ interface PlayerPaginated {
 }
 
 export default function PlayerPanel({ pemain }: { pemain: PlayerPaginated }) {
+    const { errors } = usePage().props;
     const [editing, setEditing] = useState<PlayerItem | null>(null);
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [deleteTarget, setDeleteTarget] = useState<PlayerItem | null>(null);
     const [form, setForm] = useState({
-        team_id: '',
+        team_id: '4',
         full_name: '',
         jersey_number: '',
         position: '',
-        goals: '0',
-        assists: '0',
         age: '',
         country: '',
         photo_url: '',
@@ -65,17 +66,16 @@ export default function PlayerPanel({ pemain }: { pemain: PlayerPaginated }) {
 
     function resetForm() {
         setForm({
-            team_id: '',
+            team_id: '4',
             full_name: '',
             jersey_number: '',
             position: '',
-            goals: '0',
-            assists: '0',
             age: '',
             country: '',
             photo_url: '',
         });
         setEditing(null);
+        setDialogOpen(false);
     }
 
     function openEdit(player: PlayerItem) {
@@ -85,8 +85,6 @@ export default function PlayerPanel({ pemain }: { pemain: PlayerPaginated }) {
             full_name: player.full_name,
             jersey_number: player.jersey_number ? String(player.jersey_number) : '',
             position: player.position || '',
-            goals: String(player.goals),
-            assists: String(player.assists),
             age: player.age ? String(player.age) : '',
             country: player.country || '',
             photo_url: player.photo_url || '',
@@ -99,8 +97,6 @@ export default function PlayerPanel({ pemain }: { pemain: PlayerPaginated }) {
             ...form,
             team_id: Number(form.team_id),
             jersey_number: form.jersey_number ? Number(form.jersey_number) : null,
-            goals: Number(form.goals),
-            assists: Number(form.assists),
             age: form.age ? Number(form.age) : null,
         };
 
@@ -116,9 +112,13 @@ export default function PlayerPanel({ pemain }: { pemain: PlayerPaginated }) {
     }
 
     function handleDelete(id: number) {
-        if (confirm('Hapus pemain ini?')) {
-            router.delete(`/admin/pemain/${id}`);
-        }
+        router.delete(`/admin/pemain/${id}`, {
+            onSuccess: () => setDeleteTarget(null),
+        });
+    }
+
+    function confirmDelete(item: PlayerItem) {
+        setDeleteTarget(item);
     }
 
     return (
@@ -134,103 +134,98 @@ export default function PlayerPanel({ pemain }: { pemain: PlayerPaginated }) {
                             placeholder="Cari pemain..."
                             className="w-full h-12 pl-4 text-[#0f7a4a] rounded-md border border-[#1c1c1c]/20 bg-[#f5f5f5] text-sm shadow-xs focus:outline-none focus:ring-2 focus:ring-[#0f7a4a] focus:border-transparent"
                         />
-                        <Search className="absolute right-4 top-1/2 -translate-y-1/2 size-4 text-gray-400" />
+                        <Search className="absolute right-4 top-1/2 -translate-y-1/2 size-4 text-[#1c1c1c]/40" />
                     </div>
 
-                    <Dialog onOpenChange={(open) => { if (!open) resetForm(); }}>
-                        <DialogTrigger asChild>
-                            <button className="inline-flex items-center gap-2 h-12 cursor-pointer px-4 rounded-md text-sm font-medium text-white bg-[#0f7a4a] hover:bg-[#0c6239] transition-colors ml-auto">
-                                <Plus className="size-4" />
-                                Tambah Pemain
-                            </button>
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-lg">
-                            <DialogHeader>
-                                <DialogTitle>{editing ? 'Edit Pemain' : 'Tambah Pemain'}</DialogTitle>
-                            </DialogHeader>
-                            <form onSubmit={handleSubmit} className="space-y-4">
+                    <button
+                        onClick={() => { resetForm(); setDialogOpen(true); }}
+                        className="inline-flex items-center gap-2 h-12 cursor-pointer px-4 rounded-md text-sm font-medium text-white bg-[#0f7a4a] hover:bg-[#0c6239] transition-colors ml-auto"
+                    >
+                        <Plus className="size-4" />
+                        Tambah Pemain
+                    </button>
+
+                    <Dialog open={dialogOpen} onOpenChange={(open) => { if (!open) resetForm(); }}>
+                        <DialogContent className="sm:max-w-xl bg-[#f5f5f5] border-0 p-0 gap-0">
+                            <div className="px-6 py-4 border-b border-[#1c1c1c]/10">
+                                <DialogTitle className="text-lg font-semibold text-[#1c1c1c]">{editing ? 'Edit Pemain' : 'Tambah Pemain'}</DialogTitle>
+                            </div>
+                            <form onSubmit={handleSubmit} className="p-6 space-y-4">
                                 <div className="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <label className="block text-sm font-medium mb-1">Nama Lengkap</label>
+                                    <div className="col-span-2">
+                                        <label className="block text-sm font-medium text-[#1c1c1c]/70 mb-1.5">Nama Lengkap</label>
                                         <input
                                             type="text"
                                             required
                                             value={form.full_name}
                                             onChange={(e) => setForm({ ...form, full_name: e.target.value })}
-                                            className="w-full h-10 px-3 rounded-md border border-[#1c1c1c]/20 text-sm focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]"
+                                            className="w-full h-10 px-3 rounded-lg border border-[#1c1c1c]/15 bg-[#f5f5f5] text-sm text-[#1c1c1c] focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]/30 focus:border-[#0f7a4a] transition-all"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium mb-1">No Punggung</label>
+                                        <label className="block text-sm font-medium text-[#1c1c1c]/70 mb-1.5">No Punggung</label>
                                         <input
                                             type="number"
                                             value={form.jersey_number}
                                             onChange={(e) => setForm({ ...form, jersey_number: e.target.value })}
-                                            className="w-full h-10 px-3 rounded-md border border-[#1c1c1c]/20 text-sm focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]"
+                                            className="w-full h-10 px-3 rounded-lg border border-[#1c1c1c]/15 bg-[#f5f5f5] text-sm text-[#1c1c1c] focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]/30 focus:border-[#0f7a4a] transition-all"
                                         />
+                                        {errors.jersey_number && (
+                                            <p className="text-sm text-red-600 mt-1">{errors.jersey_number}</p>
+                                        )}
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium mb-1">Posisi</label>
-                                        <input
-                                            type="text"
+                                        <label className="block text-sm font-medium text-[#1c1c1c]/70 mb-1.5">Posisi</label>
+                                        <select
                                             value={form.position}
                                             onChange={(e) => setForm({ ...form, position: e.target.value })}
-                                            className="w-full h-10 px-3 rounded-md border border-[#1c1c1c]/20 text-sm focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]"
-                                        />
+                                            className="w-full h-10 px-3 rounded-lg border border-[#1c1c1c]/15 bg-[#f5f5f5] text-sm text-[#1c1c1c] focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]/30 focus:border-[#0f7a4a] transition-all"
+                                        >
+                                            <option value="">Pilih posisi</option>
+                                            <option value="Goalkeeper">Goalkeeper</option>
+                                            <option value="Defender">Defender</option>
+                                            <option value="Midfielder">Midfielder</option>
+                                            <option value="Forward">Forward</option>
+                                        </select>
+                                        {errors.position && (
+                                            <p className="text-sm text-red-600 mt-1">{errors.position}</p>
+                                        )}
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium mb-1">Usia</label>
+                                        <label className="block text-sm font-medium text-[#1c1c1c]/70 mb-1.5">Usia</label>
                                         <input
                                             type="number"
                                             value={form.age}
                                             onChange={(e) => setForm({ ...form, age: e.target.value })}
-                                            className="w-full h-10 px-3 rounded-md border border-[#1c1c1c]/20 text-sm focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]"
+                                            className="w-full h-10 px-3 rounded-lg border border-[#1c1c1c]/15 bg-[#f5f5f5] text-sm text-[#1c1c1c] focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]/30 focus:border-[#0f7a4a] transition-all"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium mb-1">Gol</label>
-                                        <input
-                                            type="number"
-                                            value={form.goals}
-                                            onChange={(e) => setForm({ ...form, goals: e.target.value })}
-                                            className="w-full h-10 px-3 rounded-md border border-[#1c1c1c]/20 text-sm focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium mb-1">Assist</label>
-                                        <input
-                                            type="number"
-                                            value={form.assists}
-                                            onChange={(e) => setForm({ ...form, assists: e.target.value })}
-                                            className="w-full h-10 px-3 rounded-md border border-[#1c1c1c]/20 text-sm focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium mb-1">Negara</label>
+                                        <label className="block text-sm font-medium text-[#1c1c1c]/70 mb-1.5">Negara</label>
                                         <input
                                             type="text"
                                             value={form.country}
                                             onChange={(e) => setForm({ ...form, country: e.target.value })}
-                                            className="w-full h-10 px-3 rounded-md border border-[#1c1c1c]/20 text-sm focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]"
+                                            className="w-full h-10 px-3 rounded-lg border border-[#1c1c1c]/15 bg-[#f5f5f5] text-sm text-[#1c1c1c] focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]/30 focus:border-[#0f7a4a] transition-all"
                                         />
                                     </div>
-                                    <div>
-                                        <label className="block text-sm font-medium mb-1">Foto URL</label>
+                                    <div className="col-span-2">
+                                        <label className="block text-sm font-medium text-[#1c1c1c]/70 mb-1.5">Foto URL</label>
                                         <input
                                             type="text"
                                             value={form.photo_url}
                                             onChange={(e) => setForm({ ...form, photo_url: e.target.value })}
-                                            className="w-full h-10 px-3 rounded-md border border-[#1c1c1c]/20 text-sm focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]"
+                                            className="w-full h-12 px-3 rounded-lg border border-[#1c1c1c]/15 bg-[#f5f5f5] text-sm text-[#1c1c1c] focus:outline-none focus:ring-2 focus:ring-[#0f7a4a]/30 focus:border-[#0f7a4a] transition-all"
                                         />
                                     </div>
                                 </div>
-                                <div className="flex justify-end gap-2 pt-2">
+                                <div className="flex justify-end gap-3 pt-2 border-t border-[#1c1c1c]/10">
                                     <DialogClose asChild>
-                                        <button type="button" className="px-4 py-2 text-sm rounded-md border border-[#1c1c1c]/20 hover:bg-gray-50 transition-colors cursor-pointer">
+                                        <button type="button" className="px-5 py-2.5 text-sm font-medium rounded-lg border border-[#1c1c1c]/15 bg-[#f5f5f5] text-[#1c1c1c] hover:bg-[#1c1c1c]/5 transition-colors cursor-pointer">
                                             Batal
                                         </button>
                                     </DialogClose>
-                                    <button type="submit" className="px-4 py-2 text-sm text-white bg-[#0f7a4a] hover:bg-[#0c6239] rounded-md transition-colors cursor-pointer">
+                                    <button type="submit" className="px-5 py-2.5 text-sm font-medium text-[#f5f5f5] bg-[#0f7a4a] hover:bg-[#0c6239] rounded-lg transition-colors cursor-pointer shadow-xs">
                                         {editing ? 'Simpan' : 'Tambah'}
                                     </button>
                                 </div>
@@ -240,15 +235,14 @@ export default function PlayerPanel({ pemain }: { pemain: PlayerPaginated }) {
                 </div>
 
                 {/* Tabel */}
-                <div className="relative mt-4 rounded-md overflow-hidden h-100">
+                <div className="relative mt-4 rounded-md overflow-hidden">
                     <table className="w-full table-auto border-collapse">
                         <thead className="bg-[#0f7a4a]/15 text-left">
                             <tr>
                                 <th className="px-4 py-3 text-sm font-bold text-[#1c1c1c]">Nama</th>
                                 <th className="px-4 py-3 text-sm font-bold text-[#1c1c1c]">No</th>
                                 <th className="px-4 py-3 text-sm font-bold text-[#1c1c1c]">Posisi</th>
-                                <th className="px-4 py-3 text-sm font-bold text-[#1c1c1c]">Gol</th>
-                                <th className="px-4 py-3 text-sm font-bold text-[#1c1c1c]">Assist</th>
+                                <th className="px-4 py-3 text-sm font-bold text-[#1c1c1c]">Main</th>
                                 <th className="px-4 py-3 text-sm font-bold text-[#1c1c1c]">Usia</th>
                                 <th className="px-4 py-3 text-sm font-bold text-[#1c1c1c]">Negara</th>
                                 <th className="px-4 py-3 text-sm font-bold text-[#1c1c1c]">Aksi</th>
@@ -257,35 +251,39 @@ export default function PlayerPanel({ pemain }: { pemain: PlayerPaginated }) {
                         <tbody>
                             {pemain.data.length === 0 ? (
                                 <tr>
-                                    <td colSpan={8} className="px-4 py-12 text-center text-sm text-[#1c1c1c]/60">
+                                    <td colSpan={7} className="px-4 py-12 text-center text-sm text-[#1c1c1c]/60">
                                         Tidak ada pemain
                                     </td>
                                 </tr>
                             ) : (
                                 pemain.data.map((item: PlayerItem) => (
                                     <tr key={item.id} className="border-t">
-                                        <td className="px-4 py-3 text-sm text-[#1c1c1c]">{item.full_name}</td>
+                                        <td className="px-4 py-3 text-sm">
+                                            <div className="flex items-center gap-3">
+                                                {item.photo_url ? (
+                                                    <img src={item.photo_url} alt={item.full_name} className="size-8 rounded-full object-cover shrink-0" />
+                                                ) : (
+                                                    <div className="size-8 rounded-full bg-[#1c1c1c]/10 shrink-0" />
+                                                )}
+                                                <span className="text-[#1c1c1c]">{item.full_name}</span>
+                                            </div>
+                                        </td>
                                         <td className="px-4 py-3 text-sm text-[#1c1c1c]">{item.jersey_number || '-'}</td>
                                         <td className="px-4 py-3 text-sm text-[#1c1c1c]">{item.position || '-'}</td>
-                                        <td className="px-4 py-3 text-sm text-[#1c1c1c]">{item.goals}</td>
-                                        <td className="px-4 py-3 text-sm text-[#1c1c1c]">{item.assists}</td>
+                                        <td className="px-4 py-3 text-sm text-[#1c1c1c]">{item.matches_played}</td>
                                         <td className="px-4 py-3 text-sm text-[#1c1c1c]">{item.age || '-'}</td>
                                         <td className="px-4 py-3 text-sm text-[#1c1c1c]">{item.country || '-'}</td>
                                         <td className="px-4 py-3 text-sm">
-                                            <Dialog>
-                                                <DialogTrigger asChild>
-                                                    <button
-                                                        onClick={() => openEdit(item)}
-                                                        className="bg-[#efbf04] text-[#f5f5f5] rounded-md p-2.5 shadow-sm hover:bg-[#d4a903] transition-colors cursor-pointer"
-                                                        title="Edit"
-                                                    >
-                                                        <Pencil className="size-4" />
-                                                    </button>
-                                                </DialogTrigger>
-                                            </Dialog>
                                             <button
-                                                onClick={() => handleDelete(item.id)}
-                                                className="bg-red-600 text-[#f5f5f5] rounded-md p-2.5 shadow-sm hover:bg-red-700 transition-colors ml-2 cursor-pointer"
+                                                onClick={() => { openEdit(item); setDialogOpen(true); }}
+                                                className="bg-[#efbf04] text-white rounded-md p-2.5 shadow-sm hover:bg-[#d4a903] transition-colors cursor-pointer"
+                                                title="Edit"
+                                            >
+                                                <Pencil className="size-4" />
+                                            </button>
+                                            <button
+                                                onClick={() => confirmDelete(item)}
+                                                className="bg-red-600 text-white rounded-md p-2.5 shadow-sm hover:bg-red-700 transition-colors ml-2 cursor-pointer"
                                                 title="Hapus"
                                             >
                                                 <Trash2 className="size-4" />
@@ -354,6 +352,33 @@ export default function PlayerPanel({ pemain }: { pemain: PlayerPaginated }) {
                         </p>
                     </div>
                 )}
+
+                {/* Delete Confirmation */}
+                <Dialog open={!!deleteTarget} onOpenChange={(open) => { if (!open) setDeleteTarget(null); }}>
+                    <DialogContent className="sm:max-w-sm bg-[#f5f5f5] border-0 p-0 gap-0">
+                        <div className="px-6 py-4 border-b border-[#1c1c1c]/10">
+                            <DialogTitle className="text-lg font-semibold text-[#1c1c1c]">Konfirmasi Hapus</DialogTitle>
+                        </div>
+                        <div className="p-6">
+                            <p className="text-sm text-[#1c1c1c]/70">
+                                Apakah Anda yakin ingin menghapus <span className="font-semibold text-[#1c1c1c]">{deleteTarget?.full_name}</span>?
+                            </p>
+                            <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-[#1c1c1c]/10">
+                                <DialogClose asChild>
+                                    <button type="button" className="px-5 py-2.5 text-sm font-medium rounded-lg border border-[#1c1c1c]/15 bg-[#f5f5f5] text-[#1c1c1c] hover:bg-[#1c1c1c]/5 transition-colors cursor-pointer">
+                                        Batal
+                                    </button>
+                                </DialogClose>
+                                <button
+                                    onClick={() => deleteTarget && handleDelete(deleteTarget.id)}
+                                    className="px-5 py-2.5 text-sm font-medium text-[#f5f5f5] bg-red-600 hover:bg-red-700 rounded-lg transition-colors cursor-pointer shadow-xs"
+                                >
+                                    Hapus
+                                </button>
+                            </div>
+                        </div>
+                    </DialogContent>
+                </Dialog>
             </div>
         </>
     );

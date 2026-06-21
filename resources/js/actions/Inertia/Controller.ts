@@ -626,6 +626,54 @@ Controller35f58437d9250c39f332f5e8e70440b7.head = (options?: RouteQueryOptions):
 /**
 * @see \Inertia\Controller::__invoke
 * @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/admin/settings'
+*/
+const Controller0c70edcc722471a5b69e029da05ad7cd = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: Controller0c70edcc722471a5b69e029da05ad7cd.url(options),
+    method: 'get',
+})
+
+Controller0c70edcc722471a5b69e029da05ad7cd.definition = {
+    methods: ["get","head"],
+    url: '/admin/settings',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/admin/settings'
+*/
+Controller0c70edcc722471a5b69e029da05ad7cd.url = (options?: RouteQueryOptions) => {
+
+
+
+
+    return Controller0c70edcc722471a5b69e029da05ad7cd.definition.url + queryParams(options)
+}
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/admin/settings'
+*/
+Controller0c70edcc722471a5b69e029da05ad7cd.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: Controller0c70edcc722471a5b69e029da05ad7cd.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @route '/admin/settings'
+*/
+Controller0c70edcc722471a5b69e029da05ad7cd.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: Controller0c70edcc722471a5b69e029da05ad7cd.url(options),
+    method: 'head',
+})
+
+/**
+* @see \Inertia\Controller::__invoke
+* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
 * @route '/settings/appearance'
 */
 const Controllere19ee86e9cf603ce1a59a1ec5d21dec5 = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -685,6 +733,7 @@ const Controller = {
     '/dashboard': Controller42a740574ecbfbac32f8cc353fc32db9,
     '/admin/login': Controller047f8ce2fdeb7128b2677a1dd45b96b8,
     '/admin': Controller35f58437d9250c39f332f5e8e70440b7,
+    '/admin/settings': Controller0c70edcc722471a5b69e029da05ad7cd,
     '/settings/appearance': Controllere19ee86e9cf603ce1a59a1ec5d21dec5,
 }
 
