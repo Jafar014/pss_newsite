@@ -12,7 +12,7 @@ if (getenv('VERCEL')) {
         '/tmp/storage/framework/sessions',
         '/tmp/storage/framework/views',
         '/tmp/storage/app/public',
-        '/tmp/bootstrap/cache',   // <-- INI YANG KURANG, untuk packages/services cache
+        '/tmp/bootstrap/cache',
     ];
     foreach ($dirs as $dir) {
         if (! is_dir($dir)) {
