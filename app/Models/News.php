@@ -18,6 +18,7 @@ class News extends Model
         'author',
         'status',
         'views',
+        'published_at',
     ];
 
     protected $casts = [

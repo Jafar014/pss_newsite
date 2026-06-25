@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\JadwalController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Admin\StandingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KompetisiController;
 use App\Http\Controllers\Tim\SeniorTeamController;
-use App\Models\News;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,13 +65,10 @@ Route::post('/admin/login', function (Request $request) {
 
 Route::prefix('admin')->group(function () {
     Route::inertia('/', 'admin/dashboard')->name('admin.dashboard');
-    Route::get('/berita', function () {
-        $news = News::latest('published_at')->paginate(5);
-
-        return inertia('admin/news', [
-            'news' => $news,
-        ]);
-    })->name('admin.news');
+    Route::get('/berita', [NewsController::class, 'index'])->name('admin.news');
+    Route::post('/berita', [NewsController::class, 'store'])->name('admin.news.store');
+    Route::put('/berita/{news}', [NewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('/berita/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
     Route::get('/sejarah', function () {
         $histories = [
             ['id' => 1, 'title' => 'Lahirnya PSS', 'date' => '1976-05-20', 'description' => 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'],
