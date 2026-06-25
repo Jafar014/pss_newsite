@@ -107,7 +107,7 @@ export default function HomeNavbar({ transparent }: { transparent?: boolean }) {
         >
             <Link href="/" className="flex items-center shrink-0">
                 <img
-                    src="/pssLogoNegatif.webp"
+                    src="/pssLogo.webp"
                     alt="PSS Logo"
                     className="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16"
                 />
