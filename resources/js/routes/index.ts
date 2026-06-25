@@ -138,7 +138,7 @@ register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\HomeController::home
-* @see app/Http/Controllers/HomeController.php:13
+* @see app/Http/Controllers/HomeController.php:14
 * @route '/'
 */
 export const home = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -153,7 +153,7 @@ home.definition = {
 
 /**
 * @see \App\Http\Controllers\HomeController::home
-* @see app/Http/Controllers/HomeController.php:13
+* @see app/Http/Controllers/HomeController.php:14
 * @route '/'
 */
 home.url = (options?: RouteQueryOptions) => {
@@ -166,7 +166,7 @@ home.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\HomeController::home
-* @see app/Http/Controllers/HomeController.php:13
+* @see app/Http/Controllers/HomeController.php:14
 * @route '/'
 */
 home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -176,7 +176,7 @@ home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\HomeController::home
-* @see app/Http/Controllers/HomeController.php:13
+* @see app/Http/Controllers/HomeController.php:14
 * @route '/'
 */
 home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -186,8 +186,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 
 /**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @see routes/web.php:28
 * @route '/berita'
 */
 export const news = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -201,8 +200,7 @@ news.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @see routes/web.php:28
 * @route '/berita'
 */
 news.url = (options?: RouteQueryOptions) => {
@@ -214,8 +212,7 @@ news.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @see routes/web.php:28
 * @route '/berita'
 */
 news.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -224,8 +221,7 @@ news.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
+* @see routes/web.php:28
 * @route '/berita'
 */
 news.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

@@ -151,7 +151,7 @@ news.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 
 /**
-* @see routes/web.php:72
+* @see routes/web.php:83
 * @route '/admin/sejarah'
 */
 export const history = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -165,7 +165,7 @@ history.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:72
+* @see routes/web.php:83
 * @route '/admin/sejarah'
 */
 history.url = (options?: RouteQueryOptions) => {
@@ -177,7 +177,7 @@ history.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:72
+* @see routes/web.php:83
 * @route '/admin/sejarah'
 */
 history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -186,7 +186,7 @@ history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:72
+* @see routes/web.php:83
 * @route '/admin/sejarah'
 */
 history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -196,7 +196,7 @@ history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 
 /**
-* @see routes/web.php:84
+* @see routes/web.php:95
 * @route '/admin/staff'
 */
 export const staff = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -210,7 +210,7 @@ staff.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:84
+* @see routes/web.php:95
 * @route '/admin/staff'
 */
 staff.url = (options?: RouteQueryOptions) => {
@@ -222,7 +222,7 @@ staff.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:84
+* @see routes/web.php:95
 * @route '/admin/staff'
 */
 staff.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -231,7 +231,7 @@ staff.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:84
+* @see routes/web.php:95
 * @route '/admin/staff'
 */
 staff.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use App\Models\Players;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -78,7 +79,19 @@ class HomeController extends Controller
             ->all()
         );
 
+        $allNews = Cache::remember('home.news', 300, fn () => News::latest('published_at')->take(5)->get()->map(fn ($n) => [
+            'id' => $n->id,
+            'title' => $n->title,
+            'slug' => $n->slug,
+            'thumbnail' => $n->thumbnail,
+        ])->all());
+
+        $heroNews = array_slice($allNews, 0, 1);
+        $headlineNews = array_slice($allNews, 1, 4);
+
         return Inertia::render('home', [
+            'heroNews' => $heroNews,
+            'headlineNews' => $headlineNews,
             'players' => Inertia::defer(fn () => $players),
             'lastMatch' => $lastMatch,
             'upcomingMatch' => $upcomingMatch,

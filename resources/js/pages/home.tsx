@@ -18,10 +18,14 @@ function FooterSkeleton() {
 }
 
 export default function HomePage({
+    heroNews,
+    headlineNews,
     lastMatch,
     upcomingMatch,
     standings,
 }: {
+    heroNews?: any[];
+    headlineNews?: any[];
     lastMatch?: any;
     upcomingMatch?: any;
     standings?: any[];
@@ -31,8 +35,8 @@ export default function HomePage({
             <Head title="Home" />
             <div className="min-h-screen w-full overflow-x-hidden bg-[#f5f5f5]">
                 <HomeNavbar transparent />
-                <HomeHero />
-                <HomeNews />
+                <HomeHero heroNews={heroNews || []} />
+                <HomeNews headlineNews={headlineNews || []} />
                 <MatchCards
                     lastMatch={lastMatch}
                     upcomingMatch={upcomingMatch}

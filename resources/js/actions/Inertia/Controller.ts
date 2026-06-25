@@ -2,54 +2,6 @@ import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefa
 /**
 * @see \Inertia\Controller::__invoke
 * @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/berita'
-*/
-const Controller7c2fabf6cf13e33fa98781521c318790 = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: Controller7c2fabf6cf13e33fa98781521c318790.url(options),
-    method: 'get',
-})
-
-Controller7c2fabf6cf13e33fa98781521c318790.definition = {
-    methods: ["get","head"],
-    url: '/berita',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/berita'
-*/
-Controller7c2fabf6cf13e33fa98781521c318790.url = (options?: RouteQueryOptions) => {
-
-
-
-
-    return Controller7c2fabf6cf13e33fa98781521c318790.definition.url + queryParams(options)
-}
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/berita'
-*/
-Controller7c2fabf6cf13e33fa98781521c318790.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: Controller7c2fabf6cf13e33fa98781521c318790.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
-* @route '/berita'
-*/
-Controller7c2fabf6cf13e33fa98781521c318790.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: Controller7c2fabf6cf13e33fa98781521c318790.url(options),
-    method: 'head',
-})
-
-/**
-* @see \Inertia\Controller::__invoke
-* @see vendor/inertiajs/inertia-laravel/src/Controller.php:13
 * @route '/galeri'
 */
 const Controllerf6d7c31aa90fe6c4f7bac34f2d5f9927 = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -721,7 +673,6 @@ Controllere19ee86e9cf603ce1a59a1ec5d21dec5.head = (options?: RouteQueryOptions):
 
 
 const Controller = {
-    '/berita': Controller7c2fabf6cf13e33fa98781521c318790,
     '/galeri': Controllerf6d7c31aa90fe6c4f7bac34f2d5f9927,
     '/galeri/{matchday}': Controllerf32d98fc125a64f3804aabfa93fac72e,
     '/disclaimer': Controllereff94f67b6cf4c7adffc444613605a32,

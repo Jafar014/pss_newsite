@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\StandingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KompetisiController;
 use App\Http\Controllers\Tim\SeniorTeamController;
+use App\Models\News;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,9 +25,19 @@ Route::get('/debug', function () {
     ]);
 });
 
-Route::inertia('/berita', 'news')->name('news');
-Route::get('/berita/{id}', function ($id) {
-    return inertia('content-news', ['id' => $id]);
+Route::get('/berita', function () {
+    $news = News::latest('published_at')->paginate(6);
+
+    return inertia('news', ['news' => $news]);
+})->name('news');
+Route::get('/berita/{slug}', function ($slug) {
+    $news = News::where('slug', $slug)->firstOrFail();
+    $otherNews = News::latest('published_at')
+        ->where('slug', '!=', $slug)
+        ->take(4)
+        ->get();
+
+    return inertia('content-news', ['news' => $news, 'otherNews' => $otherNews]);
 })->name('berita.detail');
 Route::get('/skuad', [SeniorTeamController::class, 'index'])->name('teams');
 Route::get('/kompetisi', [KompetisiController::class, 'index'])->name('competition');

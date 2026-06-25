@@ -1,16 +1,21 @@
 import { router } from '@inertiajs/react';
 
-const slide = {
-    id: 1,
-    title: 'PSS Sleman Raih Kemenangan Telak di Markas Lawan',
-};
+interface HeroNewsItem {
+    id: number;
+    title: string;
+    slug: string;
+    thumbnail: string | null;
+}
 
-export default function HomeHero() {
+export default function HomeHero({ heroNews }: { heroNews: HeroNewsItem[] }) {
+    const slide = heroNews[0];
+    if (!slide) return null;
+
     return (
         <section className="relative w-full overflow-hidden bg-[#1C1C1C]">
             <div className="relative h-[60vh] min-h-[320px] md:h-[80vh] lg:h-screen">
                 <img
-                    src="https://images.unsplash.com/photo-1769859177914-f66488d71193?q=80&w=1920&auto=format&fit=crop&fm=webp"
+                    src={slide.thumbnail || 'https://images.unsplash.com/photo-1769859177914-f66488d71193?q=80&w=1920&auto=format&fit=crop&fm=webp'}
                     alt={slide.title}
                     fetchPriority="high"
                     className="absolute inset-0 h-full w-full object-cover"
@@ -24,12 +29,12 @@ export default function HomeHero() {
                             {slide.title}
                         </h2>
                         <button
-                            onClick={() => router.visit(`/berita/${slide.id}`)}
+                            onClick={() => router.visit(`/berita/${slide.slug}`)}
                             className="mt-3 inline-flex items-center gap-1 rounded-xl bg-[#f5f5f5]/0 px-3 py-2 text-[10px] font-bold text-[#f5f5f5] uppercase transition-all duration-200 hover:bg-[#0f7a4a] hover:text-[#f5f5f5] border border-[#f5f5f5] sm:mt-4 sm:gap-1.5 sm:px-4 sm:py-2.5 sm:text-xs md:mt-6 md:gap-2 md:px-6 md:py-4 md:text-sm lg:px-8 lg:py-5 lg:text-base cursor-pointer"
                         >
                             Selengkapnya
                         </button>
-                        </div>
+                    </div>
                 </div>
             </div>
         </section>

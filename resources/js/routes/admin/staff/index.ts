@@ -1,6 +1,6 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
-* @see routes/web.php:91
+* @see routes/web.php:102
 * @route '/admin/staff'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -14,7 +14,7 @@ store.definition = {
 } satisfies RouteDefinition<["post"]>
 
 /**
-* @see routes/web.php:91
+* @see routes/web.php:102
 * @route '/admin/staff'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -26,7 +26,7 @@ store.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:91
+* @see routes/web.php:102
 * @route '/admin/staff'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -36,7 +36,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 
 /**
-* @see routes/web.php:104
+* @see routes/web.php:115
 * @route '/admin/staff/{staff}'
 */
 export const update = (args: { staff: number | { id: number } } | [staff: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -50,7 +50,7 @@ update.definition = {
 } satisfies RouteDefinition<["put"]>
 
 /**
-* @see routes/web.php:104
+* @see routes/web.php:115
 * @route '/admin/staff/{staff}'
 */
 update.url = (args: { staff: number | { id: number } } | [staff: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -83,7 +83,7 @@ update.url = (args: { staff: number | { id: number } } | [staff: number | { id: 
 }
 
 /**
-* @see routes/web.php:104
+* @see routes/web.php:115
 * @route '/admin/staff/{staff}'
 */
 update.put = (args: { staff: number | { id: number } } | [staff: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -93,7 +93,7 @@ update.put = (args: { staff: number | { id: number } } | [staff: number | { id: 
 
 
 /**
-* @see routes/web.php:117
+* @see routes/web.php:128
 * @route '/admin/staff/{staff}'
 */
 export const destroy = (args: { staff: number | { id: number } } | [staff: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -107,7 +107,7 @@ destroy.definition = {
 } satisfies RouteDefinition<["delete"]>
 
 /**
-* @see routes/web.php:117
+* @see routes/web.php:128
 * @route '/admin/staff/{staff}'
 */
 destroy.url = (args: { staff: number | { id: number } } | [staff: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -140,7 +140,7 @@ destroy.url = (args: { staff: number | { id: number } } | [staff: number | { id:
 }
 
 /**
-* @see routes/web.php:117
+* @see routes/web.php:128
 * @route '/admin/staff/{staff}'
 */
 destroy.delete = (args: { staff: number | { id: number } } | [staff: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({

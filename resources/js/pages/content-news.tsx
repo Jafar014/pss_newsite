@@ -5,15 +5,29 @@ import SubNewsContent from '@/components/news/sub-news-content';
 import SubNewsHeader from '@/components/news/sub-news-header';
 import SubNewsSuggestion from '@/components/news/sub-news-suggestion';
 
-export default function Berita({ id }: { id: string }) {
+interface NewsItem {
+    id: number;
+    title: string;
+    slug: string;
+    content: string;
+    excerpt: string | null;
+    thumbnail: string | null;
+    category: string | null;
+    author: string | null;
+    status: string;
+    views: number;
+    published_at: string | null;
+}
+
+export default function Berita({ news, otherNews }: { news: NewsItem; otherNews: NewsItem[] }) {
     return (
         <>
-            <Head title="Berita" />
+            <Head title={news.title} />
             <div className="min-h-screen w-full bg-[#f5f5f5] pt-16 md:pt-20 lg:pt-24">
                 <HomeNavbar />
-                <SubNewsHeader/>
-                <SubNewsContent/>
-                <SubNewsSuggestion/>
+                <SubNewsHeader news={news} />
+                <SubNewsContent news={news} />
+                <SubNewsSuggestion otherNews={otherNews} />
                 <HomeFooter />
             </div>
         </>
