@@ -79,7 +79,7 @@ class HomeController extends Controller
             ->all()
         );
 
-        $allNews = Cache::remember('home.news', 300, fn () => News::latest('published_at')->take(5)->get()->map(fn ($n) => [
+        $allNews = Cache::remember('home.news', 300, fn () => News::where('status', 'published')->latest('published_at')->take(5)->get()->map(fn ($n) => [
             'id' => $n->id,
             'title' => $n->title,
             'slug' => $n->slug,
