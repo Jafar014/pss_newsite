@@ -1,4 +1,5 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
+import loginDf2c2a from './login'
 import newsB3a6f8 from './news'
 import staffC58c8e from './staff'
 import player895a40 from './player'
@@ -48,6 +49,60 @@ login.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 */
 login.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: login.url(options),
+    method: 'head',
+})
+
+
+/**
+* @see routes/web.php:63
+* @route '/admin/logout'
+*/
+export const logout = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: logout.url(options),
+    method: 'get',
+})
+
+logout.definition = {
+    methods: ["get","post","head"],
+    url: '/admin/logout',
+} satisfies RouteDefinition<["get","post","head"]>
+
+/**
+* @see routes/web.php:63
+* @route '/admin/logout'
+*/
+logout.url = (options?: RouteQueryOptions) => {
+
+
+
+
+    return logout.definition.url + queryParams(options)
+}
+
+/**
+* @see routes/web.php:63
+* @route '/admin/logout'
+*/
+logout.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: logout.url(options),
+    method: 'get',
+})
+
+/**
+* @see routes/web.php:63
+* @route '/admin/logout'
+*/
+logout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: logout.url(options),
+    method: 'post',
+})
+
+/**
+* @see routes/web.php:63
+* @route '/admin/logout'
+*/
+logout.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: logout.url(options),
     method: 'head',
 })
 
@@ -151,7 +206,7 @@ news.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 
 /**
-* @see routes/web.php:83
+* @see routes/web.php:92
 * @route '/admin/sejarah'
 */
 export const history = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -165,7 +220,7 @@ history.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:83
+* @see routes/web.php:92
 * @route '/admin/sejarah'
 */
 history.url = (options?: RouteQueryOptions) => {
@@ -177,7 +232,7 @@ history.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:83
+* @see routes/web.php:92
 * @route '/admin/sejarah'
 */
 history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -186,7 +241,7 @@ history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:83
+* @see routes/web.php:92
 * @route '/admin/sejarah'
 */
 history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -196,7 +251,7 @@ history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 
 /**
-* @see routes/web.php:95
+* @see routes/web.php:104
 * @route '/admin/staff'
 */
 export const staff = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -210,7 +265,7 @@ staff.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:95
+* @see routes/web.php:104
 * @route '/admin/staff'
 */
 staff.url = (options?: RouteQueryOptions) => {
@@ -222,7 +277,7 @@ staff.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:95
+* @see routes/web.php:104
 * @route '/admin/staff'
 */
 staff.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -231,7 +286,7 @@ staff.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:95
+* @see routes/web.php:104
 * @route '/admin/staff'
 */
 staff.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -341,7 +396,8 @@ settings.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 
 const admin = {
-    login: Object.assign(login, login),
+    login: Object.assign(login, loginDf2c2a),
+    logout: Object.assign(logout, logout),
     dashboard: Object.assign(dashboard, dashboard),
     news: Object.assign(news, newsB3a6f8),
     history: Object.assign(history, history),

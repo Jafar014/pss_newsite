@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Laravel\Fortify\Features;
 
 Route::get('/', [HomeController::class, '__invoke'])->name('home');
 Route::get('/debug', function () {
@@ -50,14 +49,24 @@ Route::inertia('/toko/produk/{slug}', 'store-product')->name('store.product');
 Route::inertia('/kompetisi/week/{fixture}', 'match-report')->name('match.report');
 
 Route::inertia('/old', 'welcome', [
-    'canRegister' => Features::enabled(Features::registration()),
+    'canRegister' => false,
 ])->name('old-home');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware('auth')->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 });
 
+Route::get('/login', fn () => redirect('/admin/login'))->name('login');
+
 Route::inertia('/admin/login', 'admin/login')->name('admin.login');
+
+Route::match(['get', 'post'], '/admin/logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/admin/login');
+})->name('admin.logout');
 
 Route::post('/admin/login', function (Request $request) {
     $credentials = $request->validate([
@@ -72,9 +81,9 @@ Route::post('/admin/login', function (Request $request) {
     }
 
     return back()->withErrors(['username' => 'Username atau password salah.']);
-});
+})->name('admin.login.store');
 
-Route::prefix('admin')->group(function () {
+Route::middleware('auth')->prefix('admin')->group(function () {
     Route::inertia('/', 'admin/dashboard')->name('admin.dashboard');
     Route::get('/berita', [NewsController::class, 'index'])->name('admin.news');
     Route::post('/berita', [NewsController::class, 'store'])->name('admin.news.store');

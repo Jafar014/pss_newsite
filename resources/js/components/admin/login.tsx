@@ -21,7 +21,7 @@ export default function Login() {
                         <img src="/pssLogo.webp" alt="PSS Sleman" loading="lazy" className="h-20 w-auto" />
                     </div>
 
-                    <h1 className="text-2xl font-bold text-center text-gray-800 mb-2">
+                    <h1 className="text-2xl font-bold text-center text-[#1c1c1c] mb-2">
                         Login Dashboard
                     </h1>
 
@@ -41,7 +41,7 @@ export default function Login() {
                                 type="text"
                                 value={data.username}
                                 onChange={e => setData('username', e.target.value)}
-                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0f7a4a] focus:border-transparent text-sm"
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0f7a4a] focus:border-transparent text-sm text-[#1c1c1c]"
                                 placeholder="Masukkan username"
                                 required
                             />
@@ -56,7 +56,7 @@ export default function Login() {
                                 type="password"
                                 value={data.password}
                                 onChange={e => setData('password', e.target.value)}
-                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0f7a4a] focus:border-transparent text-sm"
+                                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0f7a4a] focus:border-transparent text-sm text-[#1c1c1c]"
                                 placeholder="Masukkan password"
                                 required
                             />

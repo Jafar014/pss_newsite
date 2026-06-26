@@ -1,7 +1,6 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../wayfinder'
 /**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
+* @see routes/web.php:59
 * @route '/login'
 */
 export const login = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -15,8 +14,7 @@ login.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
+* @see routes/web.php:59
 * @route '/login'
 */
 login.url = (options?: RouteQueryOptions) => {
@@ -28,8 +26,7 @@ login.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
+* @see routes/web.php:59
 * @route '/login'
 */
 login.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -38,8 +35,7 @@ login.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/AuthenticatedSessionController.php:47
+* @see routes/web.php:59
 * @route '/login'
 */
 login.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -84,55 +80,6 @@ logout.url = (options?: RouteQueryOptions) => {
 logout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: logout.url(options),
     method: 'post',
-})
-
-
-/**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
-* @route '/register'
-*/
-export const register = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: register.url(options),
-    method: 'get',
-})
-
-register.definition = {
-    methods: ["get","head"],
-    url: '/register',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
-* @route '/register'
-*/
-register.url = (options?: RouteQueryOptions) => {
-
-
-
-
-    return register.definition.url + queryParams(options)
-}
-
-/**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
-* @route '/register'
-*/
-register.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: register.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Laravel\Fortify\Http\Controllers\RegisteredUserController::register
-* @see vendor/laravel/fortify/src/Http/Controllers/RegisteredUserController.php:41
-* @route '/register'
-*/
-register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: register.url(options),
-    method: 'head',
 })
 
 
@@ -186,7 +133,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 
 /**
-* @see routes/web.php:28
+* @see routes/web.php:27
 * @route '/berita'
 */
 export const news = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -200,7 +147,7 @@ news.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:28
+* @see routes/web.php:27
 * @route '/berita'
 */
 news.url = (options?: RouteQueryOptions) => {
@@ -212,7 +159,7 @@ news.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:28
+* @see routes/web.php:27
 * @route '/berita'
 */
 news.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -221,7 +168,7 @@ news.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:28
+* @see routes/web.php:27
 * @route '/berita'
 */
 news.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
