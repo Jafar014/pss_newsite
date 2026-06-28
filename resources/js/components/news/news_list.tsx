@@ -16,6 +16,7 @@ interface NewsItem {
     excerpt: string | null;
     thumbnail: string | null;
     category: string | null;
+    status: string;
     published_at: string | null;
 }
 
@@ -63,7 +64,7 @@ export default function NewsContent({ news }: { news: NewsPaginated }) {
                             Belum ada berita
                         </div>
                     ) : (
-                        news.data.map((item: NewsItem) => (
+                        news.data.filter((item: NewsItem) => item.status === 'published').map((item: NewsItem) => (
                             <Link
                                 key={item.id}
                                 href={`/berita/${item.slug}`}
