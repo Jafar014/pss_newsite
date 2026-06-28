@@ -8,19 +8,17 @@ export default function DisclaimerContent() {
 
                 <div className="space-y-6 text-[#1c1c1c]/80 text-sm sm:text-base md:text-lg leading-relaxed">
 
-                    <div className="border-l-4 border-[#0f7a4a] bg-[#0f7a4a]/5 pl-4 sm:pl-6 py-3 sm:py-4 rounded-r-lg">
-                        <p className="font-bold text-base sm:text-lg md:text-xl text-[#0f7a4a] uppercase">
+                    <div className="border-l-4 border-red-700 bg-[#0f7a4a]/5 pl-4 sm:pl-6 py-3 sm:py-4 rounded-r-lg">
+                        <p className="font-bold text-base sm:text-lg md:text-xl text-red-700 uppercase">
                             Perhatian
                         </p>
                         <p className="text-[#1c1c1c]/80 text-sm sm:text-base md:text-lg mt-1">
-                            Dengan mengakses dan menggunakan situs web ini, Anda menyatakan telah
-                            membaca, memahami, dan menyetujui seluruh ketentuan yang tercantum dalam
-                            disclaimer ini. Mohon untuk membaca setiap poin dengan saksama sebelum
-                            melanjutkan.
+                            Jika anda secara tidak sengaja menemukan laman web ini, mohon untuk dapat meluangkan
+                            waktu untuk membaca disclaimer berikut.
                         </p>
                     </div>
                     <p className="font-semibold text-base sm:text-lg md:text-xl text-[#1c1c1c]">
-                        Situs web ini adalah proyek portofolio pribadi dan tidak memiliki hubungan
+                        Situs web ini adalah proyek portfolio pribadi dan tidak memiliki hubungan
                         afiliasi, koneksi, atau keterikatan apapun dengan PSS Sleman, manajemen klub,
                         pemain, staf, maupun entitas resmi lainnya yang terkait dengan PSS Sleman.
                     </p>
@@ -29,7 +27,7 @@ export default function DisclaimerContent() {
                         Tujuan
                     </h2>
                     <p>
-                        Proyek ini dibuat semata-mata untuk tujuan portofolio dan pengembangan diri
+                        Situs web ini dibuat semata-mata untuk tujuan portfolio dan pengembangan diri
                         dalam bidang desain antarmuka dan pengembangan web. Seluruh konten yang
                         ditampilkan merupakan hasil desain ulang (redesign) dari situs resmi
                         pssleman.id dan tidak dimaksudkan untuk digunakan sebagai situs resmi maupun
@@ -40,10 +38,9 @@ export default function DisclaimerContent() {
                         Pendanaan dan Keuntungan
                     </h2>
                     <p>
-                        Proyek ini tidak menerima pendanaan dari pihak mana pun, termasuk tidak
-                        terbatas pada PSS Sleman, sponsor, atau individu/kelompok lain. Proyek ini
-                        tidak bertujuan untuk mengambil keuntungan finansial, komersial, maupun
-                        non-komersial dalam bentuk apa pun.
+                        Laman web ini tidak menerima pendanaan dari pihak manapun dan tidak ada keuntungan
+                        sepeserpun yang diambil dari pembuatan laman ini. Laman web ini murni hanya untuk 
+                        kepentingan portfolio dan tidak dikomersilkan. 
                     </p>
 
                     <h2 className="font-calcio-italiano text-xl sm:text-2xl md:text-3xl text-[#1c1c1c] uppercase mt-10 mb-4">
@@ -62,10 +59,9 @@ export default function DisclaimerContent() {
                         Hak Kekayaan Intelektual
                     </h2>
                     <p>
-                        Seluruh konten, termasuk namun tidak terbatas pada teks, gambar, logo, dan
-                        desain, yang merupakan milik PSS Sleman atau pihak ketiga lainnya, digunakan
-                        hanya untuk tujuan ilustratif dalam konteks portofolio. Tidak ada pelanggaran
-                        hak cipta yang dimaksudkan.
+                        Seluruh konten yang ada pada laman ini, baik elemen teks, gambar, logo, maupun desain hanya 
+                        digunakan untuk tujuan ilustratif dalam konteks portfolio. Kredit diberikan kepada pssleman.id 
+                        dan ileague.id serta beberapa logo pada sponsor atas aset-aset yang digunakan untuk keperluan laman web.
                     </p>
 
                     <h2 className="font-calcio-italiano text-xl sm:text-2xl md:text-3xl text-[#1c1c1c] uppercase mt-10 mb-4">
@@ -76,6 +72,15 @@ export default function DisclaimerContent() {
                         tidak menunjukkan afiliasi atau dukungan terhadap situs tujuan. Kami tidak
                         bertanggung jawab atas isi, kebijakan privasi, atau praktik situs eksternal
                         mana pun.
+                    </p>
+
+                    <h2 className="font-calcio-italiano text-xl sm:text-2xl md:text-3xl text-[#1c1c1c] uppercase mt-10 mb-4">
+                        KONTEN
+                    </h2>
+                    <p>
+                        Segala informasi yang disajikan hanyalah sebagai aspek pendukung untuk kebutuhan visual dan bukan untuk
+                        dijadikan referensi karena informasi yang disajikan belum terbukti atas kebenarannya. Saya tidak 
+                        bertanggung jawab atas apapun yang terjadi jika anda menjadikan semua informasi sebagai bahan rujukan anda.
                     </p>
 
                     <h2 className="font-calcio-italiano text-xl sm:text-2xl md:text-3xl text-[#1c1c1c] uppercase mt-10 mb-4">
