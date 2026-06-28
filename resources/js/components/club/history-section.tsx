@@ -54,15 +54,15 @@ export default function HistorySection() {
                 return (
                     <div
                         key={item.id}
-                        className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"}`}
+                        className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} lg:min-h-[60vh]`}
                     >
                         <div className="relative w-full overflow-hidden lg:w-1/2">
                             <img
                                 src={item.image ?? ""}
                                 alt={item.title}
-                                className="h-64 w-full object-cover lg:h-[50vh]"
+                                className="h-64 w-full object-cover lg:h-full"
                             />
-                            <div className={`hidden lg:absolute lg:inset-0 ${isEven ? "lg:bg-gradient-to-r" : "lg:bg-gradient-to-l"} from-[#1c1c1c]/40 to-transparent`} />
+                            <div className={`absolute inset-0 ${isEven ? "bg-gradient-to-r" : "bg-gradient-to-l"} from-[#1c1c1c]/40 to-transparent`} />
                         </div>
                         <div className="flex w-full items-center bg-[#f5f5f5] lg:w-1/2">
                             <div className="px-6 py-8 lg:px-12 lg:py-0">
