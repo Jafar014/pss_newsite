@@ -1,232 +1,86 @@
+interface HistoryItem {
+    id: number;
+    title: string;
+    date: string;
+    description: string;
+    image: string | null;
+}
+
+const timeline: HistoryItem[] = [
+    {
+        id: 1,
+        title: "Lahirnya PSS",
+        date: "1976-05-20",
+        description: "PSS Sleman lahir pada 20 Mei 1976 sebagai jawaban atas keinginan masyarakat Sleman untuk memiliki perserikatan sepak bola, setelah terpenuhi syarat minimal lima klub. Saat itu sudah ada PS Mlati, AMS Seyegan, PSK Kalasan, Godean Putra, dan PSKS Sleman, lalu PSS dibentuk dengan Ketua Umum Gafar Anwar. Setelah itu, kepemimpinan berlanjut ke Drs. Suyadi, Drs. R. Subardi Pd, Letkol Infanteri Suhartono, H. RM. Tirun Marwito, S.H., hingga para bupati seperti Drs. H. Arifin Ilyas dan Drs. H. Ibnu Subiyanto, Akt.",
+        image: "https://images.unsplash.com/photo-1769859177914-f66488d71193?q=80&w=800&auto=format&fit=crop&fm=webp",
+    },
+    {
+        id: 2,
+        title: "Awal Kiprah PSS Sleman",
+        date: "1976-01-01",
+        description: "PSS Sleman memulai debut resminya pada turnamen seleksi Pra PON DIY tahun 1976 di Stadion Kridosono, Yogyakarta. Sejak pertengahan tahun 1980-an, PSS secara konsisten membangun kultur sepak bola yang kuat melalui kompetisi internal rutin yang bahkan sempat dipuji ketua PSSI sebagai yang terbaik di Indonesia. Meski berstatus tim perserikatan muda dan minim sponsor besar, klub ini mandiri dengan mengandalkan motivasi tinggi serta kontribusi pribadi dari masyarakat Sleman yang gila bola. Perjuangan panjang PSS di Divisi II sejak tahun 1979 sering kali kandas di zona regional akibat persaingan ketat dengan tim-tim asal Jawa Tengah. PSS akhirnya berhasil promosi ke Divisi Satu Liga Indonesia setelah melewati babak play-off yang dramatis di Stadion Tridadi pada Juli 1996 di bawah asuhan pelatih Suwarno.",
+        image: "https://images.unsplash.com/photo-1769859177914-f66488d71193?q=80&w=800&auto=format&fit=crop&fm=webp",
+    },
+    {
+        id: 3,
+        title: "Divisi Satu Liga Indonesia",
+        date: "1996-11-17",
+        description: "Debut PSS Sleman di Divisi Satu Liga Indonesia 1996/1997 cukup mengejutkan setelah berhasil lolos ke babak sepuluh besar bersama Persikabo Bogor. Sayangnya, langkah mereka menuju babak semifinal terhenti karena hanya mampu finis di peringkat ketiga Grup A di Stadion Mandala Krida. Pada musim 1999/2000, Bupati Drs. H. Arifin Ilyas memiliki motivasi kuat untuk mengantarkan PSS ke kasta tertinggi di akhir masa jabatannya. Di tengah situasi krisis moneter, PSS akhirnya sukses mengunci tiket promosi ke Divisi Utama Liga Indonesia setelah finis sebagai Juara II dalam babak empat besar di Tangerang. Keberhasilan pada Mei 2000 tersebut juga diwarnai aksi gemilang penyerang M. Eksan yang keluar sebagai pencetak gol terbanyak kompetisi dengan torehan 11 gol.",
+        image: "https://images.unsplash.com/photo-1769859177914-f66488d71193?q=80&w=800&auto=format&fit=crop&fm=webp",
+    },
+    {
+        id: 4,
+        title: "Divisi Utama Liga Indonesia",
+        date: "2001-01-14",
+        description: "Perjalanan PSS Sleman menuju Divisi Utama Liga Indonesia diraih lewat proses panjang yang matang dan bukan karena hasil karbitan. Meski sempat dipandang sebelah mata, PSS membuktikan diri mampu bersaing di kasta tertinggi dengan tetap mengandalkan para pemain lokal andalan seperti M. Eksan dan Slamet Riyadi. Pada penampilan perdananya, PSS langsung membuat kejutan besar dengan membalikkan keadaan dan menundukkan tim elit bertabur bintang, Pelita Solo, dengan skor 2-1. Kemenangan tak terduga atas Pelita Solo ini bahkan sempat membuat Gubernur DIY, Sri Sultan Hamengkubuwana X, merasa kaget sekaligus heran dengan kemampuan anak-anak Sleman. Berbekal semangat tinggi dan mental pantang menyerah, PSS kemudian sukses mengalahkan Gelora Dewata hingga sempat bertengger di puncak klasemen sementara.",
+        image: "https://images.unsplash.com/photo-1769859177914-f66488d71193?q=80&w=800&auto=format&fit=crop&fm=webp",
+    },
+];
+
+function formatDate(dateString: string) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+    });
+}
+
 export default function HistorySection() {
-    const timelineData = [
-        {
-            title: "Lahirnya PSS",
-            date: "20-Mei-1976",
-            description:"lorem ipsum dolor sit amet."
-        },
-        {
-            title: "Topik 2",
-            date: "20-Mei-1986",
-            description:"lorem ipsum dolor sit amet."
-        },
-        {
-            title: "Topik 3",
-            date: "20-Mei-2001",
-            description:"lorem ipsum dolor sit amet."
-        },
-        {
-            title: "topik 4",
-            date: "20-Mei-1976",
-            description:"lorem ipsum dolor sit amet."
-        },
-    ]
-
     return (
-        <section className="relative h-full">
-        
-            {/* Header Section */}
-            <div className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-[#0f7a4a]/75" />
-                <div className="relative z-10 flex flex-col items-center justify-center py-12 md:py-16">
-                    <h2 className="font-calcio-italiano mb-6 text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white uppercase animate-typing animate-delay-400 overflow-hidden whitespace-nowrap text-center">Sejarah Klub
-                    </h2>
-                </div>
-            </div>
-
-           <div className="max-w-full mt-6 md:mt-8 mx-4 mb-8">
-                {/* Sejarah 1 - Desktop */}
-                <div className="hidden xl:grid grid-cols-5 w-full">
-                    <div className="relative col-span-2 h-full border-2 border-[#1c1c1c]/30 rounded-xl -mr-12 ml-8 mt-16">
-                        <div className="rounded-t-xl w-full h-75 bg-cover bg-center mb-4" style={{ backgroundImage: "url('https://picsum.photos/seed/sejarah1/800/450')" }} />
-                        <div className="relative rounded-b-xl p-2 w-full h-auto">
-                            <div className="justify-end flex">
-                                <h1 className="text-[#0f7a4a] p-2 text-2xl font-bold font-calcio-italiano">Lahirnya PSS Sleman </h1>
-                            </div>
-                            <div className="justify-end flex">
-                                <p className="text-[#0f7a4a] text-md px-2 font-bold">20 Mei 1976</p>
-                            </div>
-                            <p className="text-[#1c1c1c] p-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem aspernatur nesciunt asperiores! Recusandae ducimus possimus dolore obcaecati assumenda tempora aliquam quae praesentium nulla alias. Deserunt ad error molestias reiciendis amet. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi voluptatem eligendi voluptates adipisci, natus earum numquam alias, necessitatibus distinctio ratione nesciunt minima ad officiis omnis amet consectetur. Aliquam, sit qui. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore nam eius iste veritatis, laboriosam doloribus nesciunt amet consequatur beatae qui asperiores distinctio dolores deleniti impedit, labore id perspiciatis harum assumenda.</p>
+        <section className="w-full pb-12 md:pb-20">
+            {timeline.map((item, index) => {
+                const isEven = index % 2 === 0;
+                return (
+                    <div
+                        key={item.id}
+                        className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"}`}
+                    >
+                        <div className="relative w-full overflow-hidden lg:w-1/2">
+                            <img
+                                src={item.image ?? ""}
+                                alt={item.title}
+                                className="h-64 w-full object-cover lg:h-[50vh]"
+                            />
+                            <div className={`hidden lg:absolute lg:inset-0 ${isEven ? "lg:bg-gradient-to-r" : "lg:bg-gradient-to-l"} from-[#1c1c1c]/40 to-transparent`} />
                         </div>
-                    </div>
-                    <div className="relative h-full">
-                        <span className="text-[#f5f5f5] absolute left-22.5 font-calcio-italiano text-xl py-2 bg-[#0f7a4a] rounded-lg px-2">Timeline Sejarah</span>
-                        <div className="absolute inset-0 bg-[#1c1c1c]/25 w-2 left-1/2 top-11"/>
-                        <div className="absolute rounded-lg inset-0 bg-[#0f7a4a] w-16 h-8 left-30 top-1/2 [clip-path:polygon(15%_0,100%_0,100%_100%,15%_100%,0_50%)]">
-                            <span className="m-5 font-calcio-italiano text-xl">1976</span>
-                        </div>
-                    </div>
-                    <div className="relative col-span-2 h-10"/>
-                </div>
-
-                {/* Timeline entries untuk lg ke bawah */}
-                {/* Timeline entries untuk lg ke bawah */}
-                <div className="xl:hidden">
-                    {/* Entry 1 */}
-                    <div className="flex gap-3 sm:gap-4  mb-8">
-                        <div className="flex flex-col items-center">
-                            {/* timeline tahun sejarah */}
-                            <span className="bg-[#0f7a4a] text-white text-xs sm:text-sm font-calcio-italiano px-2 sm:px-3 py-0.5 rounded-md whitespace-nowrap">1976</span>
-                            <div className="flex-1 w-0.5 bg-[#0f7a4a]/30 mt-1" />
-                        </div>
-                        <div className="relative flex-1 mt-1">
-                            <div className="border-2 border-[#1c1c1c]/30 rounded-xl">
-                                {/* Gambar */}
-                                <div className="rounded-t-xl w-full aspect-video bg-cover bg-center" style={{ backgroundImage: "url('https://picsum.photos/seed/sejarahM1/800/450')" }} />
-
-                                <div className="rounded-b-xl p-3 sm:p-4">
-                                    {/* Title sejarah */}
-                                    <h1 className="text-[#0f7a4a] text-lg sm:text-xl font-calcio-italiano">Lahirnya PSS Sleman</h1>
-                                    {/* Waktu sejara */}
-                                    <p className="text-[#0f7a4a] text-xs sm:text-sm font-bold mb-2">20 Mei 1976</p>
-                                    <p className="text-[#1c1c1c] text-sm sm:text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem aspernatur nesciunt asperiores! Recusandae ducimus possimus dolore obcaecati assumenda tempora aliquam quae praesentium nulla alias. Deserunt ad error molestias reiciendis amet. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi voluptatem eligendi voluptates adipisci, natus earum numquam alias, necessitatibus distinctio ratione nesciunt minima ad officiis omnis amet consectetur. Aliquam, sit qui. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore nam eius iste veritatis, laboriosam doloribus nesciunt amet consequatur beatae qui asperiores distinctio dolores deleniti impedit, labore id perspiciatis harum assumenda.</p>
-                                </div>
+                        <div className="flex w-full items-center bg-[#f5f5f5] lg:w-1/2">
+                            <div className="px-6 py-8 lg:px-12 lg:py-0">
+                                <span className="text-sm font-semibold tracking-widest text-[#0f7a4a] uppercase">
+                                    {formatDate(item.date)}
+                                </span>
+                                <h3 className="mt-3 text-2xl font-bold text-[#1c1c1c] lg:text-4xl">
+                                    {item.title}
+                                </h3>
+                                <div className="mt-4 h-0.5 w-16 bg-[#0f7a4a]" />
+                                <p className="mt-6 text-base leading-relaxed text-[#1c1c1c] lg:text-lg">
+                                    {item.description}
+                                </p>
                             </div>
                         </div>
                     </div>
-
-                    {/* Entry 2 */}
-                    <div className="flex gap-3 sm:gap-4  mb-8">
-                        <div className="flex flex-col items-center">
-                            {/* timeline tahun waktu */}
-                            <span className="bg-[#0f7a4a] text-white text-xs sm:text-sm font-calcio-italiano px-2 sm:px-3 py-0.5 rounded-md whitespace-nowrap">1996</span>
-                            <div className="flex-1 w-0.5 bg-[#0f7a4a]/30 mt-1" />
-                        </div>
-                        <div className="relative flex-1 mt-1">
-                            <div className="border-2 border-[#1c1c1c]/30 rounded-xl">
-                            {/* Gambar sejarah */}
-                                <div className="rounded-t-xl w-full aspect-video bg-cover bg-center" style={{ backgroundImage: "url('https://picsum.photos/seed/sejarahM2/800/450')" }} />
-                                <div className="rounded-b-xl p-3 sm:p-4">
-                                    {/* Judul sejarah */}
-                                    <h1 className="text-[#0f7a4a] text-lg sm:text-xl font-calcio-italiano">Judul Disini</h1>
-                                    {/* Waktu sejarah */}
-                                    <p className="text-[#0f7a4a] text-xs sm:text-sm font-bold mb-2">Tanggal sejarah</p>
-                                    {/* Deskripsi sejarah */}
-                                    <p className="text-[#1c1c1c] text-sm sm:text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem aspernatur nesciunt asperiores! Recusandae ducimus possimus dolore obcaecati assumenda tempora aliquam quae praesentium nulla alias. Deserunt ad error molestias reiciendis amet. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi voluptatem eligendi voluptates adipisci, natus earum numquam alias, necessitatibus distinctio ratione nesciunt minima ad officiis omnis amet consectetur. Aliquam, sit qui. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore nam eius iste veritatis, laboriosam doloribus nesciunt amet consequatur beatae qui asperiores distinctio dolores deleniti impedit, labore id perspiciatis harum assumenda.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Entry 3 */}
-                    <div className="flex gap-3 sm:gap-4  mb-8">
-                        <div className="flex flex-col items-center">
-                            <span className="bg-[#0f7a4a] text-white text-xs sm:text-sm font-calcio-italiano px-2 sm:px-3 py-0.5 rounded-md whitespace-nowrap">2006</span>
-                            <div className="flex-1 w-0.5 bg-[#0f7a4a]/30 mt-1" />
-                        </div>
-                        <div className="relative flex-1 mt-1">
-                            <div className="border-2 border-[#1c1c1c]/30 rounded-xl">
-                            {/* Gambar sejarah */}
-                                <div className="rounded-t-xl w-full aspect-video bg-cover bg-center" style={{ backgroundImage: "url('https://picsum.photos/seed/sejarahM3/800/450')" }} />
-                                <div className="rounded-b-xl p-3 sm:p-4">
-                                    {/* Judul sejarah */}
-                                    <h1 className="text-[#0f7a4a] text-lg sm:text-xl font-calcio-italiano">Judul Disini</h1>
-                                    {/* Waktu sejarah */}
-                                    <p className="text-[#0f7a4a] text-xs sm:text-sm font-bold mb-2">Tanggal sejarah</p>
-                                    {/* Deskripsi sejarah */}
-                                    <p className="text-[#1c1c1c] text-sm sm:text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem aspernatur nesciunt asperiores! Recusandae ducimus possimus dolore obcaecati assumenda tempora aliquam quae praesentium nulla alias. Deserunt ad error molestias reiciendis amet. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi voluptatem eligendi voluptates adipisci, natus earum numquam alias, necessitatibus distinctio ratione nesciunt minima ad officiis omnis amet consectetur. Aliquam, sit qui. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore nam eius iste veritatis, laboriosam doloribus nesciunt amet consequatur beatae qui asperiores distinctio dolores deleniti impedit, labore id perspiciatis harum assumenda.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Entry 4 */}
-                    <div className="flex gap-3 sm:gap-4  mb-4">
-                        <div className="flex flex-col items-center">
-                            <span className="bg-[#0f7a4a] text-white text-xs sm:text-sm font-calcio-italiano px-2 sm:px-3 py-0.5 rounded-md whitespace-nowrap">2018</span>
-                            <div className="flex-1 w-0.5 bg-[#0f7a4a]/30 mt-1" />
-                        </div>
-                        <div className="relative flex-1 mt-1">
-                            <div className="border-2 border-[#1c1c1c]/30 rounded-xl">
-                            {/* Gambar sejarah */}
-                                <div className="rounded-t-xl w-full aspect-video bg-cover bg-center" style={{ backgroundImage: "url('https://picsum.photos/seed/sejarahM4/800/450')" }} />
-                                <div className="rounded-b-xl p-3 sm:p-4">
-                                    {/* Judul sejarah */}
-                                    <h1 className="text-[#0f7a4a] text-lg sm:text-xl font-calcio-italiano">Judul Disini</h1>
-                                    {/* Waktu sejarah */}
-                                    <p className="text-[#0f7a4a] text-xs sm:text-sm font-bold mb-2">Tanggal sejarah</p>
-                                    {/* Deskripsi sejarah */}
-                                    <p className="text-[#1c1c1c] text-sm sm:text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem aspernatur nesciunt asperiores! Recusandae ducimus possimus dolore obcaecati assumenda tempora aliquam quae praesentium nulla alias. Deserunt ad error molestias reiciendis amet. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi voluptatem eligendi voluptates adipisci, natus earum numquam alias, necessitatibus distinctio ratione nesciunt minima ad officiis omnis amet consectetur. Aliquam, sit qui. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore nam eius iste veritatis, laboriosam doloribus nesciunt amet consequatur beatae qui asperiores distinctio dolores deleniti impedit, labore id perspiciatis harum assumenda.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Sejarah 2 - Desktop */}
-                <div className="hidden xl:grid grid-cols-5 w-full">
-                    <div className="relative col-span-2 h-10"/>
-                    <div className="relative h-full">
-                        <div className="absolute inset-0 bg-[#1c1c1c]/25 w-2 left-1/2"/>
-                        <div className="absolute rounded-lg inset-0 bg-[#0f7a4a] w-16 h-8 left-30 top-1/2 [clip-path:polygon(0_0,85%_0,100%_50%,85%_100%,0_100%)]">
-                            <span className="m-4 font-calcio-italiano text-xl">1996</span>
-                        </div>
-                    </div>
-                    <div className="relative col-span-2 h-full border-2 border-[#1c1c1c]/30 rounded-xl -ml-12 mr-8 mt-8">
-                        {/* Gambar sejarah */}
-                        <div className="rounded-t-xl w-full h-75 bg-cover bg-center mb-4" style={{ backgroundImage: "url('https://picsum.photos/seed/sejarahD2/800/450')" }} />
-                        
-                        <div className="relative rounded-b-xl p-2 w-full h-auto">
-                            {/* judul sejarah */}
-                            <h1 className="text-[#0f7a4a] p-2 text-2xl font-bold font-calcio-italiano">Judul Disini</h1>
-                            {/* waktu sejarah */}
-                            <span className="text-[#0f7a4a] text-md px-2 font-bold font-stretch-50%">Tanggal sejarah</span>
-                            {/* deskripsi sejarah */}
-                            <p className="text-[#1c1c1c] p-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem aspernatur nesciunt asperiores! Recusandae ducimus possimus dolore obcaecati assumenda tempora aliquam quae praesentium nulla alias. Deserunt ad error molestias reiciendis amet. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi voluptatem eligendi voluptates adipisci, natus earum numquam alias, necessitatibus distinctio ratione nesciunt minima ad officiis omnis amet consectetur. Aliquam, sit qui. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore nam eius iste veritatis, laboriosam doloribus nesciunt amet consequatur beatae qui asperiores distinctio dolores deleniti impedit, labore id perspiciatis harum assumenda.</p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Sejarah 3 - Desktop */}
-                <div className="hidden xl:grid grid-cols-5 w-full">
-                    <div className="relative col-span-2 h-full border-2 border-[#1c1c1c]/30 rounded-xl -mr-12 ml-8 mt-4">
-                        {/* Gambar sejarah */}
-                        <div className="rounded-t-xl w-full h-75 bg-cover bg-center mb-4" style={{ backgroundImage: "url('https://picsum.photos/seed/sejarahD3/800/450')" }} />
-                        <div className="relative rounded-b-xl p-2 w-full h-auto">
-                            {/* Title sejarah */}
-                            <div className="justify-end flex">
-                                <h1 className="text-[#0f7a4a] p-2 text-2xl font-bold font-calcio-italiano">Judul disini</h1>
-                            </div>
-                            {/* Tanggal sejarah */}
-                            <div className="justify-end flex">
-                                <p className="text-[#0f7a4a] text-md px-2 font-bold">Tanggal</p>
-                            </div>
-                            {/* Deskripsi sejarah */}
-                            <p className="text-[#1c1c1c] p-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem aspernatur nesciunt asperiores! Recusandae ducimus possimus dolore obcaecati assumenda tempora aliquam quae praesentium nulla alias. Deserunt ad error molestias reiciendis amet. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi voluptatem eligendi voluptates adipisci, natus earum numquam alias, necessitatibus distinctio ratione nesciunt minima ad officiis omnis amet consectetur. Aliquam, sit qui. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore nam eius iste veritatis, laboriosam doloribus nesciunt amet consequatur beatae qui asperiores distinctio dolores deleniti impedit, labore id perspiciatis harum assumenda.</p>
-                        </div>
-                    </div>
-                    <div className="relative h-full">
-                        <div className="absolute inset-0 bg-[#1c1c1c]/25 w-2 left-1/2"/>
-                        <div className="absolute rounded-lg inset-0 bg-[#0f7a4a] w-16 h-8 left-30 top-1/2 [clip-path:polygon(15%_0,100%_0,100%_100%,15%_100%,0_50%)]">
-                            <span className="m-5 font-calcio-italiano text-xl">2006</span>
-                        </div>
-                    </div>
-                    <div className="relative col-span-2 h-10"/>
-                </div>
-
-                {/* Sejarah 4 - Desktop */}
-                <div className="hidden xl:grid grid-cols-5 w-full">
-                    <div className="relative col-span-2 h-10"/>
-                    <div className="relative h-full">
-                        <div className="absolute inset-0 bg-[#1c1c1c]/25 w-2 left-1/2 mb-4"/>
-                        <div className="absolute inset-0 rounded-lg bg-[#0f7a4a] w-16 h-8 left-30 top-1/2 [clip-path:polygon(0_0,85%_0,100%_50%,85%_100%,0_100%)]">
-                            <span className="m-4 font-calcio-italiano text-xl">2018</span>
-                        </div>
-                    </div>
-                    <div className="relative col-span-2 h-full border-2 border-[#1c1c1c]/30 rounded-xl -ml-12 mr-8 -mt-4 mb-8">
-                        {/* Gambar sejarah */}
-                        <div className="rounded-t-xl w-full h-75 bg-cover bg-center mb-4" style={{ backgroundImage: "url('https://picsum.photos/seed/sejarahD4/800/450')" }} />
-                        <div className="relative rounded-b-xl p-2 w-full h-auto">
-                            {/* Judul sejarah */}
-                            <h1 className="text-[#0f7a4a] p-2 text-2xl font-bold font-calcio-italiano">Judul Disini</h1>
-                            {/* Tanggal sejarah */}
-                            <span className="text-[#0f7a4a] text-md px-2 font-bold">Tanggal</span>
-                            {/* Deskripsi sejarah */}
-                            <p className="text-[#1c1c1c] p-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem aspernatur nesciunt asperiores! Recusandae ducimus possimus dolore obcaecati assumenda tempora aliquam quae praesentium nulla alias. Deserunt ad error molestias reiciendis amet. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi voluptatem eligendi voluptates adipisci, natus earum numquam alias, necessitatibus distinctio ratione nesciunt minima ad officiis omnis amet consectetur. Aliquam, sit qui. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore nam eius iste veritatis, laboriosam doloribus nesciunt amet consequatur beatae qui asperiores distinctio dolores deleniti impedit, labore id perspiciatis harum assumenda.</p>
-                        </div>
-                    </div>
-                </div>
-           </div>
+                );
+            })}
         </section>
     );
 }

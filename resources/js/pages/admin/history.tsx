@@ -1,5 +1,6 @@
 import HistoryPanel from "@/components/admin/historyPanel";
 import AdminSidebar from "@/components/admin/sidebar";
+import HistoryHeader from "@/components/club/history-header";
 import { Head } from "@inertiajs/react";
 
 export default function AdminHistory({ histories }: { histories: any }) {

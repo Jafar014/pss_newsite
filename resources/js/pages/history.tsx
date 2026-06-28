@@ -2,6 +2,7 @@ import { Head } from "@inertiajs/react"
 import HistorySection from "@/components/club/history-section"
 import HomeFooter from "@/components/home/home-footer"
 import HomeNavbar from "@/components/home/home-navbar"
+import HistoryHeader from "@/components/club/history-header";
 
 export default function History() {
     return(
@@ -9,6 +10,7 @@ export default function History() {
             <Head title="Sejarah Klub"/>              
             <div className="min-h-screen w-full overflow-x-hidden bg-[#f5f5f5] pt-16 md:pt-20 lg:pt-24">
                 <HomeNavbar />
+                <HistoryHeader />
                 <HistorySection />  
                 <HomeFooter />
             </div>
